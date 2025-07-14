@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예약하기 - Pilates HODU | 필라테스호두</title>
+    <meta name="description" content="필라테스호두 수업 예약 페이지입니다. 원하는 프로그램과 시간을 선택하여 간편하게 예약하세요. 무료 체험 수업도 예약 가능합니다.">
+    <meta name="keywords" content="필라테스예약, 수업예약, 체험수업, 개인레슨, 그룹클래스, 필라테스호두">
+        
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+       
+    <!-- Google Fonts: Inter, Manrope, Noto Sans KR -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Manrope:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+        
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style>
+        :root {
+            --forest-green: #2D5A27;
+            --sage-green: #87A96B;
+            --warm-beige: #F5F1E8;
+            --soft-cream: #FEFCF8;
+            --charcoal-gray: #2C2C2C;
+            --accent-gold: #D4AF37;
+        }
+    
+        body {
+            font-family: 'Manrope', 'Noto Sans KR', sans-serif;
+            background-color: var(--soft-cream);
+            color: var(--charcoal-gray);
+        }
+    
+        .font-eng { font-family: 'Manrope', sans-serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+            
+        .bg-forest-green { background-color: var(--forest-green); }
+        .bg-sage-green { background-color: var(--sage-green); }
+        .bg-warm-beige { background-color: var(--warm-beige); }
+        .bg-accent-gold { background-color: var(--accent-gold); }
+            
+        .text-forest-green { color: var(--forest-green); }
+        .text-sage-green { color: var(--sage-green); }
+        .text-charcoal-gray { color: var(--charcoal-gray); }
+        .text-accent-gold { color: var(--accent-gold); }
+        .text-white { color: white; }
+    
+        .hover\\:bg-forest-green-dark:hover { background-color: #1a3d1a; }
+        .hover\\:text-sage-green:hover { color: var(--sage-green); }
+    
+        /* 스크롤 애니메이션 */
+        .reveal, .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.6s ease-out;
+        }
+    
+        .reveal.visible, .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    
+        .header-scrolled {
+            background-color: rgba(254, 252, 248, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .booking-form {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 32px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--sage-green);
+        }
+        
+        .form-select {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: white;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-select:focus {
+            outline: none;
+            border-color: var(--sage-green);
+        }
+        
+        .form-textarea {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 16px;
+            min-height: 120px;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--sage-green);
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--forest-green);
+        }
+        
+        .program-option {
+            background-color: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
+        }
+        
+        .program-option:hover {
+            border-color: var(--sage-green);
+            transform: translateY(-2px);
+        }
+        
+        .program-option.selected {
+            border-color: var(--forest-green);
+            background-color: #f0f9ff;
+        }
+        
+        .program-option input[type="radio"] {
+            display: none;
+        }
+        
+        .time-slot {
+            background-color: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            margin: 4px;
+            min-width: 100px;
+        }
+        
+        .time-slot:hover {
+            border-color: var(--sage-green);
+            background-color: #f0f9ff;
+        }
+        
+        .time-slot.selected {
+            border-color: var(--forest-green);
+            background-color: var(--forest-green);
+            color: white;
+        }
+        
+        .time-slot.unavailable {
+            background-color: #f9fafb;
+            color: #9ca3af;
+            cursor: not-allowed;
+        }
+        
+        .time-slot.unavailable:hover {
+            border-color: #e5e7eb;
+            background-color: #f9fafb;
+        }
+        
+        .time-slot input[type="radio"] {
+            display: none;
+        }
+        
+        /* 전문적인 그라데이션 배경 */
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--forest-green) 0%, var(--sage-green) 100%);
+        }
+        
+        .section-gradient {
+            background: linear-gradient(180deg, var(--soft-cream) 0%, var(--warm-beige) 100%);
+        }
+        
+        .nav-active {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+        
+        .step-item {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+        
+        .step-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #e5e7eb;
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            margin-right: 12px;
+        }
+        
+        .step-item.active .step-number {
+            background-color: var(--forest-green);
+            color: white;
+        }
+        
+        .step-item.completed .step-number {
+            background-color: var(--sage-green);
+            color: white;
+        }
+        
+        .step-line {
+            flex: 1;
+            height: 2px;
+            background-color: #e5e7eb;
+            margin-left: 12px;
+        }
+        
+        .step-item.completed .step-line {
+            background-color: var(--sage-green);
+        }
+        
+        .step-item:last-child .step-line {
+            display: none;
+        }
+        
+        .booking-summary {
+            background-color: #f0f9ff;
+            border: 2px solid var(--sage-green);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 24px;
+        }
+        
+        .price-highlight {
+            background: linear-gradient(135deg, var(--accent-gold) 0%, #B8941F 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        .error-message {
+            color: #dc2626;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+        
+        .success-message {
+            color: var(--sage-green);
+            font-size: 14px;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" id="header-logo" class="text-2xl font-bold text-white transition-colors duration-300">
+                    <span class="font-eng">Pilates</span> <span class="text-accent-gold">HODU</span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-1 text-sm">
+                    <a href="index.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">홈</a>
+                    <a href="programs.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">프로그램</a>
+                    <a href="instructors.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">강사소개</a>
+                    <a href="facilities.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">시설안내</a>
+                    <a href="booking.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md nav-active transition-colors duration-300">예약하기</a>
+                    <a href="pricing.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">이용요금</a>
+                </nav>
+
+                <!-- Mobile Navigation Button -->
+                <button id="mobile-menu-button" class="lg:hidden focus:outline-none">
+                    <svg class="w-6 h-6 text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden px-6 pt-2 pb-4 bg-white shadow-lg">
+            <a href="index.html" class="block py-2 text-gray-700 hover:text-sage-green">홈</a>
+            <a href="programs.html" class="block py-2 text-gray-700 hover:text-sage-green">프로그램</a>
+            <a href="instructors.html" class="block py-2 text-gray-700 hover:text-sage-green">강사소개</a>
+            <a href="facilities.html" class="block py-2 text-gray-700 hover:text-sage-green">시설안내</a>
+            <a href="booking.html" class="block py-2 text-gray-700 hover:text-sage-green nav-active">예약하기</a>
+            <a href="pricing.html" class="block py-2 text-gray-700 hover:text-sage-green">이용요금</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative h-96 flex items-center justify-center text-center text-white overflow-hidden hero-gradient">
+            <div class="absolute inset-0 opacity-20">
+                <div class="w-full h-full bg-gradient-to-r from-black/30 to-transparent"></div>
+            </div>
+            
+            <div class="relative z-10 px-6 reveal">
+                <h1 class="font-eng text-4xl md:text-5xl font-bold tracking-tighter leading-tight text-white mb-4">
+                    Book Your <span class="text-accent-gold">Class</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-200 leading-relaxed max-w-2xl mx-auto">
+                    원하는 프로그램과 시간을 선택하여 간편하게 예약하세요
+                </p>
+            </div>
+        </section>
+
+        <!-- Booking Form Section -->
+        <section class="py-16 md:py-20 section-gradient">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto">
+                    <!-- Step Indicator -->
+                    <div class="step-indicator">
+                        <div class="step-item active">
+                            <div class="step-number">1</div>
+                            <span class="text-sm font-medium">프로그램 선택</span>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <span class="text-sm font-medium">일정 선택</span>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <span class="text-sm font-medium">개인정보</span>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">4</div>
+                            <span class="text-sm font-medium">예약 완료</span>
+                        </div>
+                    </div>
+
+                    <!-- Booking Form -->
+                    <div class="booking-form fade-in">
+                        <form id="bookingForm">
+                            <!-- Step 1: Program Selection -->
+                            <div id="step1" class="step-content">
+                                <h2 class="text-2xl font-bold text-forest-green mb-6">프로그램을 선택해주세요</h2>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <label class="program-option">
+                                        <input type="radio" name="program" value="trial" data-price="0">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h3 class="font-semibold text-forest-green mb-2">무료 체험 수업</h3>
+                                                <p class="text-gray-600 text-sm">처음 오시는 분을 위한 무료 체험 수업</p>
+                                                <p class="text-sm text-gray-500 mt-1">60분 / 1회</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <p class="font-bold text-sage-green text-lg">무료</p>
+                                            </div>
+                                        </div>
+                                    </label>
+
+                                    <label class="program-option">
+                                        <input type="radio" name="program" value="personal" data-price="80000">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h3 class="font-semibold text-forest-green mb-2">개인 레슨</h3>
+                                                <p class="text-gray-600 text-sm">1:1 맞춤형 개인 지도</p>
+                                                <p class="text-sm text-gray-500 mt-1">60분 / 1회</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <p class="font-bold text-forest-green text-lg">80,000원</p>
+                                            </div>
+                                        </div>
+                                    </label>
+
+                                    <label class="program-option">
+                                        <input type="radio" name="program" value="group" data-price="35000">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h3 class="font-semibold text-forest-green mb-2">그룹 클래스</h3>
+                                                <p class="text-gray-600 text-sm">2-6명 소그룹 수업</p>
+                                                <p class="text-sm text-gray-500 mt-1">50분 / 1회</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <p class="font-bold text-forest-green text-lg">35,000원</p>
+                                            </div>
+                                        </div>
+                                    </label>
+
+                                    <label class="program-option">
+                                        <input type="radio" name="program" value="rehabilitation" data-price="90000">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h3 class="font-semibold text-forest-green mb-2">재활 필라테스</h3>
+                                                <p class="text-gray-600 text-sm">전문 재활 프로그램</p>
+                                                <p class="text-sm text-gray-500 mt-1">60분 / 1회</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <p class="font-bold text-forest-green text-lg">90,000원</p>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <div class="mt-8 flex justify-end">
+                                    <button type="button" id="step1Next" class="bg-forest-green text-white px-8 py-3 rounded-full font-semibold hover:bg-forest-green-dark transition-colors">
+                                        다음 단계
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 2: Date & Time Selection -->
+                            <div id="step2" class="step-content hidden">
+                                <h2 class="text-2xl font-bold text-forest-green mb-6">날짜와 시간을 선택해주세요</h2>
+                                
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                    <div>
+                                        <label class="form-label">희망 날짜</label>
+                                        <input type="date" id="bookingDate" name="date" class="form-input" required>
+                                    </div>
+
+                                    <div>
+                                        <label class="form-label">선호 강사 (선택사항)</label>
+                                        <select id="preferredInstructor" name="instructor" class="form-select">
+                                            <option value="">강사 선택 안함</option>
+                                            <option value="kim">김○○ 원장</option>
+                                            <option value="lee">이○○ 강사</option>
+                                            <option value="park">박○○ 강사</option>
+                                            <option value="jung">정○○ 강사</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mt-8">
+                                    <label class="form-label">이용 가능한 시간</label>
+                                    <div id="timeSlots" class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 mt-4">
+                                        <!-- 시간 슬롯은 JavaScript로 동적 생성 -->
+                                    </div>
+                                </div>
+
+                                <div class="mt-8 flex justify-between">
+                                    <button type="button" id="step2Prev" class="border-2 border-forest-green text-forest-green px-8 py-3 rounded-full font-semibold hover:bg-forest-green hover:text-white transition-all">
+                                        이전 단계
+                                    </button>
+                                    <button type="button" id="step2Next" class="bg-forest-green text-white px-8 py-3 rounded-full font-semibold hover:bg-forest-green-dark transition-colors">
+                                        다음 단계
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 3: Personal Information -->
+                            <div id="step3" class="step-content hidden">
+                                <h2 class="text-2xl font-bold text-forest-green mb-6">개인정보를 입력해주세요</h2>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="form-label">이름 *</label>
+                                        <input type="text" id="customerName" name="name" class="form-input" required>
+                                    </div>
+
+                                    <div>
+                                        <label class="form-label">연락처 *</label>
+                                        <input type="tel" id="customerPhone" name="phone" class="form-input" required>
+                                    </div>
+
+                                    <div>
+                                        <label class="form-label">이메일</label>
+                                        <input type="email" id="customerEmail" name="email" class="form-input">
+                                    </div>
+
+                                    <div>
+                                        <label class="form-label">생년월일</label>
+                                        <input type="date" id="customerBirth" name="birth" class="form-input">
+                                    </div>
+                                </div>
+
+                                <div class="mt-6">
+                                    <label class="form-label">건강 상태 및 특이사항</label>
+                                    <textarea id="healthInfo" name="healthInfo" class="form-textarea" placeholder="부상 이력, 현재 복용 중인 약물, 주의사항 등을 자세히 적어주세요."></textarea>
+                                </div>
+
+                                <div class="mt-6">
+                                    <label class="form-label">운동 목표</label>
+                                    <textarea id="goals" name="goals" class="form-textarea" placeholder="필라테스를 통해 달성하고 싶은 목표를 알려주세요."></textarea>
+                                </div>
+
+                                <div class="mt-6">
+                                    <label class="form-label">추가 요청사항</label>
+                                    <textarea id="additionalRequests" name="additionalRequests" class="form-textarea" placeholder="기타 요청사항이나 문의사항을 적어주세요."></textarea>
+                                </div>
+
+                                <div class="mt-8 flex justify-between">
+                                    <button type="button" id="step3Prev" class="border-2 border-forest-green text-forest-green px-8 py-3 rounded-full font-semibold hover:bg-forest-green hover:text-white transition-all">
+                                        이전 단계
+                                    </button>
+                                    <button type="button" id="step3Next" class="bg-forest-green text-white px-8 py-3 rounded-full font-semibold hover:bg-forest-green-dark transition-colors">
+                                        예약 확인
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 4: Booking Confirmation -->
+                            <div id="step4" class="step-content hidden">
+                                <h2 class="text-2xl font-bold text-forest-green mb-6">예약 정보를 확인해주세요</h2>
+                                
+                                <div class="booking-summary">
+                                    <h3 class="text-lg font-semibold text-forest-green mb-4">예약 요약</h3>
+                                    <div id="bookingSummary" class="space-y-3">
+                                        <!-- 예약 정보는 JavaScript로 동적 생성 -->
+                                    </div>
+                                </div>
+
+                                <div class="mt-8 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                                    <h4 class="font-semibold text-yellow-800 mb-2">예약 전 확인사항</h4>
+                                    <ul class="text-sm text-yellow-700 space-y-1">
+                                        <li>• 예약 변경 및 취소는 24시간 전까지 가능합니다.</li>
+                                        <li>• 무단 결석 시 수업료의 50%가 차감됩니다.</li>
+                                        <li>• 첫 수업 30분 전에 도착하여 상담을 받으시기 바랍니다.</li>
+                                        <li>• 운동복과 물을 준비해주시거나 스튜디오에서 대여 가능합니다.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="mt-6">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" id="agreeTerms" name="agreeTerms" class="mr-3" required>
+                                        <span class="text-sm">개인정보 수집·이용 및 예약 취소 정책에 동의합니다.</span>
+                                    </label>
+                                </div>
+
+                                <div class="mt-8 flex justify-between">
+                                    <button type="button" id="step4Prev" class="border-2 border-forest-green text-forest-green px-8 py-3 rounded-full font-semibold hover:bg-forest-green hover:text-white transition-all">
+                                        이전 단계
+                                    </button>
+                                    <button type="submit" id="submitBooking" class="bg-accent-gold text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity">
+                                        예약 완료
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Booking Info -->
+        <section class="py-16 md:py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-4">빠른 예약 안내</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        전화나 카카오톡으로도 빠르게 예약하실 수 있습니다
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center fade-in">
+                        <div class="w-16 h-16 bg-forest-green rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-phone text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-forest-green mb-2">전화 예약</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            전화로 바로 예약하고 상담받으세요
+                        </p>
+                        <a href="tel:[전화번호]" class="text-sage-green font-semibold">[전화번호]</a>
+                    </div>
+
+                    <div class="text-center fade-in">
+                        <div class="w-16 h-16 bg-sage-green rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fab fa-kickstarter-k text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-forest-green mb-2">카카오톡 예약</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            카카오톡으로 편리하게 예약하세요
+                        </p>
+                        <a href="#" class="text-sage-green font-semibold">카카오톡 채널</a>
+                    </div>
+
+                    <div class="text-center fade-in">
+                        <div class="w-16 h-16 bg-accent-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-map-marker-alt text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-forest-green mb-2">방문 예약</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            스튜디오에 직접 방문하여 예약하세요
+                        </p>
+                        <span class="text-sage-green font-semibold">평일 10:00-20:00</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Floating Action Buttons -->
+    <div class="fixed bottom-6 right-6 space-y-3 z-40">
+        <a href="tel:[전화번호]" class="w-14 h-14 bg-sage-green text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all">
+            <i class="fas fa-phone fa-lg"></i>
+        </a>
+        <a href="#" class="w-14 h-14 bg-accent-gold text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all">
+            <i class="fab fa-kickstarter-k"></i>
+        </a>
+        <button id="top-btn" class="w-14 h-14 bg-forest-green text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all opacity-0">
+             <i class="fas fa-arrow-up fa-lg"></i>
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-forest-green text-white pt-12 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">
+                        <span class="font-eng">Pilates</span> <span class="text-accent-gold">HODU</span>
+                    </h3>
+                    <p class="text-gray-300 text-sm">
+                        전문적인 필라테스 지도와<br>
+                        개인 맞춤형 건강 관리로<br>
+                        여러분의 삶의 질을 높여드립니다.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">프로그램</h4>
+                    <ul class="text-gray-300 space-y-2 text-sm">
+                        <li><a href="programs.html" class="hover:text-accent-gold">재활 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">코어 강화</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">개인 레슨</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">그룹 클래스</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">스튜디오</h4>
+                    <ul class="text-gray-300 space-y-2 text-sm">
+                        <li><a href="instructors.html" class="hover:text-accent-gold">강사진</a></li>
+                        <li><a href="facilities.html" class="hover:text-accent-gold">시설안내</a></li>
+                        <li><a href="pricing.html" class="hover:text-accent-gold">이용요금</a></li>
+                        <li><a href="booking.html" class="hover:text-accent-gold">예약하기</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">연락처</h4>
+                    <ul class="text-gray-300 space-y-2 text-sm">
+                        <li><i class="fas fa-phone mr-2"></i> [전화번호]</li>
+                        <li><i class="fas fa-envelope mr-2"></i> [이메일]</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> [주소]</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-600 mt-8 pt-6 text-center text-gray-400 text-sm">
+                <p>&copy; 2025 필라테스호두 Pilates HODU. All Rights Reserved.</p>
+                <p class="mt-1">본 사이트의 모든 컨텐츠는 저작권법의 보호를 받으며, 무단 전재, 복사, 배포 등을 금합니다.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Header scroll effect
+            const header = document.getElementById('header');
+            const headerLogo = document.getElementById('header-logo');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileMenuButtonSvg = document.querySelector('#mobile-menu-button svg');
+
+            const updateHeaderStyle = () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('header-scrolled');
+                    headerLogo.classList.remove('text-white');
+                    headerLogo.classList.add('text-forest-green');
+                    
+                    navLinks.forEach(link => {
+                        link.classList.remove('text-white', 'hover:text-gray-300');
+                        link.classList.add('text-gray-700', 'hover:text-sage-green');
+                    });
+                    
+                    mobileMenuButtonSvg.classList.remove('text-white');
+                    mobileMenuButtonSvg.classList.add('text-gray-700');
+                } else {
+                    header.classList.remove('header-scrolled');
+                    headerLogo.classList.add('text-white');
+                    headerLogo.classList.remove('text-forest-green');
+                    
+                    navLinks.forEach(link => {
+                        link.classList.add('text-white', 'hover:text-gray-300');
+                        link.classList.remove('text-gray-700', 'hover:text-sage-green');
+                    });
+                    
+                    mobileMenuButtonSvg.classList.add('text-white');
+                    mobileMenuButtonSvg.classList.remove('text-gray-700');
+                }
+            };
+
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Scroll to top button
+            const topBtn = document.getElementById('top-btn');
+            if (topBtn) {
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 400) {
+                        topBtn.classList.remove('opacity-0');
+                        topBtn.classList.add('opacity-100');
+                    } else {
+                        topBtn.classList.remove('opacity-100');
+                        topBtn.classList.add('opacity-0');
+                    }
+                });
+                
+                topBtn.addEventListener('click', function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            // Scroll animations
+            const animatedElements = document.querySelectorAll('.reveal, .fade-in');
+            if (animatedElements.length > 0) {
+                const animationObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                });
+
+                animatedElements.forEach(el => {
+                    animationObserver.observe(el);
+                });
+            }
+
+            // Booking form functionality
+            let currentStep = 1;
+            const totalSteps = 4;
+            
+            // Step navigation
+            const updateStepIndicator = () => {
+                const stepItems = document.querySelectorAll('.step-item');
+                stepItems.forEach((item, index) => {
+                    item.classList.remove('active', 'completed');
+                    if (index + 1 === currentStep) {
+                        item.classList.add('active');
+                    } else if (index + 1 < currentStep) {
+                        item.classList.add('completed');
+                    }
+                });
+            };
+
+            const showStep = (step) => {
+                document.querySelectorAll('.step-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                document.getElementById(`step${step}`).classList.remove('hidden');
+                updateStepIndicator();
+            };
+
+            // Program selection
+            const programOptions = document.querySelectorAll('input[name="program"]');
+            programOptions.forEach(option => {
+                option.addEventListener('change', function() {
+                    document.querySelectorAll('.program-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    this.closest('.program-option').classList.add('selected');
+                });
+            });
+
+            // Time slots generation
+            const generateTimeSlots = () => {
+                const timeSlotsContainer = document.getElementById('timeSlots');
+                const timeSlots = [
+                    '09:00', '10:00', '11:00', '12:00', '13:00', '14:00',
+                    '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'
+                ];
+                
+                timeSlotsContainer.innerHTML = '';
+                timeSlots.forEach(time => {
+                    const slot = document.createElement('label');
+                    slot.className = 'time-slot';
+                    slot.innerHTML = `
+                        <input type="radio" name="time" value="${time}">
+                        <span>${time}</span>
+                    `;
+                    timeSlotsContainer.appendChild(slot);
+                });
+
+                // Add click handlers to time slots
+                document.querySelectorAll('.time-slot').forEach(slot => {
+                    slot.addEventListener('click', function() {
+                        if (!this.classList.contains('unavailable')) {
+                            document.querySelectorAll('.time-slot').forEach(s => {
+                                s.classList.remove('selected');
+                            });
+                            this.classList.add('selected');
+                        }
+                    });
+                });
+            };
+
+            // Step 1 navigation
+            document.getElementById('step1Next').addEventListener('click', function() {
+                const selectedProgram = document.querySelector('input[name="program"]:checked');
+                if (selectedProgram) {
+                    currentStep = 2;
+                    showStep(currentStep);
+                    generateTimeSlots();
+                } else {
+                    alert('프로그램을 선택해주세요.');
+                }
+            });
+
+            // Step 2 navigation
+            document.getElementById('step2Prev').addEventListener('click', function() {
+                currentStep = 1;
+                showStep(currentStep);
+            });
+
+            document.getElementById('step2Next').addEventListener('click', function() {
+                const selectedDate = document.getElementById('bookingDate').value;
+                const selectedTime = document.querySelector('input[name="time"]:checked');
+                
+                if (selectedDate && selectedTime) {
+                    currentStep = 3;
+                    showStep(currentStep);
+                } else {
+                    alert('날짜와 시간을 선택해주세요.');
+                }
+            });
+
+            // Step 3 navigation
+            document.getElementById('step3Prev').addEventListener('click', function() {
+                currentStep = 2;
+                showStep(currentStep);
+            });
+
+            document.getElementById('step3Next').addEventListener('click', function() {
+                const name = document.getElementById('customerName').value;
+                const phone = document.getElementById('customerPhone').value;
+                
+                if (name && phone) {
+                    currentStep = 4;
+                    showStep(currentStep);
+                    generateBookingSummary();
+                } else {
+                    alert('이름과 연락처를 입력해주세요.');
+                }
+            });
+
+            // Step 4 navigation
+            document.getElementById('step4Prev').addEventListener('click', function() {
+                currentStep = 3;
+                showStep(currentStep);
+            });
+
+            // Generate booking summary
+            const generateBookingSummary = () => {
+                const selectedProgram = document.querySelector('input[name="program"]:checked');
+                const selectedDate = document.getElementById('bookingDate').value;
+                const selectedTime = document.querySelector('input[name="time"]:checked');
+                const customerName = document.getElementById('customerName').value;
+                const customerPhone = document.getElementById('customerPhone').value;
+                const instructor = document.getElementById('preferredInstructor').value;
+                
+                const programNames = {
+                    'trial': '무료 체험 수업',
+                    'personal': '개인 레슨',
+                    'group': '그룹 클래스',
+                    'rehabilitation': '재활 필라테스'
+                };
+
+                const instructorNames = {
+                    'kim': '김○○ 원장',
+                    'lee': '이○○ 강사',
+                    'park': '박○○ 강사',
+                    'jung': '정○○ 강사'
+                };
+
+                const price = selectedProgram.getAttribute('data-price');
+                
+                document.getElementById('bookingSummary').innerHTML = `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <p class="font-medium text-forest-green">프로그램</p>
+                            <p class="text-gray-600">${programNames[selectedProgram.value]}</p>
+                        </div>
+                        <div>
+                            <p class="font-medium text-forest-green">날짜</p>
+                            <p class="text-gray-600">${selectedDate}</p>
+                        </div>
+                        <div>
+                            <p class="font-medium text-forest-green">시간</p>
+                            <p class="text-gray-600">${selectedTime.value}</p>
+                        </div>
+                        <div>
+                            <p class="font-medium text-forest-green">강사</p>
+                            <p class="text-gray-600">${instructor ? instructorNames[instructor] : '배정 예정'}</p>
+                        </div>
+                        <div>
+                            <p class="font-medium text-forest-green">예약자</p>
+                            <p class="text-gray-600">${customerName}</p>
+                        </div>
+                        <div>
+                            <p class="font-medium text-forest-green">연락처</p>
+                            <p class="text-gray-600">${customerPhone}</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-gray-200">
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold text-forest-green text-lg">총 결제 금액</span>
+                            <span class="price-highlight">${price === '0' ? '무료' : price.toLocaleString() + '원'}</span>
+                        </div>
+                    </div>
+                `;
+            };
+
+            // Form submission
+            document.getElementById('bookingForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const agreeTerms = document.getElementById('agreeTerms').checked;
+                if (!agreeTerms) {
+                    alert('개인정보 수집·이용 및 예약 취소 정책에 동의해주세요.');
+                    return;
+                }
+
+                // 실제 구현에서는 서버로 데이터 전송
+                alert('예약이 완료되었습니다! 확인 문자를 발송해드렸습니다.');
+                
+                // 폼 초기화
+                this.reset();
+                currentStep = 1;
+                showStep(currentStep);
+                document.querySelectorAll('.program-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+            });
+
+            // Set minimum date to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('bookingDate').setAttribute('min', today);
+
+            // Initial execution
+            updateHeaderStyle();
+            window.addEventListener('scroll', updateHeaderStyle);
+            showStep(currentStep);
+        });
+    </script>
+</body>
+</html>
