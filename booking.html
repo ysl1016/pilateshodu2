@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>예약하기 - Pilates HODU | 필라테스호두</title>
-    <meta name="description" content="필라테스호두 수업 예약 페이지입니다. 원하는 프로그램과 시간을 선택하여 간편하게 예약하세요. 무료 체험 수업도 예약 가능합니다.">
-    <meta name="keywords" content="필라테스예약, 수업예약, 체험수업, 개인레슨, 그룹클래스, 필라테스호두">
+    <title>예약 상담 - 메디컬필라테스™ 호두 | 1:1 원장직강 전문 상담 예약</title>
+    <meta name="description" content="메디컬필라테스™ 호두의 1:1 원장직강 상담 예약 페이지입니다. 전화 또는 온라인으로 개별 맞춤 상담을 예약하세요. 의료기반 통증재활 전문 센터입니다.">
+    <meta name="keywords" content="메디컬필라테스예약, 1:1원장직강, 통증재활상담, 개별맞춤상담, 필라테스호두, 031-263-3345">
         
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -292,7 +292,7 @@
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <a href="index.html" id="header-logo" class="text-2xl font-bold text-white transition-colors duration-300">
-                    <span class="font-eng">Pilates</span> <span class="text-accent-gold">HODU</span>
+                    <span class="font-eng text-sm">메디컬필라테스™</span> <span class="text-accent-gold">HODU</span>
                 </a>
                 
                 <!-- Desktop Navigation -->
@@ -301,7 +301,7 @@
                     <a href="programs.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">프로그램</a>
                     <a href="instructors.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">강사소개</a>
                     <a href="facilities.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">시설안내</a>
-                    <a href="booking.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md nav-active transition-colors duration-300">예약하기</a>
+                    <a href="booking.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md nav-active transition-colors duration-300">상담예약</a>
                     <a href="pricing.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">이용요금</a>
                 </nav>
 
@@ -320,7 +320,7 @@
             <a href="programs.html" class="block py-2 text-gray-700 hover:text-sage-green">프로그램</a>
             <a href="instructors.html" class="block py-2 text-gray-700 hover:text-sage-green">강사소개</a>
             <a href="facilities.html" class="block py-2 text-gray-700 hover:text-sage-green">시설안내</a>
-            <a href="booking.html" class="block py-2 text-gray-700 hover:text-sage-green nav-active">예약하기</a>
+            <a href="booking.html" class="block py-2 text-gray-700 hover:text-sage-green nav-active">상담예약</a>
             <a href="pricing.html" class="block py-2 text-gray-700 hover:text-sage-green">이용요금</a>
         </div>
     </header>
@@ -334,11 +334,16 @@
             
             <div class="relative z-10 px-6 reveal">
                 <h1 class="font-eng text-4xl md:text-5xl font-bold tracking-tighter leading-tight text-white mb-4">
-                    Book Your <span class="text-accent-gold">Class</span>
+                    전문 상담 <span class="text-accent-gold">예약</span>
                 </h1>
                 <p class="text-lg md:text-xl text-gray-200 leading-relaxed max-w-2xl mx-auto">
-                    원하는 프로그램과 시간을 선택하여 간편하게 예약하세요
+                    1:1 원장직강 전문 상담 예약 | 의료기반 맞춤 상담 및 관리 계획 수립
                 </p>
+                <div class="mt-6">
+                    <span class="bg-accent-gold text-forest-green px-6 py-3 rounded-full text-sm font-bold">
+                        📞 전화 상담: 031-263-3345
+                    </span>
+                </div>
             </div>
         </section>
 
@@ -350,22 +355,22 @@
                     <div class="step-indicator">
                         <div class="step-item active">
                             <div class="step-number">1</div>
-                            <span class="text-sm font-medium">프로그램 선택</span>
+                            <span class="text-sm font-medium">관심 프로그램</span>
                             <div class="step-line"></div>
                         </div>
                         <div class="step-item">
                             <div class="step-number">2</div>
-                            <span class="text-sm font-medium">일정 선택</span>
+                            <span class="text-sm font-medium">상담 일정</span>
                             <div class="step-line"></div>
                         </div>
                         <div class="step-item">
                             <div class="step-number">3</div>
-                            <span class="text-sm font-medium">개인정보</span>
+                            <span class="text-sm font-medium">연락처 정보</span>
                             <div class="step-line"></div>
                         </div>
                         <div class="step-item">
                             <div class="step-number">4</div>
-                            <span class="text-sm font-medium">예약 완료</span>
+                            <span class="text-sm font-medium">상담 예약 완료</span>
                         </div>
                     </div>
 
@@ -374,61 +379,135 @@
                         <form id="bookingForm">
                             <!-- Step 1: Program Selection -->
                             <div id="step1" class="step-content">
-                                <h2 class="text-2xl font-bold text-forest-green mb-6">프로그램을 선택해주세요</h2>
+                                <h2 class="text-2xl font-bold text-forest-green mb-6">관심 있는 프로그램을 선택해주세요</h2>
+                                <p class="text-gray-600 mb-6">전문 상담을 통해 개인별 맞춤 프로그램을 추천해드립니다. (모든 프로그램은 1:1 원장직강만 운영)</p>
                                 
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <label class="program-option">
-                                        <input type="radio" name="program" value="trial" data-price="0">
+                                        <input type="radio" name="program" value="consultation" data-price="0">
                                         <div class="flex items-center justify-between">
                                             <div>
-                                                <h3 class="font-semibold text-forest-green mb-2">무료 체험 수업</h3>
-                                                <p class="text-gray-600 text-sm">처음 오시는 분을 위한 무료 체험 수업</p>
-                                                <p class="text-sm text-gray-500 mt-1">60분 / 1회</p>
+                                                <h3 class="font-semibold text-forest-green mb-2">초기 건강 상담</h3>
+                                                <p class="text-gray-600 text-sm">건강 상태 분석 및 맞춤 프로그램 상담</p>
+                                                <p class="text-sm text-gray-500 mt-1">1:1 전문 상담</p>
                                             </div>
                                             <div class="text-right">
-                                                <p class="font-bold text-sage-green text-lg">무료</p>
+                                                <p class="font-bold text-sage-green text-lg">무료 상담</p>
                                             </div>
                                         </div>
                                     </label>
 
                                     <label class="program-option">
-                                        <input type="radio" name="program" value="personal" data-price="80000">
+                                        <input type="radio" name="program" value="pain-rehab" data-price="0">
                                         <div class="flex items-center justify-between">
                                             <div>
-                                                <h3 class="font-semibold text-forest-green mb-2">개인 레슨</h3>
-                                                <p class="text-gray-600 text-sm">1:1 맞춤형 개인 지도</p>
-                                                <p class="text-sm text-gray-500 mt-1">60분 / 1회</p>
+                                                <h3 class="font-semibold text-forest-green mb-2">통증재활 필라테스</h3>
+                                                <p class="text-gray-600 text-sm">근골격계 통증 및 체형교정 전문</p>
+                                                <p class="text-sm text-gray-500 mt-1">의료기반 관리 프로그램</p>
                                             </div>
                                             <div class="text-right">
-                                                <p class="font-bold text-forest-green text-lg">80,000원</p>
+                                                <p class="font-bold text-forest-green text-lg">상담 문의</p>
                                             </div>
                                         </div>
                                     </label>
 
                                     <label class="program-option">
-                                        <input type="radio" name="program" value="group" data-price="35000">
+                                        <input type="radio" name="program" value="mannequin-tone" data-price="0">
                                         <div class="flex items-center justify-between">
                                             <div>
-                                                <h3 class="font-semibold text-forest-green mb-2">그룹 클래스</h3>
-                                                <p class="text-gray-600 text-sm">2-6명 소그룹 수업</p>
-                                                <p class="text-sm text-gray-500 mt-1">50분 / 1회</p>
+                                                <h3 class="font-semibold text-forest-green mb-2">마네킹톤 프로그램</h3>
+                                                <p class="text-gray-600 text-sm">체중감량 및 비만체형 관리 특화</p>
+                                                <p class="text-sm text-gray-500 mt-1">톤업 필라테스 프로그램</p>
                                             </div>
                                             <div class="text-right">
-                                                <p class="font-bold text-forest-green text-lg">35,000원</p>
+                                                <p class="font-bold text-forest-green text-lg">상담 문의</p>
                                             </div>
                                         </div>
                                     </label>
 
                                     <label class="program-option">
-                                        <input type="radio" name="program" value="rehabilitation" data-price="90000">
+                                        <input type="radio" name="program" value="flat-scol" data-price="0">
                                         <div class="flex items-center justify-between">
                                             <div>
-                                                <h3 class="font-semibold text-forest-green mb-2">재활 필라테스</h3>
-                                                <p class="text-gray-600 text-sm">전문 재활 프로그램</p>
-                                                <p class="text-sm text-gray-500 mt-1">60분 / 1회</p>
+                                                <h3 class="font-semibold text-forest-green mb-2">플랫스콜 프로그램</h3>
+                                                <p class="text-gray-600 text-sm">체추측만증 슈로스 메소드 접목</p>
+                                                <p class="text-sm text-gray-500 mt-1">경도 체추측만증 교정 전문</p>
                                             </div>
                                             <div class="text-right">
-                                                <p class="font-bold text-forest-green text-lg">90,000원</p>
+                                                <p class="font-bold text-forest-green text-lg">상담 문의</p>
+                                            </div>
+                                        </div>
+                                    </label>
+
+                                    <label class="program-option">
+                                        <input type="radio" name="program" value="golf" data-price="0">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h3 class="font-semibold text-forest-green mb-2">골프 필라테스</h3>
+                                                <p class="text-gray-600 text-sm">골프스윙 및 비거리 향상 전문</p>
+                                                <p class="text-sm text-gray-500 mt-1">트럁크 강화 중심 프로그램</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <p class="font-bold text-forest-green text-lg">상담 문의</p>
+                                            </div>
+                                        </div>
+                                    </label>
+
+                                    <label class="program-option">
+                                        <input type="radio" name="program" value="kids" data-price="0">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h3 class="font-semibold text-forest-green mb-2">키즈(성장) 필라테스</h3>
+                                                <p class="text-gray-600 text-sm">아이 성장 도움 및 측만 교정</p>
+                                                <p class="text-sm text-gray-500 mt-1">성장기 체형 관리 전문</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <p class="font-bold text-forest-green text-lg">상담 문의</p>
+                                            </div>
+                                        </div>
+                                    </label>
+
+                                    <label class="program-option">
+                                        <input type="radio" name="program" value="maternity" data-price="0">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h3 class="font-semibold text-forest-green mb-2">임산부 필라테스</h3>
+                                                <p class="text-gray-600 text-sm">산전/산후 전문 관리 프로그램</p>
+                                                <p class="text-sm text-gray-500 mt-1">코어 강화 및 분만 후 회복</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <p class="font-bold text-forest-green text-lg">상담 문의</p>
+                                            </div>
+                                        </div>
+                                    </label>
+
+                                    <label class="program-option">
+                                        <input type="radio" name="program" value="senior" data-price="0">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h3 class="font-semibold text-forest-green mb-2">시니어 필라테스</h3>
+                                                <p class="text-gray-600 text-sm">근력 유지 및 균형감 강화</p>
+                                                <p class="text-sm text-gray-500 mt-1">건강한 노후 체력 유지</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <p class="font-bold text-forest-green text-lg">상담 문의</p>
+                                            </div>
+                                        </div>
+                                    </label>
+
+                                    <label class="program-option border-2 border-accent-gold">
+                                        <input type="radio" name="program" value="philfit" data-price="0">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <div class="flex items-center">
+                                                    <h3 class="font-semibold text-forest-green mb-2">필앤핏 프로그램</h3>
+                                                    <span class="bg-accent-gold text-white px-2 py-1 rounded-full text-xs font-bold ml-2">SPECIAL</span>
+                                                </div>
+                                                <p class="text-gray-600 text-sm">뉴-뱅퀴시 + 마네킹톤 병행</p>
+                                                <p class="text-sm text-gray-500 mt-1">이연의원 협력 4주 프로그램</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <p class="font-bold text-accent-gold text-lg">특별 상담</p>
                                             </div>
                                         </div>
                                     </label>
@@ -443,7 +522,8 @@
 
                             <!-- Step 2: Date & Time Selection -->
                             <div id="step2" class="step-content hidden">
-                                <h2 class="text-2xl font-bold text-forest-green mb-6">날짜와 시간을 선택해주세요</h2>
+                                <h2 class="text-2xl font-bold text-forest-green mb-6">상담 희망 일정을 선택해주세요</h2>
+                                <p class="text-gray-600 mb-6">운영시간: 평일 08:00-21:30 | 토요일 08:00-15:00 | 일요일/공휴일 휴무</p>
                                 
                                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                                     <div>
@@ -452,13 +532,9 @@
                                     </div>
 
                                     <div>
-                                        <label class="form-label">선호 강사 (선택사항)</label>
+                                        <label class="form-label">원장님 1:1 직강</label>
                                         <select id="preferredInstructor" name="instructor" class="form-select">
-                                            <option value="">강사 선택 안함</option>
-                                            <option value="kim">김○○ 원장</option>
-                                            <option value="lee">이○○ 강사</option>
-                                            <option value="park">박○○ 강사</option>
-                                            <option value="jung">정○○ 강사</option>
+                                            <option value="park-director">박정은 대표원장 (전문의 참여 메디컬필라테스)</option>
                                         </select>
                                     </div>
                                 </div>
@@ -482,7 +558,8 @@
 
                             <!-- Step 3: Personal Information -->
                             <div id="step3" class="step-content hidden">
-                                <h2 class="text-2xl font-bold text-forest-green mb-6">개인정보를 입력해주세요</h2>
+                                <h2 class="text-2xl font-bold text-forest-green mb-6">연락처 정보를 입력해주세요</h2>
+                                <p class="text-gray-600 mb-6">상담 예약 확인 및 안내를 위한 정보입니다. 개인정보는 안전하게 보호됩니다.</p>
                                 
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div>
@@ -507,18 +584,18 @@
                                 </div>
 
                                 <div class="mt-6">
-                                    <label class="form-label">건강 상태 및 특이사항</label>
-                                    <textarea id="healthInfo" name="healthInfo" class="form-textarea" placeholder="부상 이력, 현재 복용 중인 약물, 주의사항 등을 자세히 적어주세요."></textarea>
+                                    <label class="form-label">현재 통증 부위 및 건강 상태</label>
+                                    <textarea id="healthInfo" name="healthInfo" class="form-textarea" placeholder="통증 부위, 수술 이력, 현재 복용 중인 약물, 만성질환 등을 자세히 적어주세요. (의료기반 상담을 위한 중요한 정보입니다)"></textarea>
                                 </div>
 
                                 <div class="mt-6">
-                                    <label class="form-label">운동 목표</label>
-                                    <textarea id="goals" name="goals" class="form-textarea" placeholder="필라테스를 통해 달성하고 싶은 목표를 알려주세요."></textarea>
+                                    <label class="form-label">개선 및 관리 희망 사항</label>
+                                    <textarea id="goals" name="goals" class="form-textarea" placeholder="개선하고 싶은 증상, 관리 목표, 기대하는 효과 등을 알려주세요."></textarea>
                                 </div>
 
                                 <div class="mt-6">
-                                    <label class="form-label">추가 요청사항</label>
-                                    <textarea id="additionalRequests" name="additionalRequests" class="form-textarea" placeholder="기타 요청사항이나 문의사항을 적어주세요."></textarea>
+                                    <label class="form-label">기타 문의사항</label>
+                                    <textarea id="additionalRequests" name="additionalRequests" class="form-textarea" placeholder="메디컬필라테스에 대한 질문이나 기타 요청사항을 적어주세요."></textarea>
                                 </div>
 
                                 <div class="mt-8 flex justify-between">
@@ -533,29 +610,30 @@
 
                             <!-- Step 4: Booking Confirmation -->
                             <div id="step4" class="step-content hidden">
-                                <h2 class="text-2xl font-bold text-forest-green mb-6">예약 정보를 확인해주세요</h2>
+                                <h2 class="text-2xl font-bold text-forest-green mb-6">상담 예약 정보를 확인해주세요</h2>
                                 
                                 <div class="booking-summary">
-                                    <h3 class="text-lg font-semibold text-forest-green mb-4">예약 요약</h3>
+                                    <h3 class="text-lg font-semibold text-forest-green mb-4">상담 예약 요약</h3>
                                     <div id="bookingSummary" class="space-y-3">
-                                        <!-- 예약 정보는 JavaScript로 동적 생성 -->
+                                        <!-- 상담 예약 정보는 JavaScript로 동적 생성 -->
                                     </div>
                                 </div>
 
-                                <div class="mt-8 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                                    <h4 class="font-semibold text-yellow-800 mb-2">예약 전 확인사항</h4>
-                                    <ul class="text-sm text-yellow-700 space-y-1">
-                                        <li>• 예약 변경 및 취소는 24시간 전까지 가능합니다.</li>
-                                        <li>• 무단 결석 시 수업료의 50%가 차감됩니다.</li>
-                                        <li>• 첫 수업 30분 전에 도착하여 상담을 받으시기 바랍니다.</li>
-                                        <li>• 운동복과 물을 준비해주시거나 스튜디오에서 대여 가능합니다.</li>
+                                <div class="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-4">
+                                    <h4 class="font-semibold text-blue-800 mb-2">상담 예약 안내사항</h4>
+                                    <ul class="text-sm text-blue-700 space-y-1">
+                                        <li>• 상담 예약 변경 및 취소는 24시간 전까지 연락 바랍니다.</li>
+                                        <li>• 초기 상담은 약 60분 정도 소요됩니다.</li>
+                                        <li>• 상담 시 건강보험증 또는 신분증을 지참해주세요.</li>
+                                        <li>• 의료기록지나 건강검진 자료가 있으시면 함께 가져와주세요.</li>
+                                        <li>• 편안한 복장으로 오시면 간단한 체형 분석이 가능합니다.</li>
                                     </ul>
                                 </div>
 
                                 <div class="mt-6">
                                     <label class="flex items-center">
                                         <input type="checkbox" id="agreeTerms" name="agreeTerms" class="mr-3" required>
-                                        <span class="text-sm">개인정보 수집·이용 및 예약 취소 정책에 동의합니다.</span>
+                                        <span class="text-sm">개인정보 수집·이용 및 상담 예약 정책에 동의합니다.</span>
                                     </label>
                                 </div>
 
@@ -564,7 +642,7 @@
                                         이전 단계
                                     </button>
                                     <button type="submit" id="submitBooking" class="bg-accent-gold text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity">
-                                        예약 완료
+                                        상담 예약 완료
                                     </button>
                                 </div>
                             </div>
@@ -578,9 +656,9 @@
         <section class="py-16 md:py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-4">빠른 예약 안내</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-4">빠른 상담 예약</h2>
                     <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                        전화나 카카오톡으로도 빠르게 예약하실 수 있습니다
+                        전화 또는 직접 방문으로도 상담 예약이 가능합니다
                     </p>
                 </div>
 
@@ -589,33 +667,41 @@
                         <div class="w-16 h-16 bg-forest-green rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fas fa-phone text-white text-xl"></i>
                         </div>
-                        <h3 class="text-lg font-semibold text-forest-green mb-2">전화 예약</h3>
+                        <h3 class="text-lg font-semibold text-forest-green mb-2">전화 상담 예약</h3>
                         <p class="text-gray-600 text-sm mb-4">
-                            전화로 바로 예약하고 상담받으세요
+                            전화로 바로 상담 예약하고 문의하세요
                         </p>
-                        <a href="tel:[전화번호]" class="text-sage-green font-semibold">[전화번호]</a>
+                        <a href="tel:031-263-3345" class="text-sage-green font-semibold">031-263-3345</a>
                     </div>
 
                     <div class="text-center fade-in">
                         <div class="w-16 h-16 bg-sage-green rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fab fa-kickstarter-k text-white text-xl"></i>
                         </div>
-                        <h3 class="text-lg font-semibold text-forest-green mb-2">카카오톡 예약</h3>
+                        <h3 class="text-lg font-semibold text-forest-green mb-2">운영시간 안내</h3>
                         <p class="text-gray-600 text-sm mb-4">
-                            카카오톡으로 편리하게 예약하세요
+                            정확한 예약을 위한 운영시간 확인
                         </p>
-                        <a href="#" class="text-sage-green font-semibold">카카오톡 채널</a>
+                        <div class="text-sage-green font-semibold text-sm">
+                            <div>평일: 08:00-21:30</div>
+                            <div>토요일: 08:00-15:00</div>
+                            <div>일/공휴일: 휴무</div>
+                        </div>
                     </div>
 
                     <div class="text-center fade-in">
                         <div class="w-16 h-16 bg-accent-gold rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fas fa-map-marker-alt text-white text-xl"></i>
                         </div>
-                        <h3 class="text-lg font-semibold text-forest-green mb-2">방문 예약</h3>
+                        <h3 class="text-lg font-semibold text-forest-green mb-2">방문 상담</h3>
                         <p class="text-gray-600 text-sm mb-4">
-                            스튜디오에 직접 방문하여 예약하세요
+                            센터에 직접 방문하여 상담받으세요
                         </p>
-                        <span class="text-sage-green font-semibold">평일 10:00-20:00</span>
+                        <div class="text-sage-green font-semibold text-sm">
+                            <div>경기도 용인시 수지구</div>
+                            <div>신봉동 82-4 (3층)</div>
+                            <div>무료 주차 가능</div>
+                        </div>
                     </div>
                 </div>
             </div>
