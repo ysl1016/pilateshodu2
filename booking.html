@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Manrope:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
         
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==&#34; crossorigin=&#34;anonymous&#34; referrerpolicy=&#34;no-referrer&#34; />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <style>
         :root {
@@ -69,6 +69,10 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
             
+        
+            
+        
+            
         .service-card {
             background-color: white;
             transition: all 0.4s ease;
@@ -98,6 +102,176 @@
         .section-gradient {
             background: linear-gradient(180deg, var(--soft-cream) 0%, var(--warm-beige) 100%);
         }
+
+        /* Step Indicator Styles */
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+        }
+
+        .step-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            position: relative;
+        }
+
+        .step-number {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background-color: #e5e7eb;
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .step-item.active .step-number {
+            background-color: var(--forest-green);
+            color: white;
+        }
+
+        .step-item.completed .step-number {
+            background-color: var(--sage-green);
+            color: white;
+        }
+
+        .step-line {
+            position: absolute;
+            top: 1.25rem;
+            left: 75%;
+            width: 50%;
+            height: 2px;
+            background-color: #e5e7eb;
+            z-index: 0;
+        }
+
+        .step-item:last-child .step-line {
+            display: none;
+        }
+
+        .step-item.completed .step-line {
+            background-color: var(--sage-green);
+        }
+
+        /* Form Styles */
+        .booking-form {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--forest-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            font-family: 'Manrope', 'Noto Sans KR', sans-serif;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--sage-green);
+        }
+
+        .form-textarea {
+            min-height: 6rem;
+            resize: vertical;
+        }
+
+        /* Program Option Styles */
+        .program-option {
+            display: block;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+            background-color: white;
+        }
+
+        .program-option:hover {
+            border-color: var(--sage-green);
+            background-color: #f9fafb;
+        }
+
+        .program-option.selected {
+            border-color: var(--forest-green);
+            background-color: var(--warm-beige);
+        }
+
+        .program-option input[type="radio"] {
+            display: none;
+        }
+
+        /* Time Slot Styles */
+        .time-slot {
+            display: block;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: white;
+            font-weight: 500;
+        }
+
+        .time-slot:hover {
+            border-color: var(--sage-green);
+            background-color: #f9fafb;
+        }
+
+        .time-slot.selected {
+            border-color: var(--forest-green);
+            background-color: var(--sage-green);
+            color: white;
+        }
+
+        .time-slot.unavailable {
+            background-color: #f3f4f6;
+            color: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .time-slot input[type="radio"] {
+            display: none;
+        }
+
+        /* Booking Summary Styles */
+        .booking-summary {
+            background-color: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        .price-highlight {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -122,7 +296,7 @@
 
                 <!-- Mobile Navigation Button -->
                 <button id="mobile-menu-button" class="lg:hidden focus:outline-none">
-                    <svg class="w-6 h-6 text-white transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-6 h-6 text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                     </svg>
                 </button>
@@ -525,7 +699,7 @@
     
     <!-- Floating Action Buttons -->
     <div class="fixed bottom-6 right-6 space-y-3 z-40">
-        <a href="tel:[전화번호]" class="w-14 h-14 bg-sage-green text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all">
+        <a href="tel:031-263-3345" class="w-14 h-14 bg-sage-green text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all">
             <i class="fas fa-phone fa-lg"></i>
         </a>
         <a href="#" class="w-14 h-14 bg-accent-gold text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all">
@@ -734,15 +908,67 @@
                 });
             };
 
+            // Enhanced form validation
+            const validateStep = (step) => {
+                const errorMessages = [];
+                
+                if (step === 1) {
+                    const selectedProgram = document.querySelector('input[name="program"]:checked');
+                    if (!selectedProgram) {
+                        errorMessages.push('프로그램을 선택해주세요.');
+                    }
+                }
+                
+                if (step === 2) {
+                    const selectedDate = document.getElementById('bookingDate').value;
+                    const selectedTime = document.querySelector('input[name="time"]:checked');
+                    
+                    if (!selectedDate) {
+                        errorMessages.push('날짜를 선택해주세요.');
+                    }
+                    if (!selectedTime) {
+                        errorMessages.push('시간을 선택해주세요.');
+                    }
+                }
+                
+                if (step === 3) {
+                    const name = document.getElementById('customerName').value.trim();
+                    const phone = document.getElementById('customerPhone').value.trim();
+                    
+                    if (!name) {
+                        errorMessages.push('이름을 입력해주세요.');
+                    }
+                    if (!phone) {
+                        errorMessages.push('연락처를 입력해주세요.');
+                    }
+                    if (phone && !isValidPhone(phone)) {
+                        errorMessages.push('올바른 전화번호 형식을 입력해주세요. (예: 010-1234-5678)');
+                    }
+                }
+                
+                return errorMessages;
+            };
+
+            const isValidPhone = (phone) => {
+                const phonePattern = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/;
+                return phonePattern.test(phone);
+            };
+
+            const showValidationErrors = (errors) => {
+                if (errors.length > 0) {
+                    alert(errors.join('\n'));
+                    return false;
+                }
+                return true;
+            };
+
             // Step 1 navigation
             document.getElementById('step1Next').addEventListener('click', function() {
-                const selectedProgram = document.querySelector('input[name="program"]:checked');
-                if (selectedProgram) {
+                const errors = validateStep(1);
+                if (showValidationErrors(errors)) {
                     currentStep = 2;
                     showStep(currentStep);
                     generateTimeSlots();
-                } else {
-                    alert('프로그램을 선택해주세요.');
                 }
             });
 
@@ -753,14 +979,10 @@
             });
 
             document.getElementById('step2Next').addEventListener('click', function() {
-                const selectedDate = document.getElementById('bookingDate').value;
-                const selectedTime = document.querySelector('input[name="time']:checked');
-                
-                if (selectedDate && selectedTime) {
+                const errors = validateStep(2);
+                if (showValidationErrors(errors)) {
                     currentStep = 3;
                     showStep(currentStep);
-                } else {
-                    alert('날짜와 시간을 선택해주세요.');
                 }
             });
 
@@ -771,15 +993,11 @@
             });
 
             document.getElementById('step3Next').addEventListener('click', function() {
-                const name = document.getElementById('customerName').value;
-                const phone = document.getElementById('customerPhone').value;
-                
-                if (name && phone) {
+                const errors = validateStep(3);
+                if (showValidationErrors(errors)) {
                     currentStep = 4;
                     showStep(currentStep);
                     generateBookingSummary();
-                } else {
-                    alert('이름과 연락처를 입력해주세요.');
                 }
             });
 
@@ -799,17 +1017,19 @@
                 const instructor = document.getElementById('preferredInstructor').value;
                 
                 const programNames = {
-                    'trial': '무료 체험 수업',
-                    'personal': '개인 레슨',
-                    'group': '그룹 클래스',
-                    'rehabilitation': '재활 필라테스'
+                    'consultation': '초기 건강 상담',
+                    'pain-rehab': '통증재활 필라테스',
+                    'mannequin-tone': '마네킹톤 프로그램',
+                    'flat-scol': '플랫스콜 프로그램',
+                    'golf': '골프 필라테스',
+                    'kids': '키즈(성장) 필라테스',
+                    'maternity': '임산부 필라테스',
+                    'senior': '시니어 필라테스',
+                    'philfit': '필앤핏 프로그램'
                 };
 
                 const instructorNames = {
-                    'kim': '김○○ 원장',
-                    'lee': '이○○ 강사',
-                    'park': '박○○ 강사',
-                    'jung': '정○○ 강사'
+                    'park-director': '박정은 대표원장'
                 };
 
                 const price = selectedProgram.getAttribute('data-price');
