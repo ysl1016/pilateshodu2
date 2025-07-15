@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>예약 상담 - 메디컬필라테스™ 호두 | 1:1 원장직강 전문 상담 예약</title>
-    <meta name="description" content="메디컬필라테스™ 호두의 1:1 원장직강 상담 예약 페이지입니다. 전화 또는 온라인으로 개별 맞춤 상담을 예약하세요. 의료기반 통증재활 전문 센터입니다.">
-    <meta name="keywords" content="메디컬필라테스예약, 1:1원장직강, 통증재활상담, 개별맞춤상담, 필라테스호두, 031-263-3345">
+    <title>PILATES HODU | 필라테스 호두 - 국내 최초의 메디컬필라테스™</title>
+    <meta name="description" content="필라테스 호두는 국내 최초이자 유일한 메디컬필라테스 브랜드로, 의학적 진단을 통한 통증 재활 및 체형 관리를 제공하는 원장직강 1:1 전문 센터입니다.">
+    <meta name="keywords" content="메디컬필라테스, 재활운동, 통증치료, 체형교정, 척추측만증, 원장직강, 필라테스호두, 수지필라테스">
         
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Manrope:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
         
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==&#34; crossorigin=&#34;anonymous&#34; referrerpolicy=&#34;no-referrer&#34; />
     
     <style>
         :root {
@@ -48,8 +48,8 @@
         .text-accent-gold { color: var(--accent-gold); }
         .text-white { color: white; }
     
-        .hover\\:bg-forest-green-dark:hover { background-color: #1a3d1a; }
-        .hover\\:text-sage-green:hover { color: var(--sage-green); }
+        .hover\:bg-forest-green-dark:hover { background-color: #1a3d1a; }
+        .hover\:text-sage-green:hover { color: var(--sage-green); }
     
         /* 스크롤 애니메이션 */
         .reveal, .fade-in {
@@ -68,126 +68,26 @@
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        
-        .booking-form {
+            
+        .service-card {
             background-color: white;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            padding: 32px;
+            transition: all 0.4s ease;
+            border-left: 4px solid transparent;
         }
         
-        .form-input {
-            width: 100%;
-            padding: 16px;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s ease;
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--sage-green);
         }
         
-        .form-input:focus {
-            outline: none;
-            border-color: var(--sage-green);
+        .service-card:hover .card-icon {
+            color: var(--sage-green) !important;
+            transform: scale(1.1);
         }
         
-        .form-select {
-            width: 100%;
-            padding: 16px;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            font-size: 16px;
-            background-color: white;
-            transition: border-color 0.3s ease;
-        }
-        
-        .form-select:focus {
-            outline: none;
-            border-color: var(--sage-green);
-        }
-        
-        .form-textarea {
-            width: 100%;
-            padding: 16px;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            font-size: 16px;
-            min-height: 120px;
-            resize: vertical;
-            transition: border-color 0.3s ease;
-        }
-        
-        .form-textarea:focus {
-            outline: none;
-            border-color: var(--sage-green);
-        }
-        
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--forest-green);
-        }
-        
-        .program-option {
-            background-color: white;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 16px;
-        }
-        
-        .program-option:hover {
-            border-color: var(--sage-green);
-            transform: translateY(-2px);
-        }
-        
-        .program-option.selected {
-            border-color: var(--forest-green);
-            background-color: #f0f9ff;
-        }
-        
-        .program-option input[type="radio"] {
-            display: none;
-        }
-        
-        .time-slot {
-            background-color: white;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            padding: 12px 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-            margin: 4px;
-            min-width: 100px;
-        }
-        
-        .time-slot:hover {
-            border-color: var(--sage-green);
-            background-color: #f0f9ff;
-        }
-        
-        .time-slot.selected {
-            border-color: var(--forest-green);
-            background-color: var(--forest-green);
-            color: white;
-        }
-        
-        .time-slot.unavailable {
-            background-color: #f9fafb;
-            color: #9ca3af;
-            cursor: not-allowed;
-        }
-        
-        .time-slot.unavailable:hover {
-            border-color: #e5e7eb;
-            background-color: #f9fafb;
-        }
-        
-        .time-slot input[type="radio"] {
-            display: none;
+        .card-icon {
+            transition: color 0.4s ease, transform 0.4s ease;
         }
         
         /* 전문적인 그라데이션 배경 */
@@ -198,91 +98,6 @@
         .section-gradient {
             background: linear-gradient(180deg, var(--soft-cream) 0%, var(--warm-beige) 100%);
         }
-        
-        .nav-active {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-        }
-        
-        .step-indicator {
-            display: flex;
-            align-items: center;
-            margin-bottom: 32px;
-        }
-        
-        .step-item {
-            display: flex;
-            align-items: center;
-            flex: 1;
-        }
-        
-        .step-number {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background-color: #e5e7eb;
-            color: #6b7280;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 14px;
-            margin-right: 12px;
-        }
-        
-        .step-item.active .step-number {
-            background-color: var(--forest-green);
-            color: white;
-        }
-        
-        .step-item.completed .step-number {
-            background-color: var(--sage-green);
-            color: white;
-        }
-        
-        .step-line {
-            flex: 1;
-            height: 2px;
-            background-color: #e5e7eb;
-            margin-left: 12px;
-        }
-        
-        .step-item.completed .step-line {
-            background-color: var(--sage-green);
-        }
-        
-        .step-item:last-child .step-line {
-            display: none;
-        }
-        
-        .booking-summary {
-            background-color: #f0f9ff;
-            border: 2px solid var(--sage-green);
-            border-radius: 12px;
-            padding: 24px;
-            margin-top: 24px;
-        }
-        
-        .price-highlight {
-            background: linear-gradient(135deg, var(--accent-gold) 0%, #B8941F 100%);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 600;
-            display: inline-block;
-        }
-        
-        .error-message {
-            color: #dc2626;
-            font-size: 14px;
-            margin-top: 4px;
-        }
-        
-        .success-message {
-            color: var(--sage-green);
-            font-size: 14px;
-            margin-top: 4px;
-        }
     </style>
 </head>
 <body class="antialiased">
@@ -292,22 +107,22 @@
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <a href="index.html" id="header-logo" class="text-2xl font-bold text-white transition-colors duration-300">
-                    <span class="font-eng text-sm">메디컬필라테스™</span> <span class="text-accent-gold">HODU</span>
+                    <span class="font-eng">PILATES</span> <span class="text-accent-gold">HODU</span>
                 </a>
                 
                 <!-- Desktop Navigation -->
                 <nav class="hidden lg:flex items-center space-x-1 text-sm">
-                    <a href="index.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">홈</a>
+                    <a href="index.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md nav-active transition-colors duration-300">홈</a>
                     <a href="programs.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">프로그램</a>
                     <a href="instructors.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">강사소개</a>
                     <a href="facilities.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">시설안내</a>
-                    <a href="booking.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md nav-active transition-colors duration-300">상담예약</a>
+                    <a href="booking.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">상담예약</a>
                     <a href="pricing.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">이용요금</a>
                 </nav>
 
                 <!-- Mobile Navigation Button -->
                 <button id="mobile-menu-button" class="lg:hidden focus:outline-none">
-                    <svg class="w-6 h-6 text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-6 h-6 text-white transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                     </svg>
                 </button>
@@ -316,11 +131,11 @@
 
         <!-- Mobile Navigation Menu -->
         <div id="mobile-menu" class="hidden lg:hidden px-6 pt-2 pb-4 bg-white shadow-lg">
-            <a href="index.html" class="block py-2 text-gray-700 hover:text-sage-green">홈</a>
+            <a href="index.html" class="block py-2 text-gray-700 hover:text-sage-green nav-active">홈</a>
             <a href="programs.html" class="block py-2 text-gray-700 hover:text-sage-green">프로그램</a>
             <a href="instructors.html" class="block py-2 text-gray-700 hover:text-sage-green">강사소개</a>
             <a href="facilities.html" class="block py-2 text-gray-700 hover:text-sage-green">시설안내</a>
-            <a href="booking.html" class="block py-2 text-gray-700 hover:text-sage-green nav-active">상담예약</a>
+            <a href="booking.html" class="block py-2 text-gray-700 hover:text-sage-green">상담예약</a>
             <a href="pricing.html" class="block py-2 text-gray-700 hover:text-sage-green">이용요금</a>
         </div>
     </header>
@@ -727,44 +542,44 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
                     <h3 class="text-xl font-bold mb-4">
-                        <span class="font-eng">Pilates</span> <span class="text-accent-gold">HODU</span>
+                        <span class="font-eng">PILATES</span> <span class="text-accent-gold">HODU</span>
                     </h3>
                     <p class="text-gray-300 text-sm">
-                        전문적인 필라테스 지도와<br>
-                        개인 맞춤형 건강 관리로<br>
-                        여러분의 삶의 질을 높여드립니다.
+                        국내 최초이자 유일한<br>
+                        메디컬필라테스™ 전문 브랜드<br>
+                        1:1 원장직강 프리미엄 케어
                     </p>
                 </div>
                 <div>
                     <h4 class="font-semibold mb-4">프로그램</h4>
                     <ul class="text-gray-300 space-y-2 text-sm">
-                        <li><a href="programs.html" class="hover:text-accent-gold">재활 필라테스</a></li>
-                        <li><a href="programs.html" class="hover:text-accent-gold">코어 강화</a></li>
-                        <li><a href="programs.html" class="hover:text-accent-gold">개인 레슨</a></li>
-                        <li><a href="programs.html" class="hover:text-accent-gold">그룹 클래스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">통증재활 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">마네킹톤 프로그램</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">플랫스콜 프로그램</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">골프 필라테스</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">스튜디오</h4>
+                    <h4 class="font-semibold mb-4">센터 안내</h4>
                     <ul class="text-gray-300 space-y-2 text-sm">
                         <li><a href="instructors.html" class="hover:text-accent-gold">강사진</a></li>
                         <li><a href="facilities.html" class="hover:text-accent-gold">시설안내</a></li>
                         <li><a href="pricing.html" class="hover:text-accent-gold">이용요금</a></li>
-                        <li><a href="booking.html" class="hover:text-accent-gold">예약하기</a></li>
+                        <li><a href="booking.html" class="hover:text-accent-gold">상담예약</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-semibold mb-4">연락처</h4>
                     <ul class="text-gray-300 space-y-2 text-sm">
-                        <li><i class="fas fa-phone mr-2"></i> [전화번호]</li>
-                        <li><i class="fas fa-envelope mr-2"></i> [이메일]</li>
-                        <li><i class="fas fa-map-marker-alt mr-2"></i> [주소]</li>
+                        <li><i class="fas fa-phone mr-2"></i> 031-263-3345</li>
+                        <li><i class="fas fa-envelope mr-2"></i> pilateshodu@naver.com</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> 수지구 신봉동 82-4 (3층)</li>
                     </ul>
                 </div>
             </div>
             <div class="border-t border-gray-600 mt-8 pt-6 text-center text-gray-400 text-sm">
-                <p>&copy; 2025 필라테스호두 Pilates HODU. All Rights Reserved.</p>
-                <p class="mt-1">본 사이트의 모든 컨텐츠는 저작권법의 보호를 받으며, 무단 전재, 복사, 배포 등을 금합니다.</p>
+                <p>&copy; 2025 PILATES HODU. All Rights Reserved.</p>
+                <p class="mt-1">메디컬필라테스™는 등록상표입니다. 모든 컨텐츠의 무단 사용을 금지합니다.</p>
             </div>
         </div>
     </footer>
@@ -939,7 +754,7 @@
 
             document.getElementById('step2Next').addEventListener('click', function() {
                 const selectedDate = document.getElementById('bookingDate').value;
-                const selectedTime = document.querySelector('input[name="time"]:checked');
+                const selectedTime = document.querySelector('input[name="time']:checked');
                 
                 if (selectedDate && selectedTime) {
                     currentStep = 3;
