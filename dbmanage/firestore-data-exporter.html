@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firestore 데이터 익스포터 - PILATES HODU</title>
+    <meta name="description" content="필라테스 호두 Firestore 데이터 관리 도구">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter, Manrope, Noto Sans KR -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Manrope:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style>
+        :root {
+            --deep-navy: #001F3F;
+            --golden-brown: #996515;
+            --warm-beige: #F5F1E8;
+            --soft-cream: #FEFCF8;
+            --charcoal-gray: #2C2C2C;
+            --accent-gold: #D4AF37;
+        }
+    
+        body {
+            font-family: 'Manrope', 'Noto Sans KR', sans-serif;
+            background-color: var(--soft-cream);
+            color: var(--charcoal-gray);
+        }
+    
+        .font-eng { font-family: 'Manrope', sans-serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+            
+        .bg-deep-navy { background-color: var(--deep-navy); }
+        .bg-golden-brown { background-color: var(--golden-brown); }
+        .bg-warm-beige { background-color: var(--warm-beige); }
+        .bg-accent-gold { background-color: var(--accent-gold); }
+            
+        .text-deep-navy { color: var(--deep-navy); }
+        .text-golden-brown { color: var(--golden-brown); }
+        .text-charcoal-gray { color: var(--charcoal-gray); }
+        .text-accent-gold { color: var(--accent-gold); }
+        .text-white { color: white; }
+        
+        .hover\:bg-deep-navy-dark:hover { background-color: #001122; }
+        
+        /* Hero gradient */
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--golden-brown) 100%);
+        }
+        
+        /* Custom button styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background-color: var(--deep-navy);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #001122;
+        }
+        
+        .btn-secondary {
+            background-color: var(--golden-brown);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            opacity: 0.9;
+        }
+        
+        .btn-success {
+            background-color: var(--accent-gold);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            opacity: 0.9;
+        }
+        
+        .btn:disabled {
+            background-color: #e5e7eb;
+            color: #9ca3af;
+            cursor: not-allowed;
+        }
+        
+        /* Form styles */
+        .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            font-family: 'Manrope', 'Noto Sans KR', sans-serif;
+        }
+        
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--golden-brown);
+        }
+        
+        .form-input {
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--golden-brown);
+        }
+        
+        /* Section card style */
+        .section-card {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Step number style */
+        .step-number {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+        
+        /* Log box style */
+        .log-box {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: var(--deep-navy);
+            color: white;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.875rem;
+            border-radius: 0.75rem;
+            overflow-x: auto;
+            height: 16rem;
+            resize: vertical;
+            min-height: 8rem;
+            max-height: 40rem;
+            position: relative;
+        }
+        
+        /* Resize handle for log box */
+        .log-box::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 16px;
+            height: 16px;
+            background-image: 
+                linear-gradient(135deg, transparent 0%, transparent 30%, #86efac 30%, #86efac 35%, transparent 35%, transparent 65%, #86efac 65%, #86efac 70%, transparent 70%);
+            cursor: ns-resize;
+            border-bottom-right-radius: 0.75rem;
+        }
+        
+        .log-entry {
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+        
+        .log-entry.success {
+            color: #86efac;
+        }
+        
+        .log-entry.error {
+            color: #fca5a5;
+        }
+        
+        .log-entry.info {
+            color: #93c5fd;
+        }
+        
+        /* Fade in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Hero Section -->
+    <section class="relative h-80 flex items-center justify-center text-center text-white overflow-hidden hero-gradient">
+        <div class="absolute inset-0 opacity-20">
+            <div class="w-full h-full bg-gradient-to-r from-black/30 to-transparent"></div>
+        </div>
+        
+        <div class="relative z-10 px-6">
+            <h1 class="font-eng text-4xl md:text-5xl font-bold tracking-tighter leading-tight text-white mb-4">
+                Firestore <span class="text-accent-gold">Data Exporter</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 leading-relaxed max-w-2xl mx-auto">
+                필라테스 호두 수지점의 예약 데이터를 안전하게 관리합니다
+            </p>
+            <div class="mt-6">
+                <span class="text-2xl font-bold">
+                    <span class="font-eng">PILATES</span> <span class="text-accent-gold">HODU</span>
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <div class="max-w-4xl mx-auto px-6 py-12">
+        
+
+        <!-- 1단계: Firebase 설정 -->
+        <section id="step1" class="section-card mb-8 fade-in">
+            <h2 class="text-2xl font-bold text-deep-navy mb-6">
+                <span class="step-number bg-deep-navy text-white">1</span>
+                Firebase 프로젝트 설정
+            </h2>
+            <p class="text-gray-600 mb-6">Firebase 콘솔에서 복사한 <code class="text-golden-brown font-mono">firebaseConfig</code> 객체 전체를 아래에 붙여넣어 주세요.</p>
+            <textarea id="firebaseConfigInput" rows="10" class="form-textarea font-mono text-sm" placeholder="const firebaseConfig = { ... }; 또는 { ... } 부분을 붙여넣어 주세요."></textarea>
+            <button id="config-btn" class="btn btn-primary mt-4">
+                <i class="fas fa-cog mr-2"></i> 설정 적용
+            </button>
+        </section>
+
+        <!-- 2단계: 로그인 -->
+        <section id="step2" class="section-card mb-8 hidden fade-in">
+            <h2 class="text-2xl font-bold text-deep-navy mb-6">
+                <span class="step-number bg-golden-brown text-white">2</span>
+                관리자 로그인
+            </h2>
+            <p class="text-gray-600 mb-6">데이터에 접근하려면 관리자(DR_BreakFast님)의 Google 계정으로 로그인해야 합니다.</p>
+            <button id="login-btn" class="btn btn-secondary">
+                <i class="fab fa-google mr-2"></i> Google 계정으로 로그인
+            </button>
+        </section>
+
+        <!-- 3단계: 데이터 다운로드 -->
+        <section id="step3" class="section-card mb-8 hidden fade-in">
+            <h2 class="text-2xl font-bold text-deep-navy mb-6">
+                <span class="step-number bg-accent-gold text-white">3</span>
+                데이터 다운로드
+            </h2>
+            <div class="mb-6">
+                <label for="collectionName" class="block font-semibold text-deep-navy mb-2">컬렉션 이름</label>
+                <input type="text" id="collectionName" value="bookings" class="form-input w-full max-w-sm">
+            </div>
+            <button id="download-btn" class="btn btn-success" disabled>
+                <i class="fas fa-download mr-2"></i> CSV 파일 다운로드
+            </button>
+        </section>
+
+        <!-- 로그 출력 -->
+        <div class="section-card mb-8 fade-in">
+            <h3 class="text-lg font-bold text-deep-navy mb-4">
+                <i class="fas fa-terminal mr-2 text-golden-brown"></i> 작업 로그
+                <span class="text-sm text-gray-500 ml-2 font-normal">우측 하단 모서리를 드래그하여 창 크기 조절</span>
+            </h3>
+            <div id="log-box" class="log-box"></div>
+        </div>
+
+        <!-- 사용 가이드 -->
+        <section class="section-card fade-in">
+            <h3 class="text-lg font-bold text-deep-navy mb-4">
+                <i class="fas fa-info-circle mr-2 text-golden-brown"></i> 로컬 서버 실행 가이드
+            </h3>
+            <div class="bg-warm-beige p-4 rounded-lg mb-4">
+                <h4 class="font-semibold text-deep-navy mb-3">이 페이지를 실행하려면 로컬 서버가 필요합니다</h4>
+                <p class="text-sm text-gray-600 mb-3">
+                    Firebase 모듈을 사용하는 웹 애플리케이션이므로 CORS 제한으로 인해 로컬 서버 환경에서만 정상 작동합니다.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <div class="bg-white p-3 rounded-lg border border-gray-200">
+                        <h5 class="font-semibold text-deep-navy mb-2">
+                            <i class="fas fa-star text-accent-gold mr-1"></i> 권장 방법: VS Code Live Server
+                        </h5>
+                        <div class="text-sm text-gray-600 space-y-1">
+                            <p><strong>1.</strong> 터미널에서 프로젝트 폴더로 이동:</p>
+                            <code class="bg-gray-100 px-2 py-1 rounded text-xs">cd /home/drbreakfast/firestore-data-exporter</code>
+                            <p><strong>2.</strong> VS Code 실행:</p>
+                            <code class="bg-gray-100 px-2 py-1 rounded text-xs">code .</code>
+                            <p><strong>3.</strong> 우측 하단 <strong class="text-golden-brown">"Go Live"</strong> 버튼 클릭</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-3 rounded-lg border border-gray-200">
+                        <h5 class="font-semibold text-deep-navy mb-2">
+                            <i class="fas fa-terminal mr-1"></i> 대안 방법: 명령줄 서버
+                        </h5>
+                        <div class="text-sm text-gray-600 space-y-1">
+                            <p><strong>Python 서버:</strong></p>
+                            <code class="bg-gray-100 px-2 py-1 rounded text-xs">python -m http.server 8000</code>
+                            <p><strong>Node.js 서버:</strong></p>
+                            <code class="bg-gray-100 px-2 py-1 rounded text-xs">npx serve .</code>
+                            <p class="text-xs text-gray-500 mt-1">브라우저에서 http://localhost:8000 접속</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
+                <div class="flex items-start">
+                    <i class="fas fa-lightbulb text-blue-400 mr-2 mt-1"></i>
+                    <div>
+                        <h4 class="font-semibold text-blue-800 mb-1">핵심 원칙</h4>
+                        <p class="text-sm text-blue-700">
+                            파일 위치가 변경되더라도 <strong>'해당 파일이 있는 위치에서 VS Code를 실행하고 Live Server를 실행한다'</strong>는 
+                            원칙만 기억하시면 어떤 프로젝트든 원활하게 로컬 테스트를 진행하실 수 있습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-deep-navy text-white pt-12 pb-8 mt-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center">
+                <h3 class="text-xl font-bold mb-4">
+                    <span class="font-eng">PILATES</span><span class="text-accent-gold"> HODU</span>
+                </h3>
+                <p class="text-gray-300 text-sm mb-4">
+                    Firestore 데이터 관리 도구
+                </p>
+                <p class="text-gray-400 text-xs">
+                    &copy; 2025 PILATES HODU. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        // Firebase SDK 모듈 임포트
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+        // UI 요소
+        const configBtn = document.getElementById('config-btn');
+        const loginBtn = document.getElementById('login-btn');
+        const downloadBtn = document.getElementById('download-btn');
+        const logBox = document.getElementById('log-box');
+        
+        let app, auth, db;
+        let authListenerUnsubscribe = null;
+
+        // 로그 출력 함수
+        function log(message, type = 'normal') {
+            const entry = document.createElement('div');
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            entry.className = `log-entry ${type}`;
+            logBox.appendChild(entry);
+            logBox.scrollTop = logBox.scrollHeight;
+        }
+
+        // =================================================================
+        // ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+        // 디버깅: 어떤 형식으로 붙여넣어도 JSON 객체를 안전하게 추출하도록 로직 개선
+        // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+        function robustParseConfig(configInput) {
+            // 1. 주석 제거
+            const noComments = configInput.replace(/\/\/.*$/gm, '');
+            
+            // 2. 중괄호 안의 내용만 정확히 추출
+            const match = noComments.match(/\{([\s\S]*)\}/);
+            if (!match) {
+                throw new Error("설정 값에서 { ... } 객체 형식을 찾을 수 없습니다.");
+            }
+            let content = match[1];
+
+            // 3. 키에 따옴표가 없는 경우, 따옴표를 추가 (각 줄의 시작 부분만)
+            // 예: apiKey: "..." -> "apiKey": "..."
+            content = content.replace(/^\s*(\w+)\s*:/gm, '"$1":');
+
+            // 4. 후행 쉼표(trailing comma) 제거
+            content = content.replace(/,\s*([}\]])/g, "$1");
+
+            // 5. 재조립하여 완전한 JSON 문자열 생성
+            const jsonString = `{${content}}`;
+
+            // 6. 최종 파싱
+            return JSON.parse(jsonString);
+        }
+
+        // 1. 설정 적용
+        configBtn.addEventListener('click', () => {
+            const configInput = document.getElementById('firebaseConfigInput').value.trim();
+            if (!configInput) {
+                log('Firebase 설정을 입력해주세요.', 'error');
+                return;
+            }
+            try {
+                const firebaseConfig = robustParseConfig(configInput);
+
+                // 이미 초기화된 앱이 있다면 무시
+                if (!app) {
+                    app = initializeApp(firebaseConfig);
+                    auth = getAuth(app);
+                    db = getFirestore(app);
+                    
+                    // 인증 상태 리스너를 한 번만 설정
+                    if (authListenerUnsubscribe) authListenerUnsubscribe();
+                    authListenerUnsubscribe = onAuthStateChanged(auth, handleAuthState);
+                }
+                
+                log(`Firebase 설정 적용 완료. Project ID: ${firebaseConfig.projectId}`, 'success');
+                document.getElementById('step1').classList.add('hidden');
+                
+            } catch (e) {
+                log(`잘못된 Firebase 설정 형식입니다: ${e.message}`, 'error');
+                console.error("Parsing Error:", e);
+            }
+        });
+
+        // 2. 로그인 처리
+        loginBtn.addEventListener('click', async () => {
+            if (!auth) {
+                log('Firebase가 설정되지 않았습니다. 1단계를 먼저 완료해주세요.', 'error');
+                return;
+            }
+            const provider = new GoogleAuthProvider();
+            try {
+                log('Google 로그인 팝업을 요청합니다...', 'info');
+                await signInWithPopup(auth, provider);
+            } catch (error) {
+                log(`로그인 실패: ${error.message}`, 'error');
+            }
+        });
+        
+        // 3. 인증 상태 감지 및 UI 처리 함수
+        function handleAuthState(user) {
+            if (user) {
+                // 사용자가 로그인한 경우
+                log(`로그인 성공: ${user.displayName} (${user.email})`, 'success');
+                document.getElementById('step1').classList.add('hidden');
+                document.getElementById('step2').classList.add('hidden');
+                document.getElementById('step3').classList.remove('hidden');
+                downloadBtn.disabled = false;
+            } else {
+                // 사용자가 로그아웃한 경우 (또는 초기 상태)
+                if (app) { // 설정이 적용된 후에만 로그인 버튼 표시
+                    document.getElementById('step2').classList.remove('hidden');
+                }
+                document.getElementById('step3').classList.add('hidden');
+                downloadBtn.disabled = true;
+            }
+        }
+        
+        // 4. 데이터 다운로드
+        downloadBtn.addEventListener('click', async () => {
+            const collectionName = document.getElementById('collectionName').value.trim();
+            if (!collectionName) {
+                log('컬렉션 이름을 입력해주세요.', 'error');
+                return;
+            }
+
+            log(`'${collectionName}' 컬렉션 데이터 가져오기 시작...`, 'info');
+            downloadBtn.disabled = true;
+            downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> 데이터 처리 중...';
+
+            try {
+                const querySnapshot = await getDocs(collection(db, collectionName));
+                const dataList = [];
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    // 타임스탬프 객체를 사람이 읽을 수 있는 날짜/시간 문자열로 변환
+                    for (const key in data) {
+                        if (data[key] && typeof data[key].toDate === 'function') {
+                            data[key] = data[key].toDate().toLocaleString('ko-KR');
+                        }
+                    }
+                    dataList.push({ id: doc.id, ...data });
+                });
+
+                if (dataList.length === 0) {
+                    log(`'${collectionName}' 컬렉션에 문서가 없습니다.`, 'error');
+                } else {
+                    log(`${dataList.length}개의 문서를 성공적으로 가져왔습니다.`, 'success');
+                    convertToCsvAndDownload(dataList, collectionName);
+                }
+
+            } catch (e) {
+                log(`데이터 가져오기 실패: ${e.message}`, 'error');
+                log('Firestore 보안 규칙이 올바르게 설정되었는지 확인해주세요.', 'info');
+            } finally {
+                downloadBtn.disabled = false;
+                downloadBtn.innerHTML = '<i class="fas fa-download mr-2"></i> CSV 파일 다운로드';
+            }
+        });
+
+        // 5. CSV 변환 및 다운로드 함수
+        function convertToCsvAndDownload(data, filename) {
+            if (data.length === 0) return;
+
+            // 모든 객체의 키를 모아 헤더 생성 (순서 보장)
+            const allKeys = new Set();
+            data.forEach(row => Object.keys(row).forEach(key => allKeys.add(key)));
+            const headers = Array.from(allKeys);
+            
+            let csvContent = headers.join(',') + '\n';
+
+            data.forEach(row => {
+                const values = headers.map(header => {
+                    let cell = row[header] === undefined || row[header] === null ? '' : String(row[header]);
+                    // 셀 내용에 쉼표나 큰따옴표, 줄바꿈이 포함된 경우 처리
+                    if (cell.includes(',') || cell.includes('"') || cell.includes('\n')) {
+                        cell = `"${cell.replace(/"/g, '""')}"`;
+                    }
+                    return cell;
+                });
+                csvContent += values.join(',') + '\n';
+            });
+            
+            // 파일 다운로드
+            const blob = new Blob([`\uFEFF${csvContent}`], { type: 'text/csv;charset=utf-8;' }); // \uFEFF for Excel BOM
+            const link = document.createElement("a");
+            const url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", `${filename}_${new Date().toISOString().slice(0,10)}.csv`);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            log('CSV 파일 다운로드가 시작되었습니다.', 'success');
+        }
+
+    </script>
+</body>
+</html>
