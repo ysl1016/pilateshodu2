@@ -272,6 +272,47 @@
             font-weight: 700;
             color: var(--accent-gold);
         }
+
+        /* 모바일 반응형 폰트 및 레이아웃 */
+        @media (max-width: 640px) {
+            h1, .text-4xl, .md\:text-5xl, .text-5xl {
+                font-size: 1.7rem !important;
+                line-height: 2.2rem !important;
+                word-break: keep-all;
+            }
+            h2, .text-2xl, .md\:text-4xl, .text-3xl {
+                font-size: 1.2rem !important;
+                line-height: 1.7rem !important;
+                word-break: keep-all;
+            }
+            .text-lg, .md\:text-xl {
+                font-size: 1rem !important;
+                line-height: 1.4rem !important;
+            }
+            .container {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+            .px-6 { padding-left: 1rem !important; padding-right: 1rem !important; }
+            .py-16, .md\:py-20 { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+            .rounded-full, .rounded-lg, .rounded-xl, .rounded-2xl { border-radius: 0.75rem !important; }
+            .step-indicator { padding: 0 0.2rem !important; }
+            .step-number { width: 2rem !important; height: 2rem !important; font-size: 1rem !important; }
+            .booking-form, .booking-summary { padding: 1rem !important; }
+            .form-label { font-size: 0.95rem !important; }
+            .form-input, .form-select, .form-textarea { font-size: 0.95rem !important; padding: 0.5rem 0.7rem !important; }
+            .program-option, .time-slot { font-size: 0.95rem !important; padding: 0.7rem 0.7rem !important; }
+            .font-bold, .font-semibold { word-break: keep-all; }
+            .text-center { word-break: keep-all; }
+            .text-sm { font-size: 0.9rem !important; }
+            .text-xs { font-size: 0.8rem !important; }
+            .w-16, .h-16 { width: 3rem !important; height: 3rem !important; }
+            .w-14, .h-14 { width: 2.5rem !important; height: 2.5rem !important; }
+            .px-8 { padding-left: 1rem !important; padding-right: 1rem !important; }
+            .py-3 { padding-top: 0.7rem !important; padding-bottom: 0.7rem !important; }
+            .mt-6, .mt-8, .mb-6, .mb-8, .mb-12, .mb-16 { margin-top: 1rem !important; margin-bottom: 1rem !important; }
+            .max-w-2xl, .max-w-4xl { max-width: 100% !important; }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -286,11 +327,11 @@
                 
                 <!-- Desktop Navigation -->
                 <nav class="hidden lg:flex items-center space-x-1 text-sm">
-                    <a href="index.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">홈</a>
+                    <a href="index.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md nav-active transition-colors duration-300">홈</a>
                     <a href="programs.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">프로그램</a>
                     <a href="instructors.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">강사소개</a>
                     <a href="facilities.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">시설안내</a>
-                    <a href="booking.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md nav-active transition-colors duration-300">상담예약</a>
+                    <a href="booking.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">상담예약</a>
                     <a href="pricing.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">이용요금</a>
                 </nav>
 
@@ -305,11 +346,11 @@
 
         <!-- Mobile Navigation Menu -->
         <div id="mobile-menu" class="hidden lg:hidden px-6 pt-2 pb-4 bg-white shadow-lg">
-            <a href="index.html" class="block py-2 text-gray-700 hover:text-sage-green">홈</a>
+            <a href="index.html" class="block py-2 text-gray-700 hover:text-sage-green nav-active">홈</a>
             <a href="programs.html" class="block py-2 text-gray-700 hover:text-sage-green">프로그램</a>
             <a href="instructors.html" class="block py-2 text-gray-700 hover:text-sage-green">강사소개</a>
             <a href="facilities.html" class="block py-2 text-gray-700 hover:text-sage-green">시설안내</a>
-            <a href="booking.html" class="block py-2 text-gray-700 hover:text-sage-green nav-active">상담예약</a>
+            <a href="booking.html" class="block py-2 text-gray-700 hover:text-sage-green">상담예약</a>
             <a href="pricing.html" class="block py-2 text-gray-700 hover:text-sage-green">이용요금</a>
         </div>
     </header>
@@ -716,12 +757,12 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
                     <h3 class="text-xl font-bold mb-4">
-                        <span class="font-eng">PILATES</span> <span class="text-accent-gold">HODU</span>
+                        <span class="font-eng">PILATES</span><span class="text-accent-gold"> HODU</span>
                     </h3>
                     <p class="text-gray-300 text-sm">
-                        국내 최초이자 유일한<br>
-                        메디컬필라테스™ 전문 브랜드<br>
-                        1:1 원장직강 프리미엄 케어
+                        의학적 근거기반 메디컬필라테스™로<br>
+                        1:1 원장직강 전문적인 필라테스를<br>
+                        통해 건강한 삶을 누릴 수 있습니다.
                     </p>
                 </div>
                 <div>
@@ -731,10 +772,13 @@
                         <li><a href="programs.html" class="hover:text-accent-gold">마네킹톤 프로그램</a></li>
                         <li><a href="programs.html" class="hover:text-accent-gold">플랫스콜 프로그램</a></li>
                         <li><a href="programs.html" class="hover:text-accent-gold">골프 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">키즈(성장) 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">임산부 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">시니어 필라테스</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">센터 안내</h4>
+                    <h4 class="font-semibold mb-4">스튜디오</h4>
                     <ul class="text-gray-300 space-y-2 text-sm">
                         <li><a href="instructors.html" class="hover:text-accent-gold">강사진</a></li>
                         <li><a href="facilities.html" class="hover:text-accent-gold">시설안내</a></li>
@@ -747,7 +791,7 @@
                     <ul class="text-gray-300 space-y-2 text-sm">
                         <li><i class="fas fa-phone mr-2"></i> 031-263-3345</li>
                         <li><i class="fas fa-envelope mr-2"></i> pilateshodu@naver.com</li>
-                        <li><i class="fas fa-map-marker-alt mr-2"></i> 수지구 신봉동 82-4 (3층)</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> 경기도 수지구 신봉2로 15, 3층</li>
                     </ul>
                 </div>
             </div>
