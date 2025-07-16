@@ -91,8 +91,11 @@
         }
         
         /* 전문적인 그라데이션 배경 */
-        .hero-gradient {
-            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--golden-brown) 100%);
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/images/main/medical-pilates.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
         
         .section-gradient {
@@ -167,7 +170,7 @@
 
     <main>
         <!-- Hero Section -->
-        <section class="relative h-screen flex items-center justify-center text-center text-white overflow-hidden hero-gradient">
+        <section class="relative h-screen flex items-center justify-center text-center text-white overflow-hidden hero-section">
             <div class="absolute inset-0 opacity-20">
                 <div class="w-full h-full bg-gradient-to-r from-black/30 to-transparent"></div>
             </div>
