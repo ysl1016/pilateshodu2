@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PILATES HODU | 필라테스 호두 - 국내 최초의 메디컬필라테스™</title>
-    <meta name="description" content="필라테스 호두는 국내 최초이자 유일한 메디컬필라테스 브랜드로, 의학적 진단을 통한 통증 재활 및 체형 관리를 제공하는 원장직강 1:1 전문 센터입니다.">
-    <meta name="keywords" content="메디컬필라테스, 재활운동, 통증치료, 체형교정, 척추측만증, 원장직강, 필라테스호두, 수지필라테스">
+    <title>메디컬필라테스 프로그램 - 필라테스 호두</title>
+    <meta name="description" content="필라테스 호두의 전문적인 프로그램: 통증재활, 마네킹톤, 플랫스콜, 골프, 키즈(성장), 임산부, 시니어 필라테스. 1:1 원장직강만 운영하는 의료기반 운동치료센터입니다.">
+    <meta name="keywords" content="메디컬필라테스, 통증재활필라테스, 마네킹톤, 플랫스콜, 골프필라테스, 키즈필라테스, 임산부필라테스, 시니어필라테스, 1:1원장직강, 척추측만증, 슈로스메소드">
         
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -20,8 +20,8 @@
     
     <style>
         :root {
-            --forest-green: #2D5A27;
-            --sage-green: #87A96B;
+            --deep-navy: #001F3F;
+            --golden-brown: #996515;
             --warm-beige: #F5F1E8;
             --soft-cream: #FEFCF8;
             --charcoal-gray: #2C2C2C;
@@ -37,19 +37,19 @@
         .font-eng { font-family: 'Manrope', sans-serif; }
         .font-inter { font-family: 'Inter', sans-serif; }
             
-        .bg-forest-green { background-color: var(--forest-green); }
-        .bg-sage-green { background-color: var(--sage-green); }
+        .bg-deep-navy { background-color: var(--deep-navy); }
+        .bg-golden-brown { background-color: var(--golden-brown); }
         .bg-warm-beige { background-color: var(--warm-beige); }
         .bg-accent-gold { background-color: var(--accent-gold); }
             
-        .text-forest-green { color: var(--forest-green); }
-        .text-sage-green { color: var(--sage-green); }
+        .text-deep-navy { color: var(--deep-navy); }
+        .text-golden-brown { color: var(--golden-brown); }
         .text-charcoal-gray { color: var(--charcoal-gray); }
         .text-accent-gold { color: var(--accent-gold); }
         .text-white { color: white; }
     
-        .hover\\:bg-forest-green-dark:hover { background-color: #1a3d1a; }
-        .hover\\:text-sage-green:hover { color: var(--sage-green); }
+        .hover\:bg-deep-navy-dark:hover { background-color: #001122; }
+        .hover\:text-golden-brown:hover { color: var(--golden-brown); }
     
         /* 스크롤 애니메이션 */
         .reveal, .fade-in {
@@ -78,11 +78,11 @@
         .service-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border-left: 4px solid var(--sage-green);
+            border-left: 4px solid var(--golden-brown);
         }
         
         .service-card:hover .card-icon {
-            color: var(--sage-green) !important;
+            color: var(--golden-brown) !important;
             transform: scale(1.1);
         }
         
@@ -105,7 +105,7 @@
         
         /* 전문적인 그라데이션 배경 */
         .hero-gradient {
-            background: linear-gradient(135deg, var(--forest-green) 0%, var(--sage-green) 100%);
+            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--golden-brown) 100%);
         }
         
         .section-gradient {
@@ -113,7 +113,7 @@
         }
         
         .program-gradient {
-            background: linear-gradient(45deg, var(--forest-green) 0%, var(--sage-green) 100%);
+            background: linear-gradient(45deg, var(--deep-navy) 0%, var(--golden-brown) 100%);
         }
         
         .nav-active {
@@ -127,6 +127,32 @@
         
         .benefit-item:hover {
             transform: translateX(8px);
+        }
+
+        .cta-btn {
+            transition: background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+            will-change: background, color, border-color, box-shadow;
+        }
+        .cta-btn-primary {
+            background-color: var(--deep-navy);
+            color: white;
+            border: none;
+        }
+        .cta-btn-primary:hover {
+            background-color: #001122;
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(0,31,63,0.15);
+        }
+        .cta-btn-outline {
+            background: white;
+            color: var(--deep-navy);
+            border: 2px solid var(--deep-navy);
+        }
+        .cta-btn-outline:hover {
+            background: var(--deep-navy);
+            color: #fff;
+            border-color: var(--deep-navy);
+            box-shadow: 0 4px 16px rgba(0,31,63,0.10);
         }
     </style>
 </head>
@@ -179,10 +205,10 @@
             
             <div class="relative z-10 px-6 reveal">
                 <h1 class="font-eng text-4xl md:text-5xl font-bold tracking-tighter leading-tight text-white mb-4">
-                    Medical Pilates<span class="text-accent-gold">Programs</span>
+                    Medical Pilates<span class="text-accent-gold"> Programs</span>
                 </h1>
                 <p class="text-lg md:text-xl text-gray-200 leading-relaxed max-w-2xl mx-auto">
-                    1:1 원장직강으로 진행하는 전문적인 메디컬필라테스™ 프로그램
+                    1:1 원장직강의 메디컬필라테스™ 프로그램
                 </p>
             </div>
         </section>
@@ -191,7 +217,7 @@
         <section class="py-16 md:py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-4">필라테스 호두의 프로그램</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-deep-navy mb-4">필라테스 호두의 프로그램</h2>
                     <p class="text-lg text-gray-600 max-w-3xl mx-auto">
                         의학적 근거에 기반한 체계적인 프로그램으로 
                         <strong>1:1 원장직강만</strong> 운영하며 최적의 개인 맞춤 필라테스를 제공합니다.
@@ -210,32 +236,32 @@
                             <i class="fas fa-stethoscope text-white text-4xl"></i>
                         </div>
                         <div class="p-8">
-                            <h3 class="text-xl font-bold text-forest-green mb-4">통증재활 필라테스</h3>
+                            <h3 class="text-xl font-bold text-deep-navy mb-4">통증재활 필라테스</h3>
                             <p class="text-gray-600 mb-6">
                                 근골격계 통증 및 체형교정을 위한 메디컬필라테스 프로그램입니다. 
                                 박정은 대표원장의 1:1 직강으로 최적화된 필라테스 프로그램을 제공합니다.
                             </p>
                             <div class="space-y-3">
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">의료진과 연계한 프로그램</span>
                                 </div>
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">근골격계 통증 전문 운동동</span>
                                 </div>
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">체형교정 및 자세 개선</span>
                                 </div>
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">만성통증 개선 운ㄷ오</span>
                                 </div>
                             </div>
                             <div class="mt-6 pt-4 border-t">
                                 <p class="text-sm text-gray-500">
-                                    <i class="fas fa-clock mr-2"></i>60분 / 회
+                                    <i class="fas fa-clock mr-2"></i>50분 / 회
                                 </p>
                                 <p class="text-sm text-gray-500">
                                     <i class="fas fa-user-md mr-2"></i>1:1 원장 직강만 운영
@@ -250,32 +276,32 @@
                             <i class="fas fa-weight-hanging text-white text-4xl"></i>
                         </div>
                         <div class="p-8">
-                            <h3 class="text-xl font-bold text-forest-green mb-4">마네킹톤 프로그램</h3>
+                            <h3 class="text-xl font-bold text-deep-navy mb-4">마네킹톤 프로그램</h3>
                             <p class="text-gray-600 mb-6">
                                 체중감량과 비만체형 관리를 위한 전문 프로그램입니다. 
                                 의학적 근거를 기반으로로 건강한 다이어트와 체형 관리를 지원합니다.
                             </p>
                             <div class="space-y-3">
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">건강한 체중감량</span>
                                 </div>
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">비만체형 전문 관리</span>
                                 </div>
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">대사 기능 개선</span>
                                 </div>
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">식단 연계 관리</span>
                                 </div>
                             </div>
                             <div class="mt-6 pt-4 border-t">
                                 <p class="text-sm text-gray-500">
-                                    <i class="fas fa-clock mr-2"></i>60분 / 회
+                                    <i class="fas fa-clock mr-2"></i>50분 / 회
                                 </p>
                                 <p class="text-sm text-gray-500">
                                     <i class="fas fa-user-md mr-2"></i>1:1 원장 직강만 운영
@@ -287,35 +313,35 @@
                     <!-- 플랫스콜 프로그램 -->
                     <div class="program-card fade-in">
                         <div class="program-gradient h-32 flex items-center justify-center">
-                            <i class="fas fa-spine text-white text-4xl"></i>
+                            <i class="fas fa-notes-medical text-white text-4xl"></i>
                         </div>
                         <div class="p-8">
-                            <h3 class="text-xl font-bold text-forest-green mb-4">플랫스콜 프로그램</h3>
+                            <h3 class="text-xl font-bold text-deep-navy mb-4">플랫스콜 프로그램</h3>
                             <p class="text-gray-600 mb-6">
                                 척추측만증 교정을 위한 슈로스 메소드를 접목한 메디컬 필라테스 프로그램입니다. 
                                 독일 슈로스 메소드를 기반으로 한 척추 교정 전문 프로그램을 제공합니다.
                             </p>
                             <div class="space-y-3">
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">슈로스 메소드 접목</span>
                                 </div>
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">척추측만증 전문 교정</span>
                                 </div>
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">3차원 척추 교정</span>
                                 </div>
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">호흡 교정 연계</span>
                                 </div>
                             </div>
                             <div class="mt-6 pt-4 border-t">
                                 <p class="text-sm text-gray-500">
-                                    <i class="fas fa-clock mr-2"></i>60분 / 회
+                                    <i class="fas fa-clock mr-2"></i>50분 / 회
                                 </p>
                                 <p class="text-sm text-gray-500">
                                     <i class="fas fa-user-md mr-2"></i>1:1 원장 직강만 운영
@@ -330,32 +356,32 @@
                             <i class="fas fa-golf-ball text-white text-4xl"></i>
                         </div>
                         <div class="p-8">
-                            <h3 class="text-xl font-bold text-forest-green mb-4">골프 필라테스</h3>
+                            <h3 class="text-xl font-bold text-deep-navy mb-4">골프 필라테스</h3>
                             <p class="text-gray-600 mb-6">
                                 골프 스윙과 비거리 향상을 위한 전문 필라테스 프로그램입니다. 
                                 골프 특화 근력 강화와 유연성 향상을 통해 경기력 향상을 지원합니다.
                             </p>
                             <div class="space-y-3">
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">골프 스윙 특화 훈련</span>
                                 </div>
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">비거리 향상 프로그램</span>
                                 </div>
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">회전근개 강화</span>
                                 </div>
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">골프 부상 예방</span>
                                 </div>
                             </div>
                             <div class="mt-6 pt-4 border-t">
                                 <p class="text-sm text-gray-500">
-                                    <i class="fas fa-clock mr-2"></i>60분 / 회
+                                    <i class="fas fa-clock mr-2"></i>50분 / 회
                                 </p>
                                 <p class="text-sm text-gray-500">
                                     <i class="fas fa-user-md mr-2"></i>1:1 원장 직강만 운영
@@ -370,26 +396,26 @@
                             <i class="fas fa-child text-white text-4xl"></i>
                         </div>
                         <div class="p-8">
-                            <h3 class="text-xl font-bold text-forest-green mb-4">키즈(성장) 필라테스</h3>
+                            <h3 class="text-xl font-bold text-deep-navy mb-4">키즈(성장) 필라테스</h3>
                             <p class="text-gray-600 mb-6">
                                 성장기 어린이와 청소년을 위한 성장 촉진 및 측만 교정 프로그램입니다. 
                                 올바른 성장과 자세 형성을 위한 전문적인 필라테스스를 제공합니다.
                             </p>
                             <div class="space-y-3">
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">성장 촉진 운동</span>
                                 </div>
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">성장기 측만 교정</span>
                                 </div>
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">올바른 자세 형성</span>
                                 </div>
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">학습 집중력 향상</span>
                                 </div>
                             </div>
@@ -410,26 +436,26 @@
                             <i class="fas fa-baby text-white text-4xl"></i>
                         </div>
                         <div class="p-8">
-                            <h3 class="text-xl font-bold text-forest-green mb-4">임산부 필라테스</h3>
+                            <h3 class="text-xl font-bold text-deep-navy mb-4">임산부 필라테스</h3>
                             <p class="text-gray-600 mb-6">
                                 산전/산후 관리에 최적화된 전문적인인 필라테스 프로그램입니다. 
                                 임신 시기별 맞춤 운동과 출산 후 회복을 위한 체계적인 관리를 제공합니다.
                             </p>
                             <div class="space-y-3">
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">산전/산후 전문 관리</span>
                                 </div>
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">임신 시기별 맞춤 운동</span>
                                 </div>
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">골반저근 강화</span>
                                 </div>
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">산후 회복 촉진</span>
                                 </div>
                             </div>
@@ -450,26 +476,26 @@
                             <i class="fas fa-user-friends text-white text-4xl"></i>
                         </div>
                         <div class="p-8">
-                            <h3 class="text-xl font-bold text-forest-green mb-4">시니어 필라테스</h3>
+                            <h3 class="text-xl font-bold text-deep-navy mb-4">시니어 필라테스</h3>
                             <p class="text-gray-600 mb-6">
                                 중장년층과 노년층을 위한 근력 유지 및 균형감 강화 프로그램입니다. 
                                 노화 방지와 치매예방 등 건강한 노년기를 위한 전문적인 필라테스스를 제공합니다.
                             </p>
                             <div class="space-y-3">
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">근력 유지 및 증진</span>
                                 </div>
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">균형감 강화</span>
                                 </div>
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">관절 가동성 향상</span>
                                 </div>
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">낙상 예방</span>
                                 </div>
                             </div>
@@ -491,7 +517,7 @@
                         </div>
                         <div class="p-8">
                             <div class="flex items-center justify-between mb-4">
-                                <h3 class="text-xl font-bold text-forest-green">필앤핏 프로그램</h3>
+                                <h3 class="text-xl font-bold text-deep-navy">필앤핏 프로그램</h3>
                                 <span class="bg-accent-gold text-white px-3 py-1 rounded-full text-xs font-bold">SPECIAL</span>
                             </div>
                             <p class="text-gray-600 mb-6">
@@ -500,23 +526,23 @@
                             </p>
                             <div class="space-y-3">
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">뉴-뱅퀴시 4회 + 마네킹톤 8회</span>
                                 </div>
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">주 2회 방문 (4주 완성)</span>
                                 </div>
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">이연의원 협력 프로그램</span>
                                 </div>
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">단기간 체중감량 & 체형교정</span>
                                 </div>
                                 <div class="benefit-item flex items-center">
-                                    <i class="fas fa-check text-sage-green mr-3"></i>
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
                                     <span class="text-sm">특별할인가 적용</span>
                                 </div>
                             </div>
@@ -528,9 +554,9 @@
                                     <i class="fas fa-user-md mr-2"></i>1:1 원장 직강만 운영
                                 </p>
                                 <div class="mt-4">
-                                    <button class="w-full bg-accent-gold text-white py-2 px-4 rounded-lg hover:bg-yellow-600 transition duration-300 font-semibold">
+                                    <a href="https://ysl1016.github.io/eyeonclinic/obesity-clinic.html" target="_blank" rel="noopener noreferrer" class="w-full block bg-accent-gold text-white py-2 px-4 rounded-lg hover:bg-yellow-600 transition duration-300 font-semibold text-center">
                                         필앤핏 프로그램 바로 상담하기
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -543,7 +569,7 @@
         <section class="py-16 md:py-20 section-gradient">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-4">프로그램 진행 과정</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-deep-navy mb-4">프로그램 진행 과정</h2>
                     <p class="text-lg text-gray-600 max-w-2xl mx-auto">
                         체계적인 단계별 접근으로 안전하고 효과적인 운동 경험을 제공합니다
                     </p>
@@ -551,20 +577,20 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <div class="text-center fade-in">
-                        <div class="w-20 h-20 bg-forest-green rounded-full flex items-center justify-center mx-auto mb-6">
+                        <div class="w-20 h-20 bg-deep-navy rounded-full flex items-center justify-center mx-auto mb-6">
                             <span class="text-white font-bold text-xl">1</span>
                         </div>
-                        <h3 class="text-lg font-semibold text-forest-green mb-3">초기 상담</h3>
+                        <h3 class="text-lg font-semibold text-deep-navy mb-3">초기 상담</h3>
                         <p class="text-gray-600 text-sm">
                             건강 상태, 운동 목표, 과거 부상 이력 등을 종합적으로 분석합니다.
                         </p>
                     </div>
 
                     <div class="text-center fade-in">
-                        <div class="w-20 h-20 bg-sage-green rounded-full flex items-center justify-center mx-auto mb-6">
+                        <div class="w-20 h-20 bg-golden-brown rounded-full flex items-center justify-center mx-auto mb-6">
                             <span class="text-white font-bold text-xl">2</span>
                         </div>
-                        <h3 class="text-lg font-semibold text-forest-green mb-3">체형 분석</h3>
+                        <h3 class="text-lg font-semibold text-deep-navy mb-3">체형 분석</h3>
                         <p class="text-gray-600 text-sm">
                             자세 분석과 근육 불균형 검사를 통해 개인 맞춤 프로그램을 설계합니다.
                         </p>
@@ -574,17 +600,17 @@
                         <div class="w-20 h-20 bg-accent-gold rounded-full flex items-center justify-center mx-auto mb-6">
                             <span class="text-white font-bold text-xl">3</span>
                         </div>
-                        <h3 class="text-lg font-semibold text-forest-green mb-3">프로그램 실행</h3>
+                        <h3 class="text-lg font-semibold text-deep-navy mb-3">프로그램 실행</h3>
                         <p class="text-gray-600 text-sm">
                             전문적인 강사의 지도하에 안전하고 효과적인 운동을 시작합니다.
                         </p>
                     </div>
 
                     <div class="text-center fade-in">
-                        <div class="w-20 h-20 bg-forest-green rounded-full flex items-center justify-center mx-auto mb-6">
+                        <div class="w-20 h-20 bg-deep-navy rounded-full flex items-center justify-center mx-auto mb-6">
                             <span class="text-white font-bold text-xl">4</span>
                         </div>
-                        <h3 class="text-lg font-semibold text-forest-green mb-3">주기적 평가</h3>
+                        <h3 class="text-lg font-semibold text-deep-navy mb-3">주기적 평가</h3>
                         <p class="text-gray-600 text-sm">
                             진행 상황을 모니터링하고 필요에 따라 프로그램을 조정합니다.
                         </p>
@@ -597,7 +623,7 @@
         <section class="py-16 md:py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center max-w-3xl mx-auto">
-                    <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-6">
+                    <h2 class="text-3xl md:text-4xl font-bold text-deep-navy mb-6">
                         당신에게 맞는 프로그램을 찾으셨나요?
                     </h2>
                     <p class="text-lg text-gray-600 mb-8">
@@ -605,10 +631,10 @@
                         체험 수업으로 시작하실 수 있습니다.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="booking.html" class="bg-forest-green text-white font-semibold px-8 py-4 rounded-full hover:bg-forest-green-dark transition-colors">
+                        <a href="booking.html" class="cta-btn cta-btn-primary font-semibold px-8 py-4 rounded-full">
                             프로그램 상담예약
                         </a>
-                        <a href="instructors.html" class="border-2 border-forest-green text-forest-green font-semibold px-8 py-4 rounded-full hover:bg-forest-green hover:text-white transition-all">
+                        <a href="instructors.html" class="cta-btn cta-btn-outline font-semibold px-8 py-4 rounded-full">
                             강사진 보기
                         </a>
                     </div>
@@ -619,29 +645,29 @@
     
     <!-- Floating Action Buttons -->
     <div class="fixed bottom-6 right-6 space-y-3 z-40">
-        <a href="tel:031-263-3345" class="w-14 h-14 bg-sage-green text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all">
+        <a href="tel:031-263-7839" class="w-14 h-14 bg-golden-brown text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all">
             <i class="fas fa-phone fa-lg"></i>
         </a>
         <a href="#" class="w-14 h-14 bg-accent-gold text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all">
             <i class="fab fa-kickstarter-k"></i>
         </a>
-        <button id="top-btn" class="w-14 h-14 bg-forest-green text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all opacity-0">
+        <button id="top-btn" class="w-14 h-14 bg-deep-navy text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all opacity-0">
              <i class="fas fa-arrow-up fa-lg"></i>
         </button>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-forest-green text-white pt-12 pb-8">
+    <footer class="bg-deep-navy text-white pt-12 pb-8">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
                     <h3 class="text-xl font-bold mb-4">
-                        <span class="font-eng">PILATES</span> <span class="text-accent-gold">HODU</span>
+                        <span class="font-eng">PILATES</span><span class="text-accent-gold"> HODU</span>
                     </h3>
                     <p class="text-gray-300 text-sm">
-                        국내 최초이자 유일한<br>
-                        메디컬필라테스™ 전문 브랜드<br>
-                        1:1 원장직강 프리미엄 케어
+                        의학적 근거기반 메디컬필라테스™로<br>
+                        1:1 원장직강 전문적인 필라테스스를<br>
+                        통해 건강한 삶을 누릴 수 있습니다.
                     </p>
                 </div>
                 <div>
@@ -651,10 +677,13 @@
                         <li><a href="programs.html" class="hover:text-accent-gold">마네킹톤 프로그램</a></li>
                         <li><a href="programs.html" class="hover:text-accent-gold">플랫스콜 프로그램</a></li>
                         <li><a href="programs.html" class="hover:text-accent-gold">골프 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">키즈(성장) 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">임산부 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">시니어 필라테스</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">센터 안내</h4>
+                    <h4 class="font-semibold mb-4">스튜디오</h4>
                     <ul class="text-gray-300 space-y-2 text-sm">
                         <li><a href="instructors.html" class="hover:text-accent-gold">강사진</a></li>
                         <li><a href="facilities.html" class="hover:text-accent-gold">시설안내</a></li>
@@ -667,7 +696,7 @@
                     <ul class="text-gray-300 space-y-2 text-sm">
                         <li><i class="fas fa-phone mr-2"></i> 031-263-3345</li>
                         <li><i class="fas fa-envelope mr-2"></i> pilateshodu@naver.com</li>
-                        <li><i class="fas fa-map-marker-alt mr-2"></i> 수지구 신봉동 82-4 (3층)</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> 경기도 수지구 신봉2로 15, 3층</li>
                     </ul>
                 </div>
             </div>
@@ -691,11 +720,11 @@
                 if (window.scrollY > 50) {
                     header.classList.add('header-scrolled');
                     headerLogo.classList.remove('text-white');
-                    headerLogo.classList.add('text-forest-green');
+                    headerLogo.classList.add('text-deep-navy');
                     
                     navLinks.forEach(link => {
                         link.classList.remove('text-white', 'hover:text-gray-300');
-                        link.classList.add('text-gray-700', 'hover:text-sage-green');
+                        link.classList.add('text-gray-700', 'hover:text-golden-brown');
                     });
                     
                     mobileMenuButtonSvg.classList.remove('text-white');
@@ -703,11 +732,11 @@
                 } else {
                     header.classList.remove('header-scrolled');
                     headerLogo.classList.add('text-white');
-                    headerLogo.classList.remove('text-forest-green');
+                    headerLogo.classList.remove('text-deep-navy');
                     
                     navLinks.forEach(link => {
                         link.classList.add('text-white', 'hover:text-gray-300');
-                        link.classList.remove('text-gray-700', 'hover:text-sage-green');
+                        link.classList.remove('text-gray-700', 'hover:text-golden-brown');
                     });
                     
                     mobileMenuButtonSvg.classList.add('text-white');
