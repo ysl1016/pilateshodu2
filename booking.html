@@ -78,6 +78,11 @@
             background: linear-gradient(180deg, var(--soft-cream) 0%, var(--warm-beige) 100%);
         }
 
+        .nav-active {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
         /* Step Indicator Styles */
         .step-indicator {
             display: flex;
@@ -305,11 +310,11 @@
                 
                 <!-- Desktop Navigation -->
                 <nav class="hidden lg:flex items-center space-x-1 text-sm">
-                    <a href="index.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md nav-active transition-colors duration-300">홈</a>
+                    <a href="index.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">홈</a>
                     <a href="programs.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">프로그램</a>
                     <a href="instructors.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">강사소개</a>
                     <a href="facilities.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">시설안내</a>
-                    <a href="booking.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">상담예약</a>
+                    <a href="booking.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md nav-active transition-colors duration-300">상담예약</a>
                     <a href="pricing.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">이용요금</a>
                 </nav>
 
@@ -324,11 +329,11 @@
 
         <!-- Mobile Navigation Menu -->
         <div id="mobile-menu" class="hidden lg:hidden px-6 pt-2 pb-4 bg-white shadow-lg">
-            <a href="index.html" class="block py-2 text-gray-700 hover:text-sage-green nav-active">홈</a>
+            <a href="index.html" class="block py-2 text-gray-700 hover:text-sage-green">홈</a>
             <a href="programs.html" class="block py-2 text-gray-700 hover:text-sage-green">프로그램</a>
             <a href="instructors.html" class="block py-2 text-gray-700 hover:text-sage-green">강사소개</a>
             <a href="facilities.html" class="block py-2 text-gray-700 hover:text-sage-green">시설안내</a>
-            <a href="booking.html" class="block py-2 text-gray-700 hover:text-sage-green">상담예약</a>
+            <a href="booking.html" class="block py-2 text-gray-700 hover:text-sage-green nav-active">상담예약</a>
             <a href="pricing.html" class="block py-2 text-gray-700 hover:text-sage-green">이용요금</a>
         </div>
     </header>
