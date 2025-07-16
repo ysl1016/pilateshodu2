@@ -20,8 +20,8 @@
     
     <style>
         :root {
-            --forest-green: #2D5A27;
-            --sage-green: #87A96B;
+            --deep-navy: #001F3F;
+            --golden-brown: #996515;
             --warm-beige: #F5F1E8;
             --soft-cream: #FEFCF8;
             --charcoal-gray: #2C2C2C;
@@ -37,19 +37,19 @@
         .font-eng { font-family: 'Manrope', sans-serif; }
         .font-inter { font-family: 'Inter', sans-serif; }
             
-        .bg-forest-green { background-color: var(--forest-green); }
-        .bg-sage-green { background-color: var(--sage-green); }
+        .bg-deep-navy { background-color: var(--deep-navy); }
+        .bg-golden-brown { background-color: var(--golden-brown); }
         .bg-warm-beige { background-color: var(--warm-beige); }
         .bg-accent-gold { background-color: var(--accent-gold); }
             
-        .text-forest-green { color: var(--forest-green); }
-        .text-sage-green { color: var(--sage-green); }
+        .text-deep-navy { color: var(--deep-navy); }
+        .text-golden-brown { color: var(--golden-brown); }
         .text-charcoal-gray { color: var(--charcoal-gray); }
         .text-accent-gold { color: var(--accent-gold); }
         .text-white { color: white; }
     
-        .hover\:bg-forest-green-dark:hover { background-color: #1a3d1a; }
-        .hover\:text-sage-green:hover { color: var(--sage-green); }
+        .hover\:bg-deep-navy-dark:hover { background-color: #001122; }
+        .hover\:text-golden-brown:hover { color: var(--golden-brown); }
     
         /* 스크롤 애니메이션 */
         .reveal, .fade-in {
@@ -85,7 +85,7 @@
         .facility-image {
             width: 100%;
             height: 200px;
-            background: linear-gradient(135deg, var(--sage-green), var(--forest-green));
+            background: linear-gradient(135deg, var(--golden-brown), var(--deep-navy));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -123,12 +123,12 @@
         .equipment-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-            border-left: 4px solid var(--sage-green);
+            border-left: 4px solid var(--golden-brown);
         }
         
         /* 전문적인 그라데이션 배경 */
         .hero-gradient {
-            background: linear-gradient(135deg, var(--forest-green) 0%, var(--sage-green) 100%);
+            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--golden-brown) 100%);
         }
         
         .section-gradient {
@@ -170,7 +170,7 @@
         
         .gallery-item {
             height: 250px;
-            background: linear-gradient(135deg, var(--sage-green), var(--forest-green));
+            background: linear-gradient(135deg, var(--golden-brown), var(--deep-navy));
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -216,6 +216,32 @@
             font-weight: 500;
             z-index: 2;
         }
+
+        .cta-btn {
+            transition: background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+            will-change: background, color, border-color, box-shadow;
+        }
+        .cta-btn-primary {
+            background-color: var(--deep-navy);
+            color: white;
+            border: none;
+        }
+        .cta-btn-primary:hover {
+            background-color: #001122;
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(0,31,63,0.15);
+        }
+        .cta-btn-outline {
+            background: white;
+            color: var(--deep-navy);
+            border: 2px solid var(--deep-navy);
+        }
+        .cta-btn-outline:hover {
+            background: var(--deep-navy);
+            color: #fff;
+            border-color: var(--deep-navy);
+            box-shadow: 0 4px 16px rgba(0,31,63,0.10);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -225,7 +251,7 @@
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <a href="index.html" id="header-logo" class="text-2xl font-bold text-white transition-colors duration-300">
-                    <span class="font-eng">PILATES</span> <span class="text-accent-gold">HODU</span>
+                    <span class="font-eng">PILATES</span> <span class="text-golden-brown">HODU</span>
                 </a>
                 
                 <!-- Desktop Navigation -->
@@ -279,16 +305,11 @@
         <section class="py-16 md:py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-4">시설 안내</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-deep-navy mb-4">시설 안내</h2>
                     <p class="text-lg text-gray-600 max-w-3xl mx-auto">
                         메디컬필라테스™ 호두는 의료급 전문 장비와 최신 시설을 갖춘 1:1 원장직강 전용 센터입니다. 
                         수지구 신봉동에 위치한 프리미엄 메디컬필라테스 전문 공간에서 최고의 치료와 관리를 받으세요.
                     </p>
-                    <div class="mt-8">
-                        <span class="bg-accent-gold text-white px-6 py-3 rounded-full text-sm font-semibold">
-                            📍 경기도 용인시 수지구 신봉동 82-4 (3층) | ☎️ 031-263-3345
-                        </span>
-                    </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -298,7 +319,7 @@
                             <img src="assets/images/facilities/내부시설1.jpeg" alt="메인 운동공간" class="w-full h-full object-cover">
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-bold text-forest-green mb-3">메인 운동공간</h3>
+                            <h3 class="text-xl font-bold text-deep-navy mb-3">메인 운동공간</h3>
                             <p class="text-gray-600 text-sm mb-4">
                                 1:1 원장직강만을 위한 프라이빗 운동공간입니다. 
                                 의료급 Balanced Body 장비와 최신 시설로 안전하고 효과적인 치료를 제공합니다.
@@ -317,7 +338,7 @@
                             <img src="assets/images/facilities/내부시설2.jpeg" alt="전문 치료공간" class="w-full h-full object-cover">
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-bold text-forest-green mb-3">전문 치료공간</h3>
+                            <h3 class="text-xl font-bold text-deep-navy mb-3">전문 치료공간</h3>
                             <p class="text-gray-600 text-sm mb-4">
                                 통증재활과 체형교정을 위한 전문 치료공간입니다. 
                                 디발롱스 메소드와 슈로스 메소드 등 전문 치료기법을 적용한 개별 맞춤 치료를 제공합니다.
@@ -337,7 +358,7 @@
                         </div>
                         <div class="p-6">
                             <div class="flex items-center justify-between mb-3">
-                                <h3 class="text-xl font-bold text-forest-green">뉴-뱅퀴시 치료공간</h3>
+                                <h3 class="text-xl font-bold text-deep-navy">뉴-뱅퀴시 치료공간</h3>
                                 <span class="bg-accent-gold text-white px-3 py-1 rounded-full text-xs font-bold">이연의원 협력</span>
                             </div>
                             <p class="text-gray-600 text-sm mb-4">
@@ -358,7 +379,7 @@
                             <img src="assets/images/facilities/내부시설4.jpeg" alt="접수 및 상담공간" class="w-full h-full object-cover">
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-bold text-forest-green mb-3">접수 및 상담공간</h3>
+                            <h3 class="text-xl font-bold text-deep-navy mb-3">접수 및 상담공간</h3>
                             <p class="text-gray-600 text-sm mb-4">
                                 편안한 분위기에서 초기 상담과 건강 상태 분석을 진행하는 공간입니다. 
                                 원장님과의 1:1 맞춤 상담을 통해 개인별 치료 계획을 수립합니다.
@@ -377,7 +398,7 @@
                             <img src="assets/images/facilities/내부시설5.jpeg" alt="편의시설" class="w-full h-full object-cover">
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-bold text-forest-green mb-3">편의시설</h3>
+                            <h3 class="text-xl font-bold text-deep-navy mb-3">편의시설</h3>
                             <p class="text-gray-600 text-sm mb-4">
                                 쾌적하고 청결한 부대시설을 완비했습니다. 
                                 무료 주차장, 무선 인터넷, 남녀 구분 화장실 등 편리한 시설을 제공합니다.
@@ -396,7 +417,7 @@
                             <img src="assets/images/facilities/내부시설6.jpeg" alt="전문 장비공간" class="w-full h-full object-cover">
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-bold text-forest-green mb-3">전문 장비공간</h3>
+                            <h3 class="text-xl font-bold text-deep-navy mb-3">전문 장비공간</h3>
                             <p class="text-gray-600 text-sm mb-4">
                                 국제공인 Balanced Body 전 라인 장비를 완비한 전문 공간입니다. 
                                 리포머, 트라페즈 테이블, 체어, 바렐 등 최고급 장비로 정밀한 운동이 가능합니다.
@@ -416,12 +437,12 @@
         <section class="py-16 md:py-20 section-gradient">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-4">Balanced Body 전문 장비</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-deep-navy mb-4">Balanced Body 전문 장비</h2>
                     <p class="text-lg text-gray-600 max-w-2xl mx-auto">
                         국제공인 Balanced Body 브랜드의 의료급 전문 장비로 안전하고 정밀한 치료를 제공합니다
                     </p>
                     <div class="mt-6">
-                        <span class="bg-forest-green text-white px-6 py-2 rounded-full text-sm font-semibold">
+                        <span class="bg-deep-navy text-white px-6 py-2 rounded-full text-sm font-semibold">
                             🏆 국제공인 Balanced Body 정식 인증 장비
                         </span>
                     </div>
@@ -431,11 +452,11 @@
                     <!-- 리포머 -->
                     <div class="equipment-card fade-in">
                         <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-forest-green rounded-full flex items-center justify-center mr-4">
+                            <div class="w-12 h-12 bg-deep-navy rounded-full flex items-center justify-center mr-4">
                                 <i class="fas fa-dumbbell text-white"></i>
                             </div>
                             <div>
-                                <h3 class="text-xl font-bold text-forest-green">Balanced Body Reformer</h3>
+                                <h3 class="text-xl font-bold text-deep-navy">Balanced Body Reformer</h3>
                                 <p class="text-gray-500 text-sm">1:1 전용 장비</p>
                             </div>
                         </div>
@@ -445,7 +466,7 @@
                         </p>
                         <div class="grid grid-cols-2 gap-4 text-sm">
                             <div>
-                                <p class="font-medium text-forest-green">주요 효과</p>
+                                <p class="font-medium text-deep-navy">주요 효과</p>
                                 <ul class="text-gray-600 mt-1">
                                     <li>• 코어 강화</li>
                                     <li>• 자세 교정</li>
@@ -453,7 +474,7 @@
                                 </ul>
                             </div>
                             <div>
-                                <p class="font-medium text-forest-green">적용 대상</p>
+                                <p class="font-medium text-deep-navy">적용 대상</p>
                                 <ul class="text-gray-600 mt-1">
                                     <li>• 초보자 ~ 고급자</li>
                                     <li>• 재활 환자</li>
@@ -466,11 +487,11 @@
                     <!-- 캐딜락 -->
                     <div class="equipment-card fade-in">
                         <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-sage-green rounded-full flex items-center justify-center mr-4">
+                            <div class="w-12 h-12 bg-golden-brown rounded-full flex items-center justify-center mr-4">
                                 <i class="fas fa-bed text-white"></i>
                             </div>
                             <div>
-                                <h3 class="text-xl font-bold text-forest-green">Balanced Body Trapeze Table</h3>
+                                <h3 class="text-xl font-bold text-deep-navy">Balanced Body Trapeze Table</h3>
                                 <p class="text-gray-500 text-sm">척추교정 전문</p>
                             </div>
                         </div>
@@ -480,7 +501,7 @@
                         </p>
                         <div class="grid grid-cols-2 gap-4 text-sm">
                             <div>
-                                <p class="font-medium text-forest-green">주요 효과</p>
+                                <p class="font-medium text-deep-navy">주요 효과</p>
                                 <ul class="text-gray-600 mt-1">
                                     <li>• 척추 교정</li>
                                     <li>• 유연성 향상</li>
@@ -488,7 +509,7 @@
                                 </ul>
                             </div>
                             <div>
-                                <p class="font-medium text-forest-green">적용 대상</p>
+                                <p class="font-medium text-deep-navy">적용 대상</p>
                                 <ul class="text-gray-600 mt-1">
                                     <li>• 재활 치료</li>
                                     <li>• 시니어</li>
@@ -505,7 +526,7 @@
                                 <i class="fas fa-chair text-white"></i>
                             </div>
                             <div>
-                                <h3 class="text-xl font-bold text-forest-green">Balanced Body Chair</h3>
+                                <h3 class="text-xl font-bold text-deep-navy">Balanced Body Chair</h3>
                                 <p class="text-gray-500 text-sm">근력강화 특화</p>
                             </div>
                         </div>
@@ -515,7 +536,7 @@
                         </p>
                         <div class="grid grid-cols-2 gap-4 text-sm">
                             <div>
-                                <p class="font-medium text-forest-green">주요 효과</p>
+                                <p class="font-medium text-deep-navy">주요 효과</p>
                                 <ul class="text-gray-600 mt-1">
                                     <li>• 균형 능력</li>
                                     <li>• 협응력 향상</li>
@@ -523,7 +544,7 @@
                                 </ul>
                             </div>
                             <div>
-                                <p class="font-medium text-forest-green">적용 대상</p>
+                                <p class="font-medium text-deep-navy">적용 대상</p>
                                 <ul class="text-gray-600 mt-1">
                                     <li>• 중급자 이상</li>
                                     <li>• 밸런스 훈련</li>
@@ -536,11 +557,11 @@
                     <!-- 바렐 -->
                     <div class="equipment-card fade-in">
                         <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-forest-green rounded-full flex items-center justify-center mr-4">
+                            <div class="w-12 h-12 bg-deep-navy rounded-full flex items-center justify-center mr-4">
                                 <i class="fas fa-circle text-white"></i>
                             </div>
                             <div>
-                                <h3 class="text-xl font-bold text-forest-green">Balanced Body Ladder Barrel</h3>
+                                <h3 class="text-xl font-bold text-deep-navy">Balanced Body Ladder Barrel</h3>
                                 <p class="text-gray-500 text-sm">척추 유연성 전문</p>
                             </div>
                         </div>
@@ -550,7 +571,7 @@
                         </p>
                         <div class="grid grid-cols-2 gap-4 text-sm">
                             <div>
-                                <p class="font-medium text-forest-green">주요 효과</p>
+                                <p class="font-medium text-deep-navy">주요 효과</p>
                                 <ul class="text-gray-600 mt-1">
                                     <li>• 척추 유연성</li>
                                     <li>• 백벤드 능력</li>
@@ -558,7 +579,7 @@
                                 </ul>
                             </div>
                             <div>
-                                <p class="font-medium text-forest-green">적용 대상</p>
+                                <p class="font-medium text-deep-navy">적용 대상</p>
                                 <ul class="text-gray-600 mt-1">
                                     <li>• 척추 교정</li>
                                     <li>• 유연성 향상</li>
@@ -575,7 +596,7 @@
         <section class="py-16 md:py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-4">편의 시설</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-deep-navy mb-4">편의 시설</h2>
                     <p class="text-lg text-gray-600 max-w-2xl mx-auto">
                         회원님의 편안한 운동을 위한 다양한 편의 시설을 제공합니다
                     </p>
@@ -583,120 +604,53 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="fade-in">
-                        <h3 class="text-xl font-semibold text-forest-green mb-6">기본 시설</h3>
+                        <h3 class="text-xl font-semibold text-deep-navy mb-6">기본 시설</h3>
                         <div class="space-y-2">
                             <div class="amenity-item">
-                                <i class="fas fa-parking text-sage-green mr-3"></i>
-                                <span>전용 주차장 (20대)</span>
-                            </div>
-                            <div class="amenity-item">
-                                <i class="fas fa-wifi text-sage-green mr-3"></i>
+                                <i class="fas fa-wifi text-golden-brown mr-3"></i>
                                 <span>무료 WiFi</span>
                             </div>
                             <div class="amenity-item">
-                                <i class="fas fa-thermometer-half text-sage-green mr-3"></i>
+                                <i class="fas fa-thermometer-half text-golden-brown mr-3"></i>
                                 <span>냉난방 시설</span>
                             </div>
                             <div class="amenity-item">
-                                <i class="fas fa-wind text-sage-green mr-3"></i>
-                                <span>공기 정화 시설</span>
-                            </div>
-                            <div class="amenity-item">
-                                <i class="fas fa-video text-sage-green mr-3"></i>
+                                <i class="fas fa-video text-golden-brown mr-3"></i>
                                 <span>보안 시설</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="fade-in">
-                        <h3 class="text-xl font-semibold text-forest-green mb-6">라운지 서비스</h3>
+                        <h3 class="text-xl font-semibold text-deep-navy mb-6">라운지 서비스</h3>
                         <div class="space-y-2">
                             <div class="amenity-item">
-                                <i class="fas fa-coffee text-sage-green mr-3"></i>
+                                <i class="fas fa-coffee text-golden-brown mr-3"></i>
                                 <span>무료 차/음료 제공</span>
                             </div>
                             <div class="amenity-item">
-                                <i class="fas fa-book text-sage-green mr-3"></i>
+                                <i class="fas fa-book text-golden-brown mr-3"></i>
                                 <span>건강 정보 서적</span>
                             </div>
                             <div class="amenity-item">
-                                <i class="fas fa-tv text-sage-green mr-3"></i>
-                                <span>대기 공간 TV</span>
-                            </div>
-                            <div class="amenity-item">
-                                <i class="fas fa-couch text-sage-green mr-3"></i>
+                                <i class="fas fa-couch text-golden-brown mr-3"></i>
                                 <span>편안한 휴식 공간</span>
-                            </div>
-                            <div class="amenity-item">
-                                <i class="fas fa-charging-station text-sage-green mr-3"></i>
-                                <span>충전 서비스</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="fade-in">
-                        <h3 class="text-xl font-semibold text-forest-green mb-6">부대 시설</h3>
+                        <h3 class="text-xl font-semibold text-deep-navy mb-6">부대 시설</h3>
                         <div class="space-y-2">
                             <div class="amenity-item">
-                                <i class="fas fa-shower text-sage-green mr-3"></i>
-                                <span>샤워실 (남/여 분리)</span>
-                            </div>
-                            <div class="amenity-item">
-                                <i class="fas fa-lock text-sage-green mr-3"></i>
+                                <i class="fas fa-lock text-golden-brown mr-3"></i>
                                 <span>개인 사물함</span>
                             </div>
                             <div class="amenity-item">
-                                <i class="fas fa-tshirt text-sage-green mr-3"></i>
+                                <i class="fas fa-tshirt text-golden-brown mr-3"></i>
                                 <span>운동복 대여</span>
                             </div>
-                            <div class="amenity-item">
-                                <i class="fas fa-soap text-sage-green mr-3"></i>
-                                <span>세면 용품 제공</span>
-                            </div>
-                            <div class="amenity-item">
-                                <i class="fas fa-wind text-sage-green mr-3"></i>
-                                <span>드라이어 완비</span>
-                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Virtual Tour Section -->
-        <section class="py-16 md:py-20 section-gradient">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-4">가상 투어</h2>
-                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                        필라테스호두의 다양한 공간을 미리 둘러보세요
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="gallery-item fade-in">
-                        <i class="fas fa-dumbbell"></i>
-                        <div class="caption">메인 스튜디오</div>
-                    </div>
-                    <div class="gallery-item fade-in">
-                        <i class="fas fa-user-md"></i>
-                        <div class="caption">개인 레슨룸</div>
-                    </div>
-                    <div class="gallery-item fade-in">
-                        <i class="fas fa-heart-pulse"></i>
-                        <div class="caption">재활 치료실</div>
-                    </div>
-                    <div class="gallery-item fade-in">
-                        <i class="fas fa-couch"></i>
-                        <div class="caption">휴게 공간</div>
-                    </div>
-                    <div class="gallery-item fade-in">
-                        <i class="fas fa-shower"></i>
-                        <div class="caption">샤워실</div>
-                    </div>
-                    <div class="gallery-item fade-in">
-                        <i class="fas fa-parking"></i>
-                        <div class="caption">주차장</div>
                     </div>
                 </div>
             </div>
@@ -706,7 +660,7 @@
         <section class="py-16 md:py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-4">찾아오시는 길</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-deep-navy mb-4">찾아오시는 길</h2>
                     <p class="text-lg text-gray-600 max-w-2xl mx-auto">
                         편리한 교통과 충분한 주차 공간으로 쉽게 찾아오실 수 있습니다
                     </p>
@@ -714,43 +668,56 @@
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     <div class="fade-in">
-                        <h3 class="text-xl font-semibold text-forest-green mb-6">위치 정보</h3>
+                        <h3 class="text-xl font-semibold text-deep-navy mb-6">위치 정보</h3>
                         <div class="space-y-4">
                             <div class="flex items-start">
-                                <i class="fas fa-map-marker-alt text-sage-green mt-1 mr-4"></i>
+                                <i class="fas fa-map-marker-alt text-golden-brown mt-1 mr-4"></i>
                                 <div>
-                                    <p class="font-medium text-forest-green">주소</p>
-                                    <p class="text-gray-600">[스튜디오 주소]</p>
+                                    <p class="font-medium text-deep-navy">주소</p>
+                                    <p class="text-gray-600">경기도 수지구 신봉2로 15, 3층</p>
                                 </div>
                             </div>
                             <div class="flex items-start">
-                                <i class="fas fa-subway text-sage-green mt-1 mr-4"></i>
+                                <i class="fas fa-phone text-golden-brown mt-1 mr-4"></i>
                                 <div>
-                                    <p class="font-medium text-forest-green">지하철</p>
-                                    <p class="text-gray-600">[역명] 역 [번 출구] 도보 [시간]</p>
+                                    <p class="font-medium text-deep-navy">전화번호</p>
+                                    <p class="text-gray-600">031-263-3345</p>
                                 </div>
                             </div>
                             <div class="flex items-start">
-                                <i class="fas fa-bus text-sage-green mt-1 mr-4"></i>
+                                <i class="fas fa-envelope text-golden-brown mt-1 mr-4"></i>
                                 <div>
-                                    <p class="font-medium text-forest-green">버스</p>
-                                    <p class="text-gray-600">[버스 번호] 승차 후 [정류장명] 하차</p>
+                                    <p class="font-medium text-deep-navy">이메일</p>
+                                    <p class="text-gray-600">pilateshodu@naver.com</p>
                                 </div>
                             </div>
                             <div class="flex items-start">
-                                <i class="fas fa-car text-sage-green mt-1 mr-4"></i>
+                                <i class="fas fa-clock text-golden-brown mt-1 mr-4"></i>
                                 <div>
-                                    <p class="font-medium text-forest-green">주차</p>
-                                    <p class="text-gray-600">전용 주차장 20대 (무료)</p>
+                                    <p class="font-medium text-deep-navy">운영시간</p>
+                                    <div class="text-gray-600 text-sm">
+                                        <p>평일: 08:00 - 21:30</p>
+                                        <p>토요일: 08:00 - 15:00</p>
+                                        <p>일요일/공휴일: 휴무</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="fade-in">
-                        <h3 class="text-xl font-semibold text-forest-green mb-6">지도</h3>
-                        <div class="bg-gray-100 h-64 rounded-lg flex items-center justify-center">
-                            <p class="text-gray-500">지도 영역 (Google Maps 연동 예정)</p>
+                        <h3 class="text-xl font-semibold text-deep-navy mb-6">지도</h3>
+                        <div class="bg-gray-100 h-64 rounded-lg overflow-hidden">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3173.4876!2d127.0749975!3d37.3242339!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca1b4c8fc2345%3A0xabe6220be0d1bcfe!2s%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EC%9A%A9%EC%9D%B8%EC%8B%9C%20%EC%88%98%EC%A7%80%EA%B5%AC%20%EC%8B%A0%EB%B4%892%EB%A1%9C%2015!5e0!3m2!1sko!2skr!4v1726642800000!5m2!1sko!2skr"
+                                width="100%" 
+                                height="100%" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="필라테스 호두 위치 - 경기도 용인시 수지구 신봉2로 15">
+                            </iframe>
                         </div>
                     </div>
                 </div>
@@ -761,7 +728,7 @@
         <section class="py-16 md:py-20 section-gradient">
             <div class="container mx-auto px-6">
                 <div class="text-center max-w-3xl mx-auto">
-                    <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-6">
+                    <h2 class="text-3xl md:text-4xl font-bold text-deep-navy mb-6">
                         직접 체험해보세요
                     </h2>
                     <p class="text-lg text-gray-600 mb-8">
@@ -769,10 +736,10 @@
                         무료 체험 수업을 통해 우리의 시설을 확인해보세요.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="booking.html" class="bg-forest-green text-white font-semibold px-8 py-4 rounded-full hover:bg-forest-green-dark transition-colors">
+                        <a href="booking.html" class="cta-btn cta-btn-primary font-semibold px-8 py-4 rounded-full">
                             체험 수업 예약
                         </a>
-                        <a href="programs.html" class="border-2 border-forest-green text-forest-green font-semibold px-8 py-4 rounded-full hover:bg-forest-green hover:text-white transition-all">
+                        <a href="programs.html" class="cta-btn cta-btn-outline font-semibold px-8 py-4 rounded-full">
                             프로그램 보기
                         </a>
                     </div>
@@ -783,29 +750,29 @@
     
     <!-- Floating Action Buttons -->
     <div class="fixed bottom-6 right-6 space-y-3 z-40">
-        <a href="tel:[전화번호]" class="w-14 h-14 bg-sage-green text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all">
+        <a href="tel:[전화번호]" class="w-14 h-14 bg-golden-brown text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all">
             <i class="fas fa-phone fa-lg"></i>
         </a>
         <a href="#" class="w-14 h-14 bg-accent-gold text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all">
             <i class="fab fa-kickstarter-k"></i>
         </a>
-        <button id="top-btn" class="w-14 h-14 bg-forest-green text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all opacity-0">
+        <button id="top-btn" class="w-14 h-14 bg-deep-navy text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all opacity-0">
              <i class="fas fa-arrow-up fa-lg"></i>
         </button>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-forest-green text-white pt-12 pb-8">
+    <footer class="bg-deep-navy text-white pt-12 pb-8">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
                     <h3 class="text-xl font-bold mb-4">
-                        <span class="font-eng">PILATES</span> <span class="text-accent-gold">HODU</span>
+                        <span class="font-eng">PILATES</span><span class="text-accent-gold"> HODU</span>
                     </h3>
                     <p class="text-gray-300 text-sm">
-                        국내 최초이자 유일한<br>
-                        메디컬필라테스™ 전문 브랜드<br>
-                        1:1 원장직강 프리미엄 케어
+                        의학적 근거기반 메디컬필라테스™로<br>
+                        1:1 원장직강 전문적인 필라테스를<br>
+                        통해 건강한 삶을 누릴 수 있습니다.
                     </p>
                 </div>
                 <div>
@@ -815,10 +782,13 @@
                         <li><a href="programs.html" class="hover:text-accent-gold">마네킹톤 프로그램</a></li>
                         <li><a href="programs.html" class="hover:text-accent-gold">플랫스콜 프로그램</a></li>
                         <li><a href="programs.html" class="hover:text-accent-gold">골프 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">키즈(성장) 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">임산부 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">시니어 필라테스</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">센터 안내</h4>
+                    <h4 class="font-semibold mb-4">스튜디오</h4>
                     <ul class="text-gray-300 space-y-2 text-sm">
                         <li><a href="instructors.html" class="hover:text-accent-gold">강사진</a></li>
                         <li><a href="facilities.html" class="hover:text-accent-gold">시설안내</a></li>
@@ -831,7 +801,7 @@
                     <ul class="text-gray-300 space-y-2 text-sm">
                         <li><i class="fas fa-phone mr-2"></i> 031-263-3345</li>
                         <li><i class="fas fa-envelope mr-2"></i> pilateshodu@naver.com</li>
-                        <li><i class="fas fa-map-marker-alt mr-2"></i> 수지구 신봉동 82-4 (3층)</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> 경기도 수지구 신봉2로 15, 3층</li>
                     </ul>
                 </div>
             </div>
@@ -855,11 +825,11 @@
                 if (window.scrollY > 50) {
                     header.classList.add('header-scrolled');
                     headerLogo.classList.remove('text-white');
-                    headerLogo.classList.add('text-forest-green');
+                    headerLogo.classList.add('text-deep-navy');
                     
                     navLinks.forEach(link => {
                         link.classList.remove('text-white', 'hover:text-gray-300');
-                        link.classList.add('text-gray-700', 'hover:text-sage-green');
+                        link.classList.add('text-gray-700', 'hover:text-golden-brown');
                     });
                     
                     mobileMenuButtonSvg.classList.remove('text-white');
@@ -867,11 +837,11 @@
                 } else {
                     header.classList.remove('header-scrolled');
                     headerLogo.classList.add('text-white');
-                    headerLogo.classList.remove('text-forest-green');
+                    headerLogo.classList.remove('text-deep-navy');
                     
                     navLinks.forEach(link => {
                         link.classList.add('text-white', 'hover:text-gray-300');
-                        link.classList.remove('text-gray-700', 'hover:text-sage-green');
+                        link.classList.remove('text-gray-700', 'hover:text-golden-brown');
                     });
                     
                     mobileMenuButtonSvg.classList.add('text-white');
