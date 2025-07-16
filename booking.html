@@ -887,9 +887,58 @@
                 document.querySelectorAll('.step-content').forEach(content => {
                     content.classList.add('hidden');
                 });
-                document.getElementById(`step${step}`).classList.remove('hidden');
+                const currentStepElement = document.getElementById(`step${step}`);
+                currentStepElement.classList.remove('hidden');
                 updateStepIndicator();
-                window.scrollTo({ top: 0, behavior: 'smooth' }); // Add this line
+                
+                // 다음 단계로 이동할 때 첫 입력 요소를 화면 중앙에 위치시킴
+                setTimeout(() => {
+                    let firstInput = null;
+                    
+                    if (step === 2) {
+                        // Step 2: 날짜 입력 필드
+                        firstInput = document.getElementById('bookingDate');
+                    } else if (step === 3) {
+                        // Step 3: 이름 입력 필드
+                        firstInput = document.getElementById('customerName');
+                    } else if (step === 4) {
+                        // Step 4: 예약 요약 섹션
+                        firstInput = document.querySelector('.booking-summary');
+                    }
+                    
+                    if (firstInput) {
+                        // 요소의 위치를 계산하여 화면 중앙에 배치
+                        const elementRect = firstInput.getBoundingClientRect();
+                        const elementTop = elementRect.top + window.pageYOffset;
+                        const elementHeight = elementRect.height;
+                        const windowHeight = window.innerHeight;
+                        
+                        // 화면 중앙에 위치하도록 스크롤 위치 계산
+                        const scrollTo = elementTop - (windowHeight / 2) + (elementHeight / 2);
+                        
+                        window.scrollTo({
+                            top: Math.max(0, scrollTo),
+                            behavior: 'smooth'
+                        });
+                        
+                        // 입력 필드인 경우 포커스도 설정
+                        if (firstInput.tagName === 'INPUT' || firstInput.tagName === 'SELECT') {
+                            setTimeout(() => {
+                                firstInput.focus();
+                            }, 500); // 스크롤 애니메이션 후 포커스
+                        }
+                    } else {
+                        // 기본적으로 step indicator가 보이도록 스크롤
+                        const stepIndicator = document.querySelector('.step-indicator');
+                        if (stepIndicator) {
+                            const indicatorTop = stepIndicator.getBoundingClientRect().top + window.pageYOffset;
+                            window.scrollTo({
+                                top: Math.max(0, indicatorTop - 100),
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                }, 100); // DOM 업데이트 후 실행
             };
 
             // Program selection
