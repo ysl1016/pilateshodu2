@@ -302,6 +302,93 @@
             margin-top: 24px;
             text-align: center;
         }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .result-label {
+            font-weight: 500;
+            color: var(--charcoal-gray);
+            flex-shrink: 0;
+        }
+        
+        .result-value {
+            font-weight: 600;
+            text-align: right;
+            flex-shrink: 0;
+        }
+        
+        .final-amount {
+            background-color: var(--warm-beige);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            border: 1px solid var(--golden-brown);
+        }
+        
+        .final-amount-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .final-amount-label {
+            font-weight: 600;
+            color: var(--deep-navy);
+            flex-shrink: 0;
+        }
+        
+        .final-amount-value {
+            font-weight: 700;
+            color: var(--deep-navy);
+            text-align: right;
+        }
+        
+        .per-session {
+            font-size: 0.875rem;
+            color: var(--charcoal-gray);
+            margin-top: 0.25rem;
+            text-align: right;
+        }
+        
+        /* 반응형 폰트 크기 */
+        @media (min-width: 768px) {
+            .final-amount-row {
+                font-size: 1.125rem;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .final-amount-row {
+                font-size: 1rem;
+            }
+            .final-amount-value {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .final-amount-row {
+                font-size: 0.95rem;
+            }
+            .final-amount-value {
+                font-size: 1rem;
+            }
+            .calculator-result {
+                padding: 16px;
+            }
+        }
 
         .cta-btn {
             transition: background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
@@ -717,7 +804,7 @@
             <div class="container mx-auto px-6">
                 <div class="max-w-3xl mx-auto">
                     <div class="text-center mb-12">
-                        <h2 class="text-3xl md:text-4xl font-bold text-deep-navy mb-4">요금 계산기</h2>
+                        <h2 class="text-3xl md:text-4xl font-bold text-deep-navy mb-4">레슨비용 계산기</h2>
                         <p class="text-lg text-gray-600">
                             원하는 프로그램과 횟수를 선택하여 예상 비용을 계산해보세요
                         </p>
@@ -729,24 +816,32 @@
                                 <label class="block text-sm font-medium text-deep-navy mb-2">프로그램 선택</label>
                                 <select id="programSelect" class="calculator-input">
                                     <option value="">프로그램을 선택하세요</option>
-                                    <option value="80000">개인 레슨 (80,000원)</option>
-                                    <option value="35000">그룹 클래스 (35,000원)</option>
-                                    <option value="90000">재활 필라테스 (90,000원)</option>
+                                    <option value="77000">원장직강 1회: 77,000원</option>
                                 </select>
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium text-deep-navy mb-2">이용 횟수</label>
-                                <input type="number" id="sessionCount" class="calculator-input" placeholder="횟수를 입력하세요" min="1">
+                                <select id="sessionCount" class="calculator-input">
+                                    <option value="">횟수를 선택하세요</option>
+                                    <option value="10">10회</option>
+                                    <option value="20">20회</option>
+                                    <option value="30">30회</option>
+                                    <option value="40">40회</option>
+                                    <option value="50">50회</option>
+                                    <option value="60">50회 이상</option>
+                                </select>
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium text-deep-navy mb-2">패키지 할인</label>
                                 <select id="packageDiscount" class="calculator-input">
                                     <option value="0">패키지 없음</option>
-                                    <option value="10">10회 패키지 (10% 할인)</option>
-                                    <option value="15">20회 패키지 (15% 할인)</option>
-                                    <option value="12">재활 8회 패키지 (12% 할인)</option>
+                                    <option value="5">10회 이상 (5% 할인)</option>
+                                    <option value="10">20회 이상 (10% 할인)</option>
+                                    <option value="15">30회 이상 (15% 할인)</option>
+                                    <option value="20">40회 이상 (20% 할인)</option>
+                                    <option value="25">50회 이상 (25% 할인)</option>
                                 </select>
                             </div>
 
@@ -754,15 +849,15 @@
                                 <label class="block text-sm font-medium text-deep-navy mb-2">추가 할인</label>
                                 <select id="additionalDiscount" class="calculator-input">
                                     <option value="0">추가 할인 없음</option>
-                                    <option value="20">친구 추천 할인 (20%)</option>
-                                    <option value="50">생일 할인 (50% - 1회 한정)</option>
+                                    <option value="5">후기 작성 (5% 추가할인)</option>
+                                    <option value="10">지인 소개 (10% 추가할인)</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="mt-8 text-center">
                             <button id="calculateBtn" class="bg-deep-navy text-white px-8 py-3 rounded-full font-semibold hover:bg-deep-navy-dark transition-colors">
-                                요금 계산하기
+                                레슨비용 계산하기
                             </button>
                         </div>
 
@@ -1033,10 +1128,37 @@
             const calculateBtn = document.getElementById('calculateBtn');
             const calculatorResult = document.getElementById('calculatorResult');
             const resultContent = document.getElementById('resultContent');
+            const sessionCountSelect = document.getElementById('sessionCount');
+            const packageDiscountSelect = document.getElementById('packageDiscount');
+            
+            // 이용횟수 선택시 패키지 할인 자동 선택
+            sessionCountSelect.addEventListener('change', function() {
+                const sessionCount = parseInt(this.value) || 0;
+                let discountValue = 0;
+                
+                if (sessionCount >= 50) {
+                    discountValue = 25;
+                } else if (sessionCount >= 40) {
+                    discountValue = 20;
+                } else if (sessionCount >= 30) {
+                    discountValue = 15;
+                } else if (sessionCount >= 20) {
+                    discountValue = 10;
+                } else if (sessionCount >= 10) {
+                    discountValue = 5;
+                }
+                
+                packageDiscountSelect.value = discountValue;
+            });
 
             calculateBtn.addEventListener('click', function() {
                 const programPrice = parseInt(document.getElementById('programSelect').value) || 0;
-                const sessionCount = parseInt(document.getElementById('sessionCount').value) || 0;
+                let sessionCount = parseInt(document.getElementById('sessionCount').value) || 0;
+                // 50회 이상 선택시 실제 계산에서는 50회로 처리
+                if (sessionCount === 60) {
+                    sessionCount = 50;
+                }
+                
                 const packageDiscount = parseInt(document.getElementById('packageDiscount').value) || 0;
                 const additionalDiscount = parseInt(document.getElementById('additionalDiscount').value) || 0;
 
@@ -1056,50 +1178,45 @@
                     totalDiscount += packageDiscountAmount;
                 }
 
-                // 추가 할인 적용 (생일 할인은 1회만)
+                // 추가 할인 적용
                 if (additionalDiscount > 0) {
-                    let additionalDiscountAmount = 0;
-                    if (additionalDiscount === 50) { // 생일 할인 (1회만)
-                        additionalDiscountAmount = programPrice * 0.5;
-                    } else { // 친구 추천 할인
-                        additionalDiscountAmount = originalPrice * (additionalDiscount / 100);
-                    }
+                    const additionalDiscountAmount = discountedPrice * (additionalDiscount / 100);
                     discountedPrice -= additionalDiscountAmount;
                     totalDiscount += additionalDiscountAmount;
                 }
 
                 const programNames = {
-                    '80000': '개인 레슨',
-                    '35000': '그룹 클래스',
-                    '90000': '재활 필라테스'
+                    '77000': '원장직강 1회'
                 };
+                
+                const displaySessionCount = document.getElementById('sessionCount').value === '60' ? '50회 이상' : sessionCount + '회';
 
                 resultContent.innerHTML = `
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                        <div>
-                            <span class="font-medium">선택 프로그램:</span>
-                            <span class="float-right">${programNames[programPrice.toString()]}</span>
+                    <div class="space-y-3">
+                        <div class="result-item">
+                            <span class="result-label">선택 프로그램:</span>
+                            <span class="result-value">${programNames[programPrice.toString()]}</span>
                         </div>
-                        <div>
-                            <span class="font-medium">이용 횟수:</span>
-                            <span class="float-right">${sessionCount}회</span>
+                        <div class="result-item">
+                            <span class="result-label">이용 횟수:</span>
+                            <span class="result-value">${displaySessionCount}</span>
                         </div>
-                        <div>
-                            <span class="font-medium">정가:</span>
-                            <span class="float-right">${originalPrice.toLocaleString()}원</span>
+                        <div class="result-item">
+                            <span class="result-label">정가:</span>
+                            <span class="result-value">${originalPrice.toLocaleString()}원</span>
                         </div>
-                        <div>
-                            <span class="font-medium">할인 금액:</span>
-                            <span class="float-right text-red-500">-${totalDiscount.toLocaleString()}원</span>
+                        <div class="result-item">
+                            <span class="result-label">할인 금액:</span>
+                            <span class="result-value text-red-500">-${totalDiscount.toLocaleString()}원</span>
                         </div>
                     </div>
-                    <div class="border-t pt-3 mt-3">
-                        <div class="flex justify-between items-center text-lg font-bold">
-                            <span>최종 결제 금액:</span>
-                            <span class="text-deep-navy">${discountedPrice.toLocaleString()}원</span>
-                        </div>
-                        <div class="text-sm text-gray-600 mt-1">
-                            회당 ${Math.round(discountedPrice / sessionCount).toLocaleString()}원
+                    <div class="final-amount">
+                        <div class="final-amount-row">
+                            <span class="final-amount-label">최종 결제 금액:</span>
+                            <div class="text-right">
+                                <div class="final-amount-value">${discountedPrice.toLocaleString()}원 (VAT포함)</div>
+                                <div class="per-session">회당 ${Math.round(discountedPrice / sessionCount).toLocaleString()}원</div>
+                            </div>
                         </div>
                     </div>
                 `;
