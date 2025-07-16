@@ -1171,18 +1171,13 @@
                 let discountedPrice = originalPrice;
                 let totalDiscount = 0;
 
-                // 패키지 할인 적용
-                if (packageDiscount > 0) {
-                    const packageDiscountAmount = originalPrice * (packageDiscount / 100);
-                    discountedPrice -= packageDiscountAmount;
-                    totalDiscount += packageDiscountAmount;
-                }
-
-                // 추가 할인 적용
-                if (additionalDiscount > 0) {
-                    const additionalDiscountAmount = discountedPrice * (additionalDiscount / 100);
-                    discountedPrice -= additionalDiscountAmount;
-                    totalDiscount += additionalDiscountAmount;
+                // 패키지 할인과 추가할인을 합산하여 총할인율 계산
+                const totalDiscountRate = packageDiscount + additionalDiscount;
+                
+                if (totalDiscountRate > 0) {
+                    const totalDiscountAmount = originalPrice * (totalDiscountRate / 100);
+                    discountedPrice = originalPrice - totalDiscountAmount;
+                    totalDiscount = totalDiscountAmount;
                 }
 
                 const programNames = {
@@ -1207,7 +1202,7 @@
                         </div>
                         <div class="result-item">
                             <span class="result-label">할인 금액:</span>
-                            <span class="result-value text-red-500">-${totalDiscount.toLocaleString()}원</span>
+                            <span class="result-value text-red-500">-${totalDiscount.toLocaleString()}원 ${totalDiscountRate > 0 ? '(' + totalDiscountRate + '% 할인)' : ''}</span>
                         </div>
                     </div>
                     <div class="final-amount">
