@@ -20,8 +20,8 @@
     
     <style>
         :root {
-            --forest-green: #2D5A27;
-            --sage-green: #87A96B;
+            --deep-navy: #001F3F;
+            --golden-brown: #996515;
             --warm-beige: #F5F1E8;
             --soft-cream: #FEFCF8;
             --charcoal-gray: #2C2C2C;
@@ -37,19 +37,19 @@
         .font-eng { font-family: 'Manrope', sans-serif; }
         .font-inter { font-family: 'Inter', sans-serif; }
             
-        .bg-forest-green { background-color: var(--forest-green); }
-        .bg-sage-green { background-color: var(--sage-green); }
+        .bg-deep-navy { background-color: var(--deep-navy); }
+        .bg-golden-brown { background-color: var(--golden-brown); }
         .bg-warm-beige { background-color: var(--warm-beige); }
         .bg-accent-gold { background-color: var(--accent-gold); }
             
-        .text-forest-green { color: var(--forest-green); }
-        .text-sage-green { color: var(--sage-green); }
+        .text-deep-navy { color: var(--deep-navy); }
+        .text-golden-brown { color: var(--golden-brown); }
         .text-charcoal-gray { color: var(--charcoal-gray); }
         .text-accent-gold { color: var(--accent-gold); }
         .text-white { color: white; }
     
-        .hover\:bg-forest-green-dark:hover { background-color: #1a3d1a; }
-        .hover\:text-sage-green:hover { color: var(--sage-green); }
+        .hover\:bg-deep-navy-dark:hover { background-color: #001122; }
+        .hover\:text-golden-brown:hover { color: var(--golden-brown); }
     
         /* 스크롤 애니메이션 */
         .reveal, .fade-in {
@@ -68,35 +68,10 @@
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-            
-        
-            
-        
-            
-        .service-card {
-            background-color: white;
-            transition: all 0.4s ease;
-            border-left: 4px solid transparent;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border-left: 4px solid var(--sage-green);
-        }
-        
-        .service-card:hover .card-icon {
-            color: var(--sage-green) !important;
-            transform: scale(1.1);
-        }
-        
-        .card-icon {
-            transition: color 0.4s ease, transform 0.4s ease;
-        }
         
         /* 전문적인 그라데이션 배경 */
         .hero-gradient {
-            background: linear-gradient(135deg, var(--forest-green) 0%, var(--sage-green) 100%);
+            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--golden-brown) 100%);
         }
         
         .section-gradient {
@@ -136,12 +111,12 @@
         }
 
         .step-item.active .step-number {
-            background-color: var(--forest-green);
+            background-color: var(--deep-navy);
             color: white;
         }
 
         .step-item.completed .step-number {
-            background-color: var(--sage-green);
+            background-color: var(--golden-brown);
             color: white;
         }
 
@@ -160,7 +135,7 @@
         }
 
         .step-item.completed .step-line {
-            background-color: var(--sage-green);
+            background-color: var(--golden-brown);
         }
 
         /* Form Styles */
@@ -175,7 +150,7 @@
         .form-label {
             display: block;
             font-weight: 600;
-            color: var(--forest-green);
+            color: var(--deep-navy);
             margin-bottom: 0.5rem;
         }
 
@@ -191,7 +166,7 @@
 
         .form-input:focus, .form-select:focus, .form-textarea:focus {
             outline: none;
-            border-color: var(--sage-green);
+            border-color: var(--golden-brown);
         }
 
         .form-textarea {
@@ -212,12 +187,12 @@
         }
 
         .program-option:hover {
-            border-color: var(--sage-green);
+            border-color: var(--golden-brown);
             background-color: #f9fafb;
         }
 
         .program-option.selected {
-            border-color: var(--forest-green);
+            border-color: var(--deep-navy);
             background-color: var(--warm-beige);
         }
 
@@ -239,13 +214,13 @@
         }
 
         .time-slot:hover {
-            border-color: var(--sage-green);
+            border-color: var(--golden-brown);
             background-color: #f9fafb;
         }
 
         .time-slot.selected {
-            border-color: var(--forest-green);
-            background-color: var(--sage-green);
+            border-color: var(--deep-navy);
+            background-color: var(--golden-brown);
             color: white;
         }
 
@@ -275,43 +250,46 @@
 
         /* 모바일 반응형 폰트 및 레이아웃 */
         @media (max-width: 640px) {
-            h1, .text-4xl, .md\:text-5xl, .text-5xl {
+            .main-responsive h1, 
+            .main-responsive .text-4xl, 
+            .main-responsive .md\:text-5xl, 
+            .main-responsive .text-5xl {
                 font-size: 1.7rem !important;
                 line-height: 2.2rem !important;
                 word-break: keep-all;
             }
-            h2, .text-2xl, .md\:text-4xl, .text-3xl {
+            .main-responsive h2, .main-responsive .text-2xl, .main-responsive .md\:text-4xl, .main-responsive .text-3xl {
                 font-size: 1.2rem !important;
                 line-height: 1.7rem !important;
                 word-break: keep-all;
             }
-            .text-lg, .md\:text-xl {
+            .main-responsive .text-lg, .main-responsive .md\:text-xl {
                 font-size: 1rem !important;
                 line-height: 1.4rem !important;
             }
-            .container {
+            .main-responsive .container {
                 padding-left: 1rem !important;
                 padding-right: 1rem !important;
             }
-            .px-6 { padding-left: 1rem !important; padding-right: 1rem !important; }
-            .py-16, .md\:py-20 { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
-            .rounded-full, .rounded-lg, .rounded-xl, .rounded-2xl { border-radius: 0.75rem !important; }
-            .step-indicator { padding: 0 0.2rem !important; }
-            .step-number { width: 2rem !important; height: 2rem !important; font-size: 1rem !important; }
-            .booking-form, .booking-summary { padding: 1rem !important; }
-            .form-label { font-size: 0.95rem !important; }
-            .form-input, .form-select, .form-textarea { font-size: 0.95rem !important; padding: 0.5rem 0.7rem !important; }
-            .program-option, .time-slot { font-size: 0.95rem !important; padding: 0.7rem 0.7rem !important; }
-            .font-bold, .font-semibold { word-break: keep-all; }
-            .text-center { word-break: keep-all; }
-            .text-sm { font-size: 0.9rem !important; }
-            .text-xs { font-size: 0.8rem !important; }
-            .w-16, .h-16 { width: 3rem !important; height: 3rem !important; }
-            .w-14, .h-14 { width: 2.5rem !important; height: 2.5rem !important; }
-            .px-8 { padding-left: 1rem !important; padding-right: 1rem !important; }
-            .py-3 { padding-top: 0.7rem !important; padding-bottom: 0.7rem !important; }
-            .mt-6, .mt-8, .mb-6, .mb-8, .mb-12, .mb-16 { margin-top: 1rem !important; margin-bottom: 1rem !important; }
-            .max-w-2xl, .max-w-4xl { max-width: 100% !important; }
+            .main-responsive .px-6 { padding-left: 1rem !important; padding-right: 1rem !important; }
+            .main-responsive .py-16, .main-responsive .md\:py-20 { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+            .main-responsive .rounded-full, .main-responsive .rounded-lg, .main-responsive .rounded-xl, .main-responsive .rounded-2xl { border-radius: 0.75rem !important; }
+            .main-responsive .step-indicator { padding: 0 0.2rem !important; }
+            .main-responsive .step-number { width: 2rem !important; height: 2rem !important; font-size: 1rem !important; }
+            .main-responsive .booking-form, .main-responsive .booking-summary { padding: 1rem !important; }
+            .main-responsive .form-label { font-size: 0.95rem !important; }
+            .main-responsive .form-input, .main-responsive .form-select, .main-responsive .form-textarea { font-size: 0.95rem !important; padding: 0.5rem 0.7rem !important; }
+            .main-responsive .program-option, .main-responsive .time-slot { font-size: 0.95rem !important; padding: 0.7rem 0.7rem !important; }
+            .main-responsive .font-bold, .main-responsive .font-semibold { word-break: keep-all; }
+            .main-responsive .text-center { word-break: keep-all; }
+            .main-responsive .text-sm { font-size: 0.9rem !important; }
+            .main-responsive .text-xs { font-size: 0.8rem !important; }
+            .main-responsive .w-16, .main-responsive .h-16 { width: 3rem !important; height: 3rem !important; }
+            .main-responsive .w-14, .main-responsive .h-14 { width: 2.5rem !important; height: 2.5rem !important; }
+            .main-responsive .px-8 { padding-left: 1rem !important; padding-right: 1rem !important; }
+            .main-responsive .py-3 { padding-top: 0.7rem !important; padding-bottom: 0.7rem !important; }
+            .main-responsive .mt-6, .main-responsive .mt-8, .main-responsive .mb-6, .main-responsive .mb-8, .main-responsive .mb-12, .main-responsive .mb-16 { margin-top: 1rem !important; margin-bottom: 1rem !important; }
+            .main-responsive .max-w-2xl, .main-responsive .max-w-4xl { max-width: 100% !important; }
         }
     </style>
 </head>
@@ -322,7 +300,7 @@
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <a href="index.html" id="header-logo" class="text-2xl font-bold text-white transition-colors duration-300">
-                    <span class="font-eng">PILATES</span> <span class="text-accent-gold">HODU</span>
+                    <span class="font-eng">PILATES</span> <span class="text-golden-brown">HODU</span>
                 </a>
                 
                 <!-- Desktop Navigation -->
@@ -355,28 +333,27 @@
         </div>
     </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="relative h-96 flex items-center justify-center text-center text-white overflow-hidden hero-gradient">
-            <div class="absolute inset-0 opacity-20">
-                <div class="w-full h-full bg-gradient-to-r from-black/30 to-transparent"></div>
-            </div>
-            
-            <div class="relative z-10 px-6 reveal">
-                <h1 class="font-eng text-4xl md:text-5xl font-bold tracking-tighter leading-tight text-white mb-4">
-                    전문 상담 <span class="text-accent-gold">예약</span>
-                </h1>
-                <p class="text-lg md:text-xl text-gray-200 leading-relaxed max-w-2xl mx-auto">
-                    1:1 원장직강 전문 상담 예약 | 의료기반 맞춤 상담 및 관리 계획 수립
-                </p>
-                <div class="mt-6">
-                    <span class="bg-accent-gold text-forest-green px-6 py-3 rounded-full text-sm font-bold">
+    <!-- Hero Section -->
+    <section class="relative h-96 flex items-center justify-center text-center text-white overflow-hidden hero-gradient">
+        <div class="absolute inset-0 opacity-20">
+            <div class="w-full h-full bg-gradient-to-r from-black/30 to-transparent"></div>
+        </div>
+        
+        <div class="relative z-10 px-6 reveal">
+            <h1 class="font-eng text-4xl md:text-5xl font-bold tracking-tighter leading-tight text-white mb-4">
+                Our <span class="text-accent-gold">Reservation</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 leading-relaxed max-w-2xl mx-auto">
+                1:1 원장직강 메디컬필라테스 상담 예약
+            </p>
+            <div class="mt-6">
+                    <span class="bg-accent-gold text-deep-navy px-6 py-3 rounded-full text-sm font-bold">
                         📞 전화 상담: 031-263-3345
                     </span>
                 </div>
-            </div>
-        </section>
-
+        </div>
+    </section>
+    <main class="main-responsive">
         <!-- Booking Form Section -->
         <section class="py-16 md:py-20 section-gradient">
             <div class="container mx-auto px-6">
@@ -409,7 +386,7 @@
                         <form id="bookingForm">
                             <!-- Step 1: Program Selection -->
                             <div id="step1" class="step-content">
-                                <h2 class="text-2xl font-bold text-forest-green mb-6">관심 있는 프로그램을 선택해주세요</h2>
+                                <h2 class="text-2xl font-bold text-deep-navy mb-6">관심 있는 프로그램을 선택해주세요</h2>
                                 <p class="text-gray-600 mb-6">전문 상담을 통해 개인별 맞춤 프로그램을 추천해드립니다. (모든 프로그램은 1:1 원장직강만 운영)</p>
                                 
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -417,12 +394,12 @@
                                         <input type="radio" name="program" value="consultation" data-price="0">
                                         <div class="flex items-center justify-between">
                                             <div>
-                                                <h3 class="font-semibold text-forest-green mb-2">초기 건강 상담</h3>
+                                                <h3 class="font-semibold text-deep-navy mb-2">초기 건강 상담</h3>
                                                 <p class="text-gray-600 text-sm">건강 상태 분석 및 맞춤 프로그램 상담</p>
                                                 <p class="text-sm text-gray-500 mt-1">1:1 전문 상담</p>
                                             </div>
                                             <div class="text-right">
-                                                <p class="font-bold text-sage-green text-lg">무료 상담</p>
+                                                <p class="font-bold text-golden-brown text-lg">무료 상담</p>
                                             </div>
                                         </div>
                                     </label>
@@ -431,12 +408,12 @@
                                         <input type="radio" name="program" value="pain-rehab" data-price="0">
                                         <div class="flex items-center justify-between">
                                             <div>
-                                                <h3 class="font-semibold text-forest-green mb-2">통증재활 필라테스</h3>
+                                                <h3 class="font-semibold text-deep-navy mb-2">통증재활 필라테스</h3>
                                                 <p class="text-gray-600 text-sm">근골격계 통증 및 체형교정 전문</p>
                                                 <p class="text-sm text-gray-500 mt-1">의료기반 관리 프로그램</p>
                                             </div>
                                             <div class="text-right">
-                                                <p class="font-bold text-forest-green text-lg">상담 문의</p>
+                                                <p class="font-bold text-deep-navy text-lg">상담 문의</p>
                                             </div>
                                         </div>
                                     </label>
@@ -445,12 +422,12 @@
                                         <input type="radio" name="program" value="mannequin-tone" data-price="0">
                                         <div class="flex items-center justify-between">
                                             <div>
-                                                <h3 class="font-semibold text-forest-green mb-2">마네킹톤 프로그램</h3>
+                                                <h3 class="font-semibold text-deep-navy mb-2">마네킹톤 프로그램</h3>
                                                 <p class="text-gray-600 text-sm">체중감량 및 비만체형 관리 특화</p>
                                                 <p class="text-sm text-gray-500 mt-1">톤업 필라테스 프로그램</p>
                                             </div>
                                             <div class="text-right">
-                                                <p class="font-bold text-forest-green text-lg">상담 문의</p>
+                                                <p class="font-bold text-deep-navy text-lg">상담 문의</p>
                                             </div>
                                         </div>
                                     </label>
@@ -459,12 +436,12 @@
                                         <input type="radio" name="program" value="flat-scol" data-price="0">
                                         <div class="flex items-center justify-between">
                                             <div>
-                                                <h3 class="font-semibold text-forest-green mb-2">플랫스콜 프로그램</h3>
+                                                <h3 class="font-semibold text-deep-navy mb-2">플랫스콜 프로그램</h3>
                                                 <p class="text-gray-600 text-sm">체추측만증 슈로스 메소드 접목</p>
                                                 <p class="text-sm text-gray-500 mt-1">경도 체추측만증 교정 전문</p>
                                             </div>
                                             <div class="text-right">
-                                                <p class="font-bold text-forest-green text-lg">상담 문의</p>
+                                                <p class="font-bold text-deep-navy text-lg">상담 문의</p>
                                             </div>
                                         </div>
                                     </label>
@@ -473,12 +450,12 @@
                                         <input type="radio" name="program" value="golf" data-price="0">
                                         <div class="flex items-center justify-between">
                                             <div>
-                                                <h3 class="font-semibold text-forest-green mb-2">골프 필라테스</h3>
+                                                <h3 class="font-semibold text-deep-navy mb-2">골프 필라테스</h3>
                                                 <p class="text-gray-600 text-sm">골프스윙 및 비거리 향상 전문</p>
                                                 <p class="text-sm text-gray-500 mt-1">트럁크 강화 중심 프로그램</p>
                                             </div>
                                             <div class="text-right">
-                                                <p class="font-bold text-forest-green text-lg">상담 문의</p>
+                                                <p class="font-bold text-deep-navy text-lg">상담 문의</p>
                                             </div>
                                         </div>
                                     </label>
@@ -487,12 +464,12 @@
                                         <input type="radio" name="program" value="kids" data-price="0">
                                         <div class="flex items-center justify-between">
                                             <div>
-                                                <h3 class="font-semibold text-forest-green mb-2">키즈(성장) 필라테스</h3>
+                                                <h3 class="font-semibold text-deep-navy mb-2">키즈(성장) 필라테스</h3>
                                                 <p class="text-gray-600 text-sm">아이 성장 도움 및 측만 교정</p>
                                                 <p class="text-sm text-gray-500 mt-1">성장기 체형 관리 전문</p>
                                             </div>
                                             <div class="text-right">
-                                                <p class="font-bold text-forest-green text-lg">상담 문의</p>
+                                                <p class="font-bold text-deep-navy text-lg">상담 문의</p>
                                             </div>
                                         </div>
                                     </label>
@@ -501,12 +478,12 @@
                                         <input type="radio" name="program" value="maternity" data-price="0">
                                         <div class="flex items-center justify-between">
                                             <div>
-                                                <h3 class="font-semibold text-forest-green mb-2">임산부 필라테스</h3>
+                                                <h3 class="font-semibold text-deep-navy mb-2">임산부 필라테스</h3>
                                                 <p class="text-gray-600 text-sm">산전/산후 전문 관리 프로그램</p>
                                                 <p class="text-sm text-gray-500 mt-1">코어 강화 및 분만 후 회복</p>
                                             </div>
                                             <div class="text-right">
-                                                <p class="font-bold text-forest-green text-lg">상담 문의</p>
+                                                <p class="font-bold text-deep-navy text-lg">상담 문의</p>
                                             </div>
                                         </div>
                                     </label>
@@ -515,12 +492,12 @@
                                         <input type="radio" name="program" value="senior" data-price="0">
                                         <div class="flex items-center justify-between">
                                             <div>
-                                                <h3 class="font-semibold text-forest-green mb-2">시니어 필라테스</h3>
+                                                <h3 class="font-semibold text-deep-navy mb-2">시니어 필라테스</h3>
                                                 <p class="text-gray-600 text-sm">근력 유지 및 균형감 강화</p>
                                                 <p class="text-sm text-gray-500 mt-1">건강한 노후 체력 유지</p>
                                             </div>
                                             <div class="text-right">
-                                                <p class="font-bold text-forest-green text-lg">상담 문의</p>
+                                                <p class="font-bold text-deep-navy text-lg">상담 문의</p>
                                             </div>
                                         </div>
                                     </label>
@@ -530,7 +507,7 @@
                                         <div class="flex items-center justify-between">
                                             <div>
                                                 <div class="flex items-center">
-                                                    <h3 class="font-semibold text-forest-green mb-2">필앤핏 프로그램</h3>
+                                                    <h3 class="font-semibold text-deep-navy mb-2">필앤핏 프로그램</h3>
                                                     <span class="bg-accent-gold text-white px-2 py-1 rounded-full text-xs font-bold ml-2">SPECIAL</span>
                                                 </div>
                                                 <p class="text-gray-600 text-sm">뉴-뱅퀴시 + 마네킹톤 병행</p>
@@ -544,7 +521,7 @@
                                 </div>
 
                                 <div class="mt-8 flex justify-end">
-                                    <button type="button" id="step1Next" class="bg-forest-green text-white px-8 py-3 rounded-full font-semibold hover:bg-forest-green-dark transition-colors">
+                                    <button type="button" id="step1Next" class="bg-deep-navy text-white px-8 py-3 rounded-full font-semibold hover:bg-deep-navy-dark transition-colors">
                                         다음 단계
                                     </button>
                                 </div>
@@ -552,7 +529,7 @@
 
                             <!-- Step 2: Date & Time Selection -->
                             <div id="step2" class="step-content hidden">
-                                <h2 class="text-2xl font-bold text-forest-green mb-6">상담 희망 일정을 선택해주세요</h2>
+                                <h2 class="text-2xl font-bold text-deep-navy mb-6">상담 희망 일정을 선택해주세요</h2>
                                 <p class="text-gray-600 mb-6">운영시간: 평일 08:00-21:30 | 토요일 08:00-15:00 | 일요일/공휴일 휴무</p>
                                 
                                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -577,10 +554,10 @@
                                 </div>
 
                                 <div class="mt-8 flex justify-between">
-                                    <button type="button" id="step2Prev" class="border-2 border-forest-green text-forest-green px-8 py-3 rounded-full font-semibold hover:bg-forest-green hover:text-white transition-all">
+                                    <button type="button" id="step2Prev" class="border-2 border-deep-navy text-deep-navy px-8 py-3 rounded-full font-semibold hover:bg-deep-navy hover:text-white transition-all">
                                         이전 단계
                                     </button>
-                                    <button type="button" id="step2Next" class="bg-forest-green text-white px-8 py-3 rounded-full font-semibold hover:bg-forest-green-dark transition-colors">
+                                    <button type="button" id="step2Next" class="bg-deep-navy text-white px-8 py-3 rounded-full font-semibold hover:bg-deep-navy-dark transition-colors">
                                         다음 단계
                                     </button>
                                 </div>
@@ -588,7 +565,7 @@
 
                             <!-- Step 3: Personal Information -->
                             <div id="step3" class="step-content hidden">
-                                <h2 class="text-2xl font-bold text-forest-green mb-6">연락처 정보를 입력해주세요</h2>
+                                <h2 class="text-2xl font-bold text-deep-navy mb-6">연락처 정보를 입력해주세요</h2>
                                 <p class="text-gray-600 mb-6">상담 예약 확인 및 안내를 위한 정보입니다. 개인정보는 안전하게 보호됩니다.</p>
                                 
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -629,10 +606,10 @@
                                 </div>
 
                                 <div class="mt-8 flex justify-between">
-                                    <button type="button" id="step3Prev" class="border-2 border-forest-green text-forest-green px-8 py-3 rounded-full font-semibold hover:bg-forest-green hover:text-white transition-all">
+                                    <button type="button" id="step3Prev" class="border-2 border-deep-navy text-deep-navy px-8 py-3 rounded-full font-semibold hover:bg-deep-navy hover:text-white transition-all">
                                         이전 단계
                                     </button>
-                                    <button type="button" id="step3Next" class="bg-forest-green text-white px-8 py-3 rounded-full font-semibold hover:bg-forest-green-dark transition-colors">
+                                    <button type="button" id="step3Next" class="bg-deep-navy text-white px-8 py-3 rounded-full font-semibold hover:bg-deep-navy-dark transition-colors">
                                         예약 확인
                                     </button>
                                 </div>
@@ -640,10 +617,10 @@
 
                             <!-- Step 4: Booking Confirmation -->
                             <div id="step4" class="step-content hidden">
-                                <h2 class="text-2xl font-bold text-forest-green mb-6">상담 예약 정보를 확인해주세요</h2>
+                                <h2 class="text-2xl font-bold text-deep-navy mb-6">상담 예약 정보를 확인해주세요</h2>
                                 
                                 <div class="booking-summary">
-                                    <h3 class="text-lg font-semibold text-forest-green mb-4">상담 예약 요약</h3>
+                                    <h3 class="text-lg font-semibold text-deep-navy mb-4">상담 예약 요약</h3>
                                     <div id="bookingSummary" class="space-y-3">
                                         <!-- 상담 예약 정보는 JavaScript로 동적 생성 -->
                                     </div>
@@ -668,7 +645,7 @@
                                 </div>
 
                                 <div class="mt-8 flex justify-between">
-                                    <button type="button" id="step4Prev" class="border-2 border-forest-green text-forest-green px-8 py-3 rounded-full font-semibold hover:bg-forest-green hover:text-white transition-all">
+                                    <button type="button" id="step4Prev" class="border-2 border-deep-navy text-deep-navy px-8 py-3 rounded-full font-semibold hover:bg-deep-navy hover:text-white transition-all">
                                         이전 단계
                                     </button>
                                     <button type="submit" id="submitBooking" class="bg-accent-gold text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity">
@@ -686,7 +663,7 @@
         <section class="py-16 md:py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-4">빠른 상담 예약</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-deep-navy mb-4">빠른 상담 예약</h2>
                     <p class="text-lg text-gray-600 max-w-2xl mx-auto">
                         전화 또는 직접 방문으로도 상담 예약이 가능합니다
                     </p>
@@ -694,25 +671,25 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="text-center fade-in">
-                        <div class="w-16 h-16 bg-forest-green rounded-full flex items-center justify-center mx-auto mb-4">
+                        <div class="w-16 h-16 bg-deep-navy rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fas fa-phone text-white text-xl"></i>
                         </div>
-                        <h3 class="text-lg font-semibold text-forest-green mb-2">전화 상담 예약</h3>
+                        <h3 class="text-lg font-semibold text-deep-navy mb-2">전화 상담 예약</h3>
                         <p class="text-gray-600 text-sm mb-4">
                             전화로 바로 상담 예약하고 문의하세요
                         </p>
-                        <a href="tel:031-263-3345" class="text-sage-green font-semibold">031-263-3345</a>
+                        <a href="tel:031-263-3345" class="text-golden-brown font-semibold">031-263-3345</a>
                     </div>
 
                     <div class="text-center fade-in">
-                        <div class="w-16 h-16 bg-sage-green rounded-full flex items-center justify-center mx-auto mb-4">
+                        <div class="w-16 h-16 bg-golden-brown rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fab fa-kickstarter-k text-white text-xl"></i>
                         </div>
-                        <h3 class="text-lg font-semibold text-forest-green mb-2">운영시간 안내</h3>
+                        <h3 class="text-lg font-semibold text-deep-navy mb-2">운영시간 안내</h3>
                         <p class="text-gray-600 text-sm mb-4">
                             정확한 예약을 위한 운영시간 확인
                         </p>
-                        <div class="text-sage-green font-semibold text-sm">
+                        <div class="text-golden-brown font-semibold text-sm">
                             <div>평일: 08:00-21:30</div>
                             <div>토요일: 08:00-15:00</div>
                             <div>일/공휴일: 휴무</div>
@@ -723,11 +700,11 @@
                         <div class="w-16 h-16 bg-accent-gold rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fas fa-map-marker-alt text-white text-xl"></i>
                         </div>
-                        <h3 class="text-lg font-semibold text-forest-green mb-2">방문 상담</h3>
+                        <h3 class="text-lg font-semibold text-deep-navy mb-2">방문 상담</h3>
                         <p class="text-gray-600 text-sm mb-4">
                             센터에 직접 방문하여 상담받으세요
                         </p>
-                        <div class="text-sage-green font-semibold text-sm">
+                        <div class="text-golden-brown font-semibold text-sm">
                             <div>경기도 용인시 수지구</div>
                             <div>신봉동 82-4 (3층)</div>
                             <div>무료 주차 가능</div>
@@ -740,19 +717,19 @@
     
     <!-- Floating Action Buttons -->
     <div class="fixed bottom-6 right-6 space-y-3 z-40">
-        <a href="tel:031-263-3345" class="w-14 h-14 bg-sage-green text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all">
+        <a href="tel:031-263-3345" class="w-14 h-14 bg-golden-brown text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all">
             <i class="fas fa-phone fa-lg"></i>
         </a>
         <a href="#" class="w-14 h-14 bg-accent-gold text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all">
             <i class="fab fa-kickstarter-k"></i>
         </a>
-        <button id="top-btn" class="w-14 h-14 bg-forest-green text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all opacity-0">
+        <button id="top-btn" class="w-14 h-14 bg-deep-navy text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all opacity-0">
              <i class="fas fa-arrow-up fa-lg"></i>
         </button>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-forest-green text-white pt-12 pb-8">
+    <footer class="bg-deep-navy text-white pt-12 pb-8">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
@@ -815,11 +792,11 @@
                 if (window.scrollY > 50) {
                     header.classList.add('header-scrolled');
                     headerLogo.classList.remove('text-white');
-                    headerLogo.classList.add('text-forest-green');
+                    headerLogo.classList.add('text-deep-navy');
                     
                     navLinks.forEach(link => {
                         link.classList.remove('text-white', 'hover:text-gray-300');
-                        link.classList.add('text-gray-700', 'hover:text-sage-green');
+                        link.classList.add('text-gray-700', 'hover:text-golden-brown');
                     });
                     
                     mobileMenuButtonSvg.classList.remove('text-white');
@@ -827,11 +804,11 @@
                 } else {
                     header.classList.remove('header-scrolled');
                     headerLogo.classList.add('text-white');
-                    headerLogo.classList.remove('text-forest-green');
+                    headerLogo.classList.remove('text-deep-navy');
                     
                     navLinks.forEach(link => {
                         link.classList.add('text-white', 'hover:text-gray-300');
-                        link.classList.remove('text-gray-700', 'hover:text-sage-green');
+                        link.classList.remove('text-gray-700', 'hover:text-golden-brown');
                     });
                     
                     mobileMenuButtonSvg.classList.add('text-white');
