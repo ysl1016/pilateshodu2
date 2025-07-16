@@ -889,6 +889,7 @@
                 });
                 document.getElementById(`step${step}`).classList.remove('hidden');
                 updateStepIndicator();
+                window.scrollTo({ top: 0, behavior: 'smooth' }); // Add this line
             };
 
             // Program selection
@@ -975,8 +976,28 @@
                 return errorMessages;
             };
 
+            const formatPhoneNumber = (input) => {
+                let phoneNumber = input.value.replace(/[^0-9]/g, ''); // 숫자만 남김
+                let formattedNumber = '';
+
+                if (phoneNumber.length > 10) {
+                    // 010-1234-5678
+                    formattedNumber = phoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+                } else if (phoneNumber.length > 6) {
+                    // 010-123-4567 or 02-123-4567
+                    formattedNumber = phoneNumber.replace(/(\d{2,3})(\d{3,4})(\d{4})/, '$1-$2-$3');
+                } else if (phoneNumber.length > 3) {
+                    // 010-123
+                    formattedNumber = phoneNumber.replace(/(\d{2,3})(\d{3,4})/, '$1-$2');
+                } else {
+                    formattedNumber = phoneNumber;
+                }
+                input.value = formattedNumber;
+            };
+
             const isValidPhone = (phone) => {
-                const phonePattern = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/;
+                // 하이픈이 자동으로 추가되므로, 하이픈을 포함한 패턴으로 변경
+                const phonePattern = /^\d{2,3}-\d{3,4}-\d{4}$/;
                 return phonePattern.test(phone);
             };
 
@@ -1126,6 +1147,14 @@
             updateHeaderStyle();
             window.addEventListener('scroll', updateHeaderStyle);
             showStep(currentStep);
+
+            // Phone number formatting
+            const customerPhoneInput = document.getElementById('customerPhone');
+            if (customerPhoneInput) {
+                customerPhoneInput.addEventListener('input', function() {
+                    formatPhoneNumber(this);
+                });
+            }
         });
     </script>
 </body>
