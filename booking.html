@@ -173,6 +173,15 @@
             outline: none;
             border-color: var(--golden-brown);
         }
+        
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: #9ca3af;
+            opacity: 1;
+        }
+        
+        .form-input:focus::placeholder, .form-textarea:focus::placeholder {
+            opacity: 0;
+        }
 
         .form-textarea {
             min-height: 6rem;
@@ -581,12 +590,12 @@
 
                                     <div>
                                         <label class="form-label">연락처 *</label>
-                                        <input type="tel" id="customerPhone" name="phone" class="form-input" required>
+                                        <input type="tel" id="customerPhone" name="phone" class="form-input" placeholder="연락처의 숫자만 입력해주십시오" required>
                                     </div>
 
                                     <div>
                                         <label class="form-label">이메일</label>
-                                        <input type="email" id="customerEmail" name="email" class="form-input">
+                                        <input type="email" id="customerEmail" name="email" class="form-input" placeholder="예시: example@email.com">
                                     </div>
 
                                     <div>
