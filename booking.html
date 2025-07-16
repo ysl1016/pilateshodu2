@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Manrope:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
         
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <style>
         :root {
@@ -784,8 +784,38 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script>
+    <!-- 
+    ==================================================
+    Firebase SDK 및 웹사이트 기능 스크립트
+    ================================================== 
+    -->
+    <script type="module">
+        // Firebase SDK 모듈 임포트
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+        // =================================================================
+        // ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+        // 중요: 아래 firebaseConfig 객체의 값들을
+        // DR_BreakFast님의 Firebase 프로젝트 설정 값으로 교체해주세요.
+        // (Firebase 콘솔 > 프로젝트 설정 > 일반 탭에서 확인 가능)
+        // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+        const firebaseConfig = {
+            apiKey: "AIzaSyDoZF51HOnT3DaHZ8i6vOVIY_KVtdG2oFM",
+            authDomain: "pilates-hodu-suji.firebaseapp.com",
+            projectId: "pilates-hodu-suji",
+            storageBucket: "pilates-hodu-suji.firebasestorage.app",
+            messagingSenderId: "867762237633",
+            appId: "1:867762237633:web:a9bc235034ff78a05ea440",
+            measurementId: "G-00N2KR2Q6C"
+        };
+
+        // Firebase 앱 초기화
+        const app = initializeApp(firebaseConfig);
+        // Firestore 인스턴스 가져오기
+        const db = getFirestore(app);
+
+        // DOM이 완전히 로드된 후 스크립트 실행
         document.addEventListener('DOMContentLoaded', function() {
             // Header scroll effect
             const header = document.getElementById('header');
@@ -804,8 +834,10 @@
                         link.classList.add('text-gray-700', 'hover:text-golden-brown');
                     });
                     
-                    mobileMenuButtonSvg.classList.remove('text-white');
-                    mobileMenuButtonSvg.classList.add('text-gray-700');
+                    if(mobileMenuButtonSvg) {
+                        mobileMenuButtonSvg.classList.remove('text-white');
+                        mobileMenuButtonSvg.classList.add('text-gray-700');
+                    }
                 } else {
                     header.classList.remove('header-scrolled');
                     headerLogo.classList.add('text-white');
@@ -816,8 +848,10 @@
                         link.classList.remove('text-gray-700', 'hover:text-golden-brown');
                     });
                     
-                    mobileMenuButtonSvg.classList.add('text-white');
-                    mobileMenuButtonSvg.classList.remove('text-gray-700');
+                    if(mobileMenuButtonSvg) {
+                        mobileMenuButtonSvg.classList.add('text-white');
+                        mobileMenuButtonSvg.classList.remove('text-gray-700');
+                    }
                 }
             };
 
@@ -870,7 +904,6 @@
             let currentStep = 1;
             const totalSteps = 4;
             
-            // Step navigation
             const updateStepIndicator = () => {
                 const stepItems = document.querySelectorAll('.step-item');
                 stepItems.forEach((item, index) => {
@@ -883,65 +916,33 @@
                 });
             };
 
+            // =================================================================
+            // ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+            // UX 최적화: 단계 이동 시 자동 스크롤 기능 추가
+            // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
             const showStep = (step) => {
                 document.querySelectorAll('.step-content').forEach(content => {
                     content.classList.add('hidden');
                 });
                 const currentStepElement = document.getElementById(`step${step}`);
-                currentStepElement.classList.remove('hidden');
-                updateStepIndicator();
-                
-                // 다음 단계로 이동할 때 첫 입력 요소를 화면 중앙에 위치시킴
-                setTimeout(() => {
-                    let firstInput = null;
-                    
-                    if (step === 2) {
-                        // Step 2: 날짜 입력 필드
-                        firstInput = document.getElementById('bookingDate');
-                    } else if (step === 3) {
-                        // Step 3: 이름 입력 필드
-                        firstInput = document.getElementById('customerName');
-                    } else if (step === 4) {
-                        // Step 4: 예약 요약 섹션
-                        firstInput = document.querySelector('.booking-summary');
-                    }
-                    
-                    if (firstInput) {
-                        // 요소의 위치를 계산하여 화면 중앙에 배치
-                        const elementRect = firstInput.getBoundingClientRect();
-                        const elementTop = elementRect.top + window.pageYOffset;
-                        const elementHeight = elementRect.height;
-                        const windowHeight = window.innerHeight;
-                        
-                        // 화면 중앙에 위치하도록 스크롤 위치 계산
-                        const scrollTo = elementTop - (windowHeight / 2) + (elementHeight / 2);
+                if (currentStepElement) {
+                    currentStepElement.classList.remove('hidden');
+                    updateStepIndicator();
+
+                    // 다음 단계의 시작 지점으로 부드럽게 스크롤
+                    setTimeout(() => {
+                        const elementTop = currentStepElement.getBoundingClientRect().top + window.pageYOffset;
+                        const headerOffset = 100; // 고정 헤더 높이만큼 여유 공간
+                        const scrollToPosition = elementTop - headerOffset;
                         
                         window.scrollTo({
-                            top: Math.max(0, scrollTo),
+                            top: scrollToPosition,
                             behavior: 'smooth'
                         });
-                        
-                        // 입력 필드인 경우 포커스도 설정
-                        if (firstInput.tagName === 'INPUT' || firstInput.tagName === 'SELECT') {
-                            setTimeout(() => {
-                                firstInput.focus();
-                            }, 500); // 스크롤 애니메이션 후 포커스
-                        }
-                    } else {
-                        // 기본적으로 step indicator가 보이도록 스크롤
-                        const stepIndicator = document.querySelector('.step-indicator');
-                        if (stepIndicator) {
-                            const indicatorTop = stepIndicator.getBoundingClientRect().top + window.pageYOffset;
-                            window.scrollTo({
-                                top: Math.max(0, indicatorTop - 100),
-                                behavior: 'smooth'
-                            });
-                        }
-                    }
-                }, 100); // DOM 업데이트 후 실행
+                    }, 100);
+                }
             };
 
-            // Program selection
             const programOptions = document.querySelectorAll('input[name="program"]');
             programOptions.forEach(option => {
                 option.addEventListener('change', function() {
@@ -952,7 +953,6 @@
                 });
             });
 
-            // Time slots generation
             const generateTimeSlots = () => {
                 const timeSlotsContainer = document.getElementById('timeSlots');
                 const timeSlots = [
@@ -960,6 +960,7 @@
                     '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'
                 ];
                 
+                if (!timeSlotsContainer) return;
                 timeSlotsContainer.innerHTML = '';
                 timeSlots.forEach(time => {
                     const slot = document.createElement('label');
@@ -971,7 +972,6 @@
                     timeSlotsContainer.appendChild(slot);
                 });
 
-                // Add click handlers to time slots
                 document.querySelectorAll('.time-slot').forEach(slot => {
                     slot.addEventListener('click', function() {
                         if (!this.classList.contains('unavailable')) {
@@ -984,70 +984,20 @@
                 });
             };
 
-            // Enhanced form validation
             const validateStep = (step) => {
                 const errorMessages = [];
-                
-                if (step === 1) {
-                    const selectedProgram = document.querySelector('input[name="program"]:checked');
-                    if (!selectedProgram) {
-                        errorMessages.push('프로그램을 선택해주세요.');
-                    }
+                if (step === 1 && !document.querySelector('input[name="program"]:checked')) {
+                    errorMessages.push('프로그램을 선택해주세요.');
                 }
-                
                 if (step === 2) {
-                    const selectedDate = document.getElementById('bookingDate').value;
-                    const selectedTime = document.querySelector('input[name="time"]:checked');
-                    
-                    if (!selectedDate) {
-                        errorMessages.push('날짜를 선택해주세요.');
-                    }
-                    if (!selectedTime) {
-                        errorMessages.push('시간을 선택해주세요.');
-                    }
+                    if (!document.getElementById('bookingDate').value) errorMessages.push('날짜를 선택해주세요.');
+                    if (!document.querySelector('input[name="time"]:checked')) errorMessages.push('시간을 선택해주세요.');
                 }
-                
                 if (step === 3) {
-                    const name = document.getElementById('customerName').value.trim();
-                    const phone = document.getElementById('customerPhone').value.trim();
-                    
-                    if (!name) {
-                        errorMessages.push('이름을 입력해주세요.');
-                    }
-                    if (!phone) {
-                        errorMessages.push('연락처를 입력해주세요.');
-                    }
-                    if (phone && !isValidPhone(phone)) {
-                        errorMessages.push('올바른 전화번호 형식을 입력해주세요. (예: 010-1234-5678)');
-                    }
+                    if (!document.getElementById('customerName').value.trim()) errorMessages.push('이름을 입력해주세요.');
+                    if (!document.getElementById('customerPhone').value.trim()) errorMessages.push('연락처를 입력해주세요.');
                 }
-                
                 return errorMessages;
-            };
-
-            const formatPhoneNumber = (input) => {
-                let phoneNumber = input.value.replace(/[^0-9]/g, ''); // 숫자만 남김
-                let formattedNumber = '';
-
-                if (phoneNumber.length > 10) {
-                    // 010-1234-5678
-                    formattedNumber = phoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
-                } else if (phoneNumber.length > 6) {
-                    // 010-123-4567 or 02-123-4567
-                    formattedNumber = phoneNumber.replace(/(\d{2,3})(\d{3,4})(\d{4})/, '$1-$2-$3');
-                } else if (phoneNumber.length > 3) {
-                    // 010-123
-                    formattedNumber = phoneNumber.replace(/(\d{2,3})(\d{3,4})/, '$1-$2');
-                } else {
-                    formattedNumber = phoneNumber;
-                }
-                input.value = formattedNumber;
-            };
-
-            const isValidPhone = (phone) => {
-                // 하이픈이 자동으로 추가되므로, 하이픈을 포함한 패턴으로 변경
-                const phonePattern = /^\d{2,3}-\d{3,4}-\d{4}$/;
-                return phonePattern.test(phone);
             };
 
             const showValidationErrors = (errors) => {
@@ -1058,153 +1008,150 @@
                 return true;
             };
 
-            // Step 1 navigation
-            document.getElementById('step1Next').addEventListener('click', function() {
-                const errors = validateStep(1);
-                if (showValidationErrors(errors)) {
-                    currentStep = 2;
-                    showStep(currentStep);
-                    generateTimeSlots();
+            // =================================================================
+            // ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+            // UX 최적화: 전화번호 자동 하이픈 변환 기능 추가
+            // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+            const formatPhoneNumber = (input) => {
+                let phoneNumber = input.value.replace(/[^0-9]/g, '');
+                let formattedNumber = '';
+                if (phoneNumber.length > 10) {
+                    formattedNumber = phoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+                } else if (phoneNumber.length > 6) {
+                    formattedNumber = phoneNumber.replace(/(\d{2,3})(\d{3,4})(\d{4})/, '$1-$2-$3');
+                } else if (phoneNumber.length > 3) {
+                    formattedNumber = phoneNumber.replace(/(\d{2,3})(\d{3,4})/, '$1-$2');
+                } else {
+                    formattedNumber = phoneNumber;
                 }
-            });
-
-            // Step 2 navigation
-            document.getElementById('step2Prev').addEventListener('click', function() {
-                currentStep = 1;
-                showStep(currentStep);
-            });
-
-            document.getElementById('step2Next').addEventListener('click', function() {
-                const errors = validateStep(2);
-                if (showValidationErrors(errors)) {
-                    currentStep = 3;
-                    showStep(currentStep);
-                }
-            });
-
-            // Step 3 navigation
-            document.getElementById('step3Prev').addEventListener('click', function() {
-                currentStep = 2;
-                showStep(currentStep);
-            });
-
-            document.getElementById('step3Next').addEventListener('click', function() {
-                const errors = validateStep(3);
-                if (showValidationErrors(errors)) {
-                    currentStep = 4;
-                    showStep(currentStep);
-                    generateBookingSummary();
-                }
-            });
-
-            // Step 4 navigation
-            document.getElementById('step4Prev').addEventListener('click', function() {
-                currentStep = 3;
-                showStep(currentStep);
-            });
-
-            // Generate booking summary
-            const generateBookingSummary = () => {
-                const selectedProgram = document.querySelector('input[name="program"]:checked');
-                const selectedDate = document.getElementById('bookingDate').value;
-                const selectedTime = document.querySelector('input[name="time"]:checked');
-                const customerName = document.getElementById('customerName').value;
-                const customerPhone = document.getElementById('customerPhone').value;
-                const instructor = document.getElementById('preferredInstructor').value;
-                
-                const programNames = {
-                    'consultation': '초기 건강 상담',
-                    'pain-rehab': '통증재활 필라테스',
-                    'mannequin-tone': '마네킹톤 프로그램',
-                    'flat-scol': '플랫스콜 프로그램',
-                    'golf': '골프 필라테스',
-                    'kids': '키즈(성장) 필라테스',
-                    'maternity': '임산부 필라테스',
-                    'senior': '시니어 필라테스',
-                    'philfit': '필앤핏 프로그램'
-                };
-
-                const instructorNames = {
-                    'park-director': '박정은 대표원장'
-                };
-
-                const price = selectedProgram.getAttribute('data-price');
-                
-                document.getElementById('bookingSummary').innerHTML = `
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <p class="font-medium text-forest-green">프로그램</p>
-                            <p class="text-gray-600">${programNames[selectedProgram.value]}</p>
-                        </div>
-                        <div>
-                            <p class="font-medium text-forest-green">날짜</p>
-                            <p class="text-gray-600">${selectedDate}</p>
-                        </div>
-                        <div>
-                            <p class="font-medium text-forest-green">시간</p>
-                            <p class="text-gray-600">${selectedTime.value}</p>
-                        </div>
-                        <div>
-                            <p class="font-medium text-forest-green">강사</p>
-                            <p class="text-gray-600">${instructor ? instructorNames[instructor] : '배정 예정'}</p>
-                        </div>
-                        <div>
-                            <p class="font-medium text-forest-green">예약자</p>
-                            <p class="text-gray-600">${customerName}</p>
-                        </div>
-                        <div>
-                            <p class="font-medium text-forest-green">연락처</p>
-                            <p class="text-gray-600">${customerPhone}</p>
-                        </div>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-gray-200">
-                        <div class="flex justify-between items-center">
-                            <span class="font-semibold text-forest-green text-lg">총 결제 금액</span>
-                            <span class="price-highlight">${price === '0' ? '무료' : price.toLocaleString() + '원'}</span>
-                        </div>
-                    </div>
-                `;
+                input.value = formattedNumber;
             };
 
-            // Form submission
-            document.getElementById('bookingForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const agreeTerms = document.getElementById('agreeTerms').checked;
-                if (!agreeTerms) {
-                    alert('개인정보 수집·이용 및 예약 취소 정책에 동의해주세요.');
-                    return;
-                }
-
-                // 실제 구현에서는 서버로 데이터 전송
-                alert('예약이 완료되었습니다! 확인 문자를 발송해드렸습니다.');
-                
-                // 폼 초기화
-                this.reset();
-                currentStep = 1;
-                showStep(currentStep);
-                document.querySelectorAll('.program-option').forEach(opt => {
-                    opt.classList.remove('selected');
-                });
-            });
-
-            // Set minimum date to today
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('bookingDate').setAttribute('min', today);
-
-            // Initial execution
-            updateHeaderStyle();
-            window.addEventListener('scroll', updateHeaderStyle);
-            showStep(currentStep);
-
-            // Phone number formatting
             const customerPhoneInput = document.getElementById('customerPhone');
             if (customerPhoneInput) {
                 customerPhoneInput.addEventListener('input', function() {
                     formatPhoneNumber(this);
                 });
             }
+
+            document.getElementById('step1Next')?.addEventListener('click', () => {
+                if (showValidationErrors(validateStep(1))) {
+                    currentStep = 2;
+                    showStep(currentStep);
+                    generateTimeSlots();
+                }
+            });
+            document.getElementById('step2Prev')?.addEventListener('click', () => { currentStep = 1; showStep(currentStep); });
+            document.getElementById('step2Next')?.addEventListener('click', () => {
+                if (showValidationErrors(validateStep(2))) {
+                    currentStep = 3;
+                    showStep(currentStep);
+                }
+            });
+            document.getElementById('step3Prev')?.addEventListener('click', () => { currentStep = 2; showStep(currentStep); });
+            document.getElementById('step3Next')?.addEventListener('click', () => {
+                if (showValidationErrors(validateStep(3))) {
+                    currentStep = 4;
+                    showStep(currentStep);
+                    generateBookingSummary();
+                }
+            });
+            document.getElementById('step4Prev')?.addEventListener('click', () => { currentStep = 3; showStep(currentStep); });
+
+            const generateBookingSummary = () => {
+                const summaryEl = document.getElementById('bookingSummary');
+                if (!summaryEl) return;
+
+                const program = document.querySelector('input[name="program"]:checked');
+                const date = document.getElementById('bookingDate').value;
+                const time = document.querySelector('input[name="time"]:checked');
+                const name = document.getElementById('customerName').value;
+                const phone = document.getElementById('customerPhone').value;
+                
+                const programName = program.closest('.program-option').querySelector('h3').textContent;
+                const price = program.dataset.price;
+
+                summaryEl.innerHTML = `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div><p class="font-medium text-deep-navy">프로그램</p><p class="text-gray-600">${programName}</p></div>
+                        <div><p class="font-medium text-deep-navy">날짜</p><p class="text-gray-600">${date}</p></div>
+                        <div><p class="font-medium text-deep-navy">시간</p><p class="text-gray-600">${time.value}</p></div>
+                        <div><p class="font-medium text-deep-navy">예약자</p><p class="text-gray-600">${name}</p></div>
+                        <div><p class="font-medium text-deep-navy">연락처</p><p class="text-gray-600">${phone}</p></div>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-gray-200">
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold text-deep-navy text-lg">상담 비용</span>
+                            <span class="price-highlight">${price === '0' ? '무료' : Number(price).toLocaleString() + '원'}</span>
+                        </div>
+                    </div>
+                `;
+            };
+            
+            const bookingForm = document.getElementById('bookingForm');
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const submitButton = document.getElementById('submitBooking');
+                    submitButton.disabled = true;
+                    submitButton.textContent = '예약 처리 중...';
+
+                    const agreeTerms = document.getElementById('agreeTerms').checked;
+                    if (!agreeTerms) {
+                        alert('개인정보 수집·이용 및 상담 예약 정책에 동의해주세요.');
+                        submitButton.disabled = false;
+                        submitButton.textContent = '상담 예약 완료';
+                        return;
+                    }
+
+                    const bookingData = {
+                        program: document.querySelector('input[name="program"]:checked')?.value || 'N/A',
+                        bookingDate: document.getElementById('bookingDate').value,
+                        bookingTime: document.querySelector('input[name="time"]:checked')?.value || 'N/A',
+                        instructor: document.getElementById('preferredInstructor').value,
+                        customerName: document.getElementById('customerName').value,
+                        customerPhone: document.getElementById('customerPhone').value,
+                        customerEmail: document.getElementById('customerEmail').value,
+                        customerBirth: document.getElementById('customerBirth').value,
+                        healthInfo: document.getElementById('healthInfo').value,
+                        goals: document.getElementById('goals').value,
+                        additionalRequests: document.getElementById('additionalRequests').value,
+                        status: 'pending',
+                        createdAt: serverTimestamp()
+                    };
+
+                    try {
+                        const docRef = await addDoc(collection(db, "bookings"), bookingData);
+                        console.log("Document written with ID: ", docRef.id);
+                        alert('예약이 성공적으로 접수되었습니다! 확인 후 연락드리겠습니다.');
+                        this.reset();
+                        currentStep = 1;
+                        showStep(currentStep);
+                        document.querySelectorAll('.program-option').forEach(opt => opt.classList.remove('selected'));
+                    } catch (error) {
+                        console.error("Error adding document: ", error);
+                        alert('예약 중 오류가 발생했습니다. 잠시 후 다시 시도하시거나 전화로 문의해주세요.');
+                    } finally {
+                        submitButton.disabled = false;
+                        submitButton.textContent = '상담 예약 완료';
+                    }
+                });
+            }
+
+            const today = new Date();
+            today.setDate(today.getDate() + 1);
+            const minDate = today.toISOString().split('T')[0];
+            const bookingDateEl = document.getElementById('bookingDate');
+            if(bookingDateEl) {
+                bookingDateEl.setAttribute('min', minDate);
+            }
+
+            updateHeaderStyle();
+            window.addEventListener('scroll', updateHeaderStyle);
+            showStep(currentStep);
         });
     </script>
+
 </body>
 </html>
