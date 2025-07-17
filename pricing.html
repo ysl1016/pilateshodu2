@@ -424,8 +424,9 @@
     <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <a href="index.html" id="header-logo" class="text-2xl font-bold text-white transition-colors duration-300">
-                    <span class="font-eng">PILATES</span> <span class="text-golden-brown">HODU</span>
+                <a href="index.html" id="header-logo" class="flex items-center text-2xl font-bold text-white transition-colors duration-300">
+                    <span class="font-eng">PILATES</span> <span class="text-golden-brown ml-1">HODU</span>
+                    <span class="ml-2 text-xs font-semibold bg-deep-navy text-accent-gold px-2.5 py-1 rounded-md">수지</span>
                 </a>
                 
                 <!-- Desktop Navigation -->
@@ -436,6 +437,19 @@
                     <a href="facilities.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">시설안내</a>
                     <a href="booking.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">상담예약</a>
                     <a href="pricing.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md nav-active transition-colors duration-300">레슨비용</a>
+                    <!-- Branch Dropdown -->
+                    <div class="relative group" id="branch-dropdown-wrapper">
+                        <button class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300 flex items-center">
+                            지점 안내
+                            <svg class="w-4 h-4 ml-1 transition-all duration-200 opacity-0 group-hover:opacity-100 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="branch-menu" class="absolute left-0 top-full w-36 bg-white/95 backdrop-blur-md rounded-lg shadow-xl border border-gray-200/50 py-2 z-50 opacity-0 invisible transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+                            <a href="http://pilateshodu.com" target="_blank" class="block px-4 py-2.5 text-sm text-deep-navy hover:bg-warm-beige hover:text-golden-brown transition-colors duration-200">강남본점</a>
+                            <a href="index.html" class="block px-4 py-2.5 text-sm text-deep-navy hover:bg-warm-beige hover:text-golden-brown transition-colors duration-200">수지점</a>
+                        </div>
+                    </div>
                 </nav>
 
                 <!-- Mobile Navigation Button -->
@@ -455,6 +469,10 @@
             <a href="facilities.html" class="block py-2 text-gray-700 hover:text-golden-brown">시설안내</a>
             <a href="booking.html" class="block py-2 text-gray-700 hover:text-golden-brown">상담예약</a>
             <a href="pricing.html" class="block py-2 text-gray-700 hover:text-golden-brown nav-active">레슨비용</a>
+            <div class="border-t my-2"></div>
+            <p class="py-2 text-sm font-semibold text-gray-500">지점 안내</p>
+            <a href="http://pilateshodu.com" target="_blank" class="block py-2 text-gray-700 hover:text-golden-brown">강남본점</a>
+            <a href="index.html" class="block py-2 text-gray-700 hover:text-golden-brown">수지점</a>
         </div>
     </header>
 
@@ -994,7 +1012,7 @@
     <!-- Footer -->
     <footer class="bg-deep-navy text-white pt-12 pb-8">
         <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4 lg:gap-6">
                 <div>
                     <h3 class="text-xl font-bold mb-4">
                         <span class="font-eng">PILATES</span><span class="text-accent-gold"> HODU</span>
@@ -1024,6 +1042,13 @@
                         <li><a href="facilities.html" class="hover:text-accent-gold">시설안내</a></li>
                         <li><a href="pricing.html" class="hover:text-accent-gold">레슨비용</a></li>
                         <li><a href="booking.html" class="hover:text-accent-gold">상담예약</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">지점안내</h4>
+                    <ul class="text-gray-300 space-y-2 text-sm">
+                        <li><a href="http://pilateshodu.com" target="_blank" class="hover:text-accent-gold">강남본점</a></li>
+                        <li><a href="index.html" class="hover:text-accent-gold">수지점</a></li>
                     </ul>
                 </div>
                 <div>
@@ -1062,6 +1087,13 @@
                         link.classList.add('text-gray-700', 'hover:text-golden-brown');
                     });
                     
+                    // 드롭다운 아이콘도 색상 변경
+                    const dropdownIcon = document.querySelector('#branch-dropdown-wrapper svg');
+                    if (dropdownIcon) {
+                        dropdownIcon.classList.remove('text-white');
+                        dropdownIcon.classList.add('text-gray-700');
+                    }
+                    
                     mobileMenuButtonSvg.classList.remove('text-white');
                     mobileMenuButtonSvg.classList.add('text-gray-700');
                 } else {
@@ -1073,6 +1105,13 @@
                         link.classList.add('text-white', 'hover:text-gray-300');
                         link.classList.remove('text-gray-700', 'hover:text-golden-brown');
                     });
+                    
+                    // 드롭다운 아이콘도 색상 변경
+                    const dropdownIcon = document.querySelector('#branch-dropdown-wrapper svg');
+                    if (dropdownIcon) {
+                        dropdownIcon.classList.add('text-white');
+                        dropdownIcon.classList.remove('text-gray-700');
+                    }
                     
                     mobileMenuButtonSvg.classList.add('text-white');
                     mobileMenuButtonSvg.classList.remove('text-gray-700');
