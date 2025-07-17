@@ -977,16 +977,23 @@
                     currentStepElement.classList.remove('hidden');
                     updateStepIndicator();
 
-                    // 다음 단계의 시작 지점으로 부드럽게 스크롤
                     setTimeout(() => {
-                        const elementTop = currentStepElement.getBoundingClientRect().top + window.pageYOffset;
-                        const headerOffset = 100; // 고정 헤더 높이만큼 여유 공간
-                        const scrollToPosition = elementTop - headerOffset;
-                        
-                        window.scrollTo({
-                            top: scrollToPosition,
-                            behavior: 'smooth'
-                        });
+                        if (step === 1) {
+                            // 첫 화면은 무조건 최상단
+                            window.scrollTo({ top: 0, behavior: 'auto' });
+                        } else {
+                            // 이후 단계는 step indicator가 화면 상단에 오도록
+                            const stepIndicator = document.querySelector('.step-indicator');
+                            if (stepIndicator) {
+                                const indicatorTop = stepIndicator.getBoundingClientRect().top + window.pageYOffset;
+                                const headerOffset = 100; // 고정 헤더 높이만큼 여유 공간
+                                const scrollToPosition = indicatorTop - headerOffset;
+                                window.scrollTo({
+                                    top: scrollToPosition,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        }
                     }, 100);
                 }
             };
