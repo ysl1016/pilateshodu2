@@ -126,6 +126,36 @@
             border-color: white;
             box-shadow: 0 4px 16px rgba(0,31,63,0.10);
         }
+        /* 햄버거 → X 애니메이션 */
+        #mobile-menu-button {
+          width: 1.5rem; height: 1.5rem;
+          display: flex; flex-direction: column; justify-content: center; align-items: center;
+          position: relative;
+          z-index: 60;
+        }
+        #mobile-menu-button .bar {
+          display: block;
+          position: absolute;
+          width: 1.5rem;
+          height: 0.18rem;
+          border-radius: 2px;
+          transition: all 0.35s cubic-bezier(.68,-0.55,.27,1.55);
+          transform-origin: center;
+        }
+        #mobile-menu-button .top   { top: 0.375rem; left: 0; }
+        #mobile-menu-button .middle{ top: 0.75rem; left: 0; }
+        #mobile-menu-button .bottom{ top: 1.125rem; right: 0; width: 0.75rem; }
+        #mobile-menu-button.active .top {
+          top: 0.75rem;
+          transform: rotate(45deg);
+        }
+        #mobile-menu-button.active .middle {
+          transform: rotate(-45deg);
+        }
+        #mobile-menu-button.active .bottom {
+          opacity: 0;
+          transform: scaleX(0.5);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -163,10 +193,10 @@
                 </nav>
 
                 <!-- Mobile Navigation Button -->
-                <button id="mobile-menu-button" class="lg:hidden focus:outline-none">
-                    <svg class="w-6 h-6 text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
+                <button id="mobile-menu-button" class="lg:hidden focus:outline-none relative w-6 h-6">
+                  <span class="bar top bg-white"></span>
+                  <span class="bar middle bg-white"></span>
+                  <span class="bar bottom bg-white"></span>
                 </button>
             </div>
         </div>
@@ -645,8 +675,12 @@
                         dropdownIcon.classList.add('text-gray-700');
                     }
                     
-                    mobileMenuButtonSvg.classList.remove('text-white');
-                    mobileMenuButtonSvg.classList.add('text-gray-700');
+                    // 햄버거 bar 색상 변경
+                    const bars = document.querySelectorAll('#mobile-menu-button .bar');
+                    bars.forEach(bar => {
+                        bar.classList.remove('bg-white');
+                        bar.classList.add('bg-deep-navy');
+                    });
                 } else {
                     header.classList.remove('header-scrolled');
                     headerLogo.classList.add('text-white');
@@ -664,17 +698,23 @@
                         dropdownIcon.classList.remove('text-gray-700');
                     }
                     
-                    mobileMenuButtonSvg.classList.add('text-white');
-                    mobileMenuButtonSvg.classList.remove('text-gray-700');
+                    // 햄버거 bar 색상 복원
+                    const bars = document.querySelectorAll('#mobile-menu-button .bar');
+                    bars.forEach(bar => {
+                        bar.classList.add('bg-white');
+                        bar.classList.remove('bg-deep-navy');
+                    });
                 }
             };
 
             // Mobile menu toggle
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
+            const bars = mobileMenuButton ? mobileMenuButton.querySelectorAll('.bar') : [];
             if (mobileMenuButton && mobileMenu) {
                 mobileMenuButton.addEventListener('click', function() {
                     mobileMenu.classList.toggle('hidden');
+                    mobileMenuButton.classList.toggle('active');
                 });
             }
 
