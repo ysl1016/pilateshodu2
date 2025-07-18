@@ -856,6 +856,15 @@
                         <p class="text-lg text-gray-600">
                             원하는 프로그램과 횟수를 선택하여 예상 비용을 계산해보세요
                         </p>
+                        <!-- 요청사항: 할인 안내 문구 추가 -->
+                        <div class="mt-4 flex flex-col justify-center items-center space-y-2">
+                            <span class="bg-deep-navy text-white px-6 py-2 rounded-full text-sm font-semibold">
+                                ⓘ 추가할인은 중복 적용되지 않습니다
+                            </span>
+                            <span class="bg-deep-navy text-white px-6 py-2 rounded-full text-sm font-semibold">
+                                ⓘ 최대할인율은 25%까지 적용됩니다
+                            </span>
+                        </div>
                     </div>
 
                     <div class="calculator-section fade-in">
@@ -1194,12 +1203,56 @@
                 });
             }
 
-            // Price calculator functionality
+            // Price calculator functionality - 중요: 할인 제어 로직 개선
             const calculateBtn = document.getElementById('calculateBtn');
             const calculatorResult = document.getElementById('calculatorResult');
             const resultContent = document.getElementById('resultContent');
             const sessionCountSelect = document.getElementById('sessionCount');
             const packageDiscountSelect = document.getElementById('packageDiscount');
+            const additionalDiscountSelect = document.getElementById('additionalDiscount');
+            
+            // 추가 할인 옵션을 업데이트하는 함수
+            function updateAdditionalDiscountOptions() {
+                const packageDiscountValue = parseInt(packageDiscountSelect.value) || 0;
+                const currentAdditionalValue = additionalDiscountSelect.value;
+                
+                // 기본 옵션들 정의
+                const baseOptions = [
+                    { value: "0", text: "추가 할인 없음" },
+                    { value: "5", text: "후기 작성 (5% 추가할인)" },
+                    { value: "10", text: "지인 소개 (10% 추가할인)" }
+                ];
+                
+                let allowedOptions = [];
+                
+                if (packageDiscountValue === 25) {
+                    // 50회 이상 (25% 할인) 선택 시: 추가 할인 없음만
+                    allowedOptions = [baseOptions[0]];
+                } else if (packageDiscountValue === 20) {
+                    // 40회 이상 (20% 할인) 선택 시: 추가 할인 없음, 후기 작성만
+                    allowedOptions = [baseOptions[0], baseOptions[1]];
+                } else {
+                    // 다른 경우에는 모든 옵션 허용
+                    allowedOptions = baseOptions;
+                }
+                
+                // 기존 옵션들 제거
+                additionalDiscountSelect.innerHTML = '';
+                
+                // 새 옵션들 추가
+                allowedOptions.forEach(option => {
+                    const optionElement = new Option(option.text, option.value);
+                    additionalDiscountSelect.add(optionElement);
+                });
+                
+                // 이전에 선택된 값이 허용된 옵션에 있다면 유지, 없으면 첫 번째 옵션 선택
+                const isCurrentValueAllowed = allowedOptions.some(option => option.value === currentAdditionalValue);
+                if (isCurrentValueAllowed) {
+                    additionalDiscountSelect.value = currentAdditionalValue;
+                } else {
+                    additionalDiscountSelect.value = allowedOptions[0].value;
+                }
+            }
             
             // 이용횟수 선택시 패키지 할인 자동 선택
             sessionCountSelect.addEventListener('change', function() {
@@ -1219,6 +1272,13 @@
                 }
                 
                 packageDiscountSelect.value = discountValue;
+                // 패키지 할인이 변경되었으므로 추가 할인 옵션도 업데이트
+                updateAdditionalDiscountOptions();
+            });
+            
+            // 패키지 할인 선택 변경시 추가 할인 옵션 업데이트
+            packageDiscountSelect.addEventListener('change', function() {
+                updateAdditionalDiscountOptions();
             });
 
             calculateBtn.addEventListener('click', function() {
@@ -1305,6 +1365,9 @@
                     });
                 }, 100); // DOM 업데이트 후 실행
             });
+
+            // 페이지 로드 시 초기 상태 설정
+            updateAdditionalDiscountOptions();
 
             // Initial execution
             updateHeaderStyle();
