@@ -187,6 +187,11 @@
             input[type="date"]::-webkit-datetime-edit-day-field,
             input[type="date"]::-webkit-datetime-edit-year-field {
                 color: var(--charcoal-gray);
+                height: 100%;
+                line-height: 1.5;
+                padding: 0;
+                margin: 0;
+                vertical-align: middle;
             }
             
             input[type="date"]:invalid::-webkit-datetime-edit-text,
@@ -194,6 +199,20 @@
             input[type="date"]:invalid::-webkit-datetime-edit-day-field,
             input[type="date"]:invalid::-webkit-datetime-edit-year-field {
                 color: transparent;
+                height: 100%;
+                line-height: 1.5;
+                padding: 0;
+                margin: 0;
+                vertical-align: middle;
+            }
+            
+            /* 날짜 입력란 내부 컨테이너 */
+            input[type="date"]::-webkit-datetime-edit {
+                height: 100%;
+                display: flex;
+                align-items: center;
+                padding: 0;
+                margin: 0;
             }
         }
         
@@ -335,11 +354,13 @@
                 background-color: white !important;
                 color: var(--charcoal-gray) !important;
                 font-family: 'Manrope', 'Noto Sans KR', sans-serif !important;
-                height: auto !important;
+                height: 48px !important; /* 고정 높이 설정 */
                 line-height: 1.5 !important;
-                min-height: 44px !important; /* 터치 타겟 최소 크기 */
+                min-height: 48px !important; /* 동일한 최소 높이 */
+                max-height: 48px !important; /* 최대 높이도 동일하게 */
                 margin: 0 !important;
                 display: block !important;
+                overflow: hidden !important; /* 내용이 넘치지 않도록 */
             }
             
             /* 날짜 입력란 내부 요소 스타일 초기화 */
@@ -349,11 +370,15 @@
                 appearance: none !important;
                 margin: 0 !important;
                 padding: 0 !important;
-                height: auto !important;
-                width: auto !important;
+                height: 20px !important;
+                width: 20px !important;
                 cursor: pointer !important;
                 background: transparent !important;
                 color: var(--charcoal-gray) !important;
+                position: absolute !important;
+                right: 0.75rem !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
             }
             
             /* 날짜 입력란이 있는 그리드 컨테이너 조정 */
@@ -432,8 +457,7 @@
             
             /* 모바일에서 모든 입력란 일관성 보장 */
             .main-responsive .form-input,
-            .main-responsive .form-select,
-            .main-responsive input[type="date"] {
+            .main-responsive .form-select {
                 width: 100% !important;
                 box-sizing: border-box !important;
                 padding: 0.5rem 0.7rem !important;
@@ -443,6 +467,20 @@
                 height: auto !important;
                 line-height: 1.5 !important;
                 min-height: 2.5rem !important;
+            }
+            
+            /* 날짜 입력란은 별도 높이 설정 */
+            .main-responsive input[type="date"] {
+                width: 100% !important;
+                box-sizing: border-box !important;
+                padding: 0.75rem 1rem !important;
+                font-size: 16px !important;
+                border: 2px solid #e5e7eb !important;
+                border-radius: 0.5rem !important;
+                height: 48px !important;
+                line-height: 1.5 !important;
+                min-height: 48px !important;
+                max-height: 48px !important;
             }
         }
         /* 햄버거 → X 애니메이션 (모바일 전용) */
