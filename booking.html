@@ -305,12 +305,22 @@
             .main-responsive .mt-6, .main-responsive .mt-8, .main-responsive .mb-6, .main-responsive .mb-8, .main-responsive .mb-12, .main-responsive .mb-16 { margin-top: 1rem !important; margin-bottom: 1rem !important; }
             .main-responsive .max-w-2xl, .main-responsive .max-w-4xl { max-width: 100% !important; }
         }
-        /* 햄버거 → X 애니메이션 (index.html과 동일) */
+        /* 햄버거 → X 애니메이션 (모바일 전용) */
         #mobile-menu-button {
           width: 1.5rem; height: 1.5rem;
           display: flex; flex-direction: column; justify-content: center; align-items: center;
           position: relative;
           z-index: 60;
+        }
+        
+        /* PC 화면에서 햄버거 메뉴 완전 숨김 */
+        @media (min-width: 1024px) {
+          #mobile-menu-button {
+            display: none !important;
+          }
+          #mobile-menu {
+            display: none !important;
+          }
         }
         #mobile-menu-button .bar {
           display: block;
@@ -372,7 +382,7 @@
                 </nav>
 
                 <!-- Mobile Navigation Button -->
-                <button id="mobile-menu-button" class="lg:hidden focus:outline-none relative w-6 h-6">
+                <button id="mobile-menu-button" class="lg:hidden focus:outline-none relative w-6 h-6 z-50">
                   <span class="bar top bg-white"></span>
                   <span class="bar middle bg-white"></span>
                   <span class="bar bottom bg-white"></span>
@@ -381,7 +391,7 @@
         </div>
 
         <!-- Mobile Navigation Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden px-6 pt-2 pb-4 bg-white shadow-lg max-h-[calc(100dvh-64px)] overflow-y-auto">
+        <div id="mobile-menu" class="hidden lg:hidden px-6 pt-2 pb-4 bg-white shadow-lg max-h-[calc(100dvh-64px)] overflow-y-auto z-40">
             <a href="index.html" class="block py-2 text-gray-700 hover:text-golden-brown">홈</a>
             <a href="programs.html" class="block py-2 text-gray-700 hover:text-golden-brown">프로그램</a>
             <a href="instructors.html" class="block py-2 text-gray-700 hover:text-golden-brown">강사소개</a>
@@ -906,11 +916,13 @@
                         dropdownIcon.classList.add('text-gray-700');
                     }
                     
-                    // 햄버거 bar 색상 변경
-                    bars.forEach(bar => {
-                        bar.classList.remove('bg-white');
-                        bar.classList.add('bg-deep-navy');
-                    });
+                    // 햄버거 bar 색상 변경 (모바일에서만)
+                    if (window.innerWidth < 1024) {
+                        bars.forEach(bar => {
+                            bar.classList.remove('bg-white');
+                            bar.classList.add('bg-deep-navy');
+                        });
+                    }
                 } else {
                     header.classList.remove('header-scrolled');
                     headerLogo.classList.add('text-white');
@@ -928,17 +940,19 @@
                         dropdownIcon.classList.remove('text-gray-700');
                     }
                     
-                    // 햄버거 bar 색상 복원
-                    bars.forEach(bar => {
-                        bar.classList.add('bg-white');
-                        bar.classList.remove('bg-deep-navy');
-                    });
+                    // 햄버거 bar 색상 복원 (모바일에서만)
+                    if (window.innerWidth < 1024) {
+                        bars.forEach(bar => {
+                            bar.classList.add('bg-white');
+                            bar.classList.remove('bg-deep-navy');
+                        });
+                    }
                 }
             };
 
-            // Mobile menu toggle
+            // Mobile menu toggle (모바일에서만 동작)
             const mobileMenu = document.getElementById('mobile-menu');
-            if (mobileMenuButton && mobileMenu) {
+            if (mobileMenuButton && mobileMenu && window.innerWidth < 1024) {
                 mobileMenuButton.addEventListener('click', function() {
                     mobileMenu.classList.toggle('hidden');
                     mobileMenuButton.classList.toggle('active');
@@ -1237,6 +1251,20 @@
 
             updateHeaderStyle();
             window.addEventListener('scroll', updateHeaderStyle);
+            
+            // 윈도우 리사이즈 시 햄버거 메뉴 상태 관리
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 1024) {
+                    // PC 화면에서는 모바일 메뉴 숨김
+                    if (mobileMenu) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                    if (mobileMenuButton) {
+                        mobileMenuButton.classList.remove('active');
+                    }
+                }
+            });
+            
             showStep(currentStep);
         });
     </script>
