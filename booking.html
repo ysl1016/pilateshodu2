@@ -151,6 +151,40 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             margin-top: 2rem;
         }
+        
+        /* 날짜 입력란 placeholder 효과 - 모바일에서만 */
+        @media (max-width: 768px) {
+            input[type="date"]:not(:focus):not(:valid) {
+                color: transparent;
+            }
+            
+            input[type="date"]:not(:focus):not(:valid)::before {
+                content: attr(placeholder);
+                color: #9ca3af;
+                position: absolute;
+                pointer-events: none;
+                display: block;
+                width: 100%;
+                padding: inherit;
+            }
+            
+            input[type="date"] {
+                position: relative;
+            }
+            
+            /* 날짜 입력란에 값이 있을 때 */
+            input[type="date"]:valid,
+            input[type="date"]:focus {
+                color: var(--charcoal-gray);
+            }
+        }
+        
+        /* PC 모드에서는 날짜 입력란 기본 색상 유지 */
+        @media (min-width: 769px) {
+            input[type="date"] {
+                color: var(--charcoal-gray) !important;
+            }
+        }
 
         .form-label {
             display: block;
@@ -691,7 +725,7 @@
                                 <div class="grid grid-cols-1 gap-4 md:gap-6">
                                     <div class="w-full">
                                         <label class="form-label">희망 날짜</label>
-                                        <input type="date" id="bookingDate" name="date" class="form-input w-full" required>
+                                        <input type="date" id="bookingDate" name="date" class="form-input w-full" placeholder="날짜를 선택해주세요" required>
                                     </div>
 
                                     <div class="w-full">
@@ -727,7 +761,7 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div>
                                         <label class="form-label">이름 *</label>
-                                        <input type="text" id="customerName" name="name" class="form-input" required>
+                                        <input type="text" id="customerName" name="name" class="form-input" placeholder="예시: 홍길동" required>
                                     </div>
 
                                     <div>
@@ -742,7 +776,7 @@
 
                                     <div>
                                         <label class="form-label">생년월일</label>
-                                        <input type="date" id="customerBirth" name="birth" class="form-input">
+                                        <input type="date" id="customerBirth" name="birth" class="form-input" placeholder="생년월일을 선택해주세요">
                                     </div>
                                 </div>
 
@@ -1329,6 +1363,8 @@
             today.setDate(today.getDate() + 1);
             const minDate = today.toISOString().split('T')[0];
             const bookingDateEl = document.getElementById('bookingDate');
+            const customerBirthEl = document.getElementById('customerBirth');
+            
             if(bookingDateEl) {
                 bookingDateEl.setAttribute('min', minDate);
                 // 모바일 날짜 입력란 스타일 강제 적용
@@ -1339,12 +1375,58 @@
                 bookingDateEl.style.webkitAppearance = 'none';
                 bookingDateEl.style.mozAppearance = 'none';
                 bookingDateEl.style.appearance = 'none';
+                
+                // 날짜 입력란 placeholder 효과 - 모바일에서만
+                if (window.innerWidth <= 768) {
+                    if (!bookingDateEl.value) {
+                        bookingDateEl.style.color = '#9ca3af';
+                    }
+                    bookingDateEl.addEventListener('change', function() {
+                        if (window.innerWidth <= 768) {
+                            this.style.color = this.value ? 'var(--charcoal-gray)' : '#9ca3af';
+                        }
+                    });
+                    bookingDateEl.addEventListener('focus', function() {
+                        if (window.innerWidth <= 768) {
+                            this.style.color = 'var(--charcoal-gray)';
+                        }
+                    });
+                    bookingDateEl.addEventListener('blur', function() {
+                        if (window.innerWidth <= 768) {
+                            this.style.color = this.value ? 'var(--charcoal-gray)' : '#9ca3af';
+                        }
+                    });
+                }
+            }
+            
+            if(customerBirthEl) {
+                // 생년월일 입력란도 동일하게 처리 - 모바일에서만
+                if (window.innerWidth <= 768) {
+                    if (!customerBirthEl.value) {
+                        customerBirthEl.style.color = '#9ca3af';
+                    }
+                    customerBirthEl.addEventListener('change', function() {
+                        if (window.innerWidth <= 768) {
+                            this.style.color = this.value ? 'var(--charcoal-gray)' : '#9ca3af';
+                        }
+                    });
+                    customerBirthEl.addEventListener('focus', function() {
+                        if (window.innerWidth <= 768) {
+                            this.style.color = 'var(--charcoal-gray)';
+                        }
+                    });
+                    customerBirthEl.addEventListener('blur', function() {
+                        if (window.innerWidth <= 768) {
+                            this.style.color = this.value ? 'var(--charcoal-gray)' : '#9ca3af';
+                        }
+                    });
+                }
             }
 
             updateHeaderStyle();
             window.addEventListener('scroll', updateHeaderStyle);
             
-            // 윈도우 리사이즈 시 햄버거 메뉴 상태 관리
+            // 윈도우 리사이즈 시 햄버거 메뉴 상태 관리 및 날짜 입력란 스타일 조정
             window.addEventListener('resize', function() {
                 if (window.innerWidth >= 1024) {
                     // PC 화면에서는 모바일 메뉴 숨김
@@ -1353,6 +1435,27 @@
                     }
                     if (mobileMenuButton) {
                         mobileMenuButton.classList.remove('active');
+                    }
+                }
+                
+                // 날짜 입력란 색상 조정
+                if (bookingDateEl) {
+                    if (window.innerWidth > 768) {
+                        // PC 모드: 항상 기본 색상
+                        bookingDateEl.style.color = 'var(--charcoal-gray)';
+                    } else {
+                        // 모바일 모드: 값 유무에 따라 색상 변경
+                        bookingDateEl.style.color = bookingDateEl.value ? 'var(--charcoal-gray)' : '#9ca3af';
+                    }
+                }
+                
+                if (customerBirthEl) {
+                    if (window.innerWidth > 768) {
+                        // PC 모드: 항상 기본 색상
+                        customerBirthEl.style.color = 'var(--charcoal-gray)';
+                    } else {
+                        // 모바일 모드: 값 유무에 따라 색상 변경
+                        customerBirthEl.style.color = customerBirthEl.value ? 'var(--charcoal-gray)' : '#9ca3af';
                     }
                 }
             });
