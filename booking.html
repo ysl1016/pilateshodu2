@@ -311,6 +311,12 @@
                 width: 100% !important;
                 max-width: 100% !important;
                 box-sizing: border-box !important;
+                padding: 0.5rem 0.7rem !important;
+                font-size: 0.95rem !important;
+                border: 2px solid #e5e7eb !important;
+                border-radius: 0.5rem !important;
+                height: auto !important;
+                line-height: 1.5 !important;
             }
             
             /* 모바일에서 그리드 레이아웃 최적화 */
@@ -322,6 +328,21 @@
             .main-responsive .grid.grid-cols-1.md\:grid-cols-2 {
                 grid-template-columns: 1fr !important;
                 gap: 1rem !important;
+            }
+            
+            /* 모바일에서 모든 입력란 일관성 보장 */
+            .main-responsive .form-input,
+            .main-responsive .form-select,
+            .main-responsive input[type="date"] {
+                width: 100% !important;
+                box-sizing: border-box !important;
+                padding: 0.5rem 0.7rem !important;
+                font-size: 0.95rem !important;
+                border: 2px solid #e5e7eb !important;
+                border-radius: 0.5rem !important;
+                height: auto !important;
+                line-height: 1.5 !important;
+                min-height: 2.5rem !important;
             }
         }
         /* 햄버거 → X 애니메이션 (모바일 전용) */
