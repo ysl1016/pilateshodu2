@@ -1406,11 +1406,8 @@
                         </div>
                         <div class="result-item">
                             <span class="result-label">할인 금액:</span>
-                            <span class="result-value text-red-500">-${totalDiscountAmount.toLocaleString()}원 ${finalDiscountRate > 0 ? '(' + finalDiscountRate + '% ' + appliedDiscountText + ')' : ''}</span>
+                            <span class="result-value text-red-500">-${totalDiscount.toLocaleString()}원 ${totalDiscountRate > 0 ? '(' + totalDiscountRate + '% 할인)' : ''}</span>
                         </div>
-                        ${(packageDiscount > 0 && additionalDiscount > 0) ? 
-                            '<div class="result-item"><span class="result-label text-orange-600">할인 정책:</span><span class="result-value text-orange-600 text-sm">더 큰 할인율이 적용됨</span></div>' : ''
-                        }
                     </div>
                     <div class="final-amount">
                         <div class="final-amount-row">
