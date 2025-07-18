@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>레슨비용 - PILATES HODU | 필라테스 호두 - 국내 최초의 메디컬필라테스™ | 1:1 원장직강 프리미엄 요금제</title>
+    <meta name="description" content="필라테스 호두의 1:1 원장직강의 합리적 레슨비용을 확인하세요. 의학적 근거 기반의 프리미엄 메디컬필라테스 센터입니다.">
+    <meta name="keywords" content="메디컬필라테스, 필라테스, 1:1원장직강, 허리통증, 신봉동 필라테스, 수지구 필라테스, 성복동 필라테스, 맞춤관리, 필라테스호두">
+        
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+       
+    <!-- Google Fonts: Inter, Manrope, Noto Sans KR -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Manrope:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+        
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style>
+        :root {
+            --deep-navy: #001F3F;
+            --golden-brown: #996515;
+            --warm-beige: #F5F1E8;
+            --soft-cream: #FEFCF8;
+            --charcoal-gray: #2C2C2C;
+            --accent-gold: #D4AF37;
+        }
+    
+        body {
+            font-family: 'Manrope', 'Noto Sans KR', sans-serif;
+            background-color: var(--soft-cream);
+            color: var(--charcoal-gray);
+        }
+    
+        .font-eng { font-family: 'Manrope', sans-serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+            
+        .bg-deep-navy { background-color: var(--deep-navy); }
+        .bg-golden-brown { background-color: var(--golden-brown); }
+        .bg-warm-beige { background-color: var(--warm-beige); }
+        .bg-accent-gold { background-color: var(--accent-gold); }
+            
+        .text-deep-navy { color: var(--deep-navy); }
+        .text-golden-brown { color: var(--golden-brown); }
+        .text-charcoal-gray { color: var(--charcoal-gray); }
+        .text-accent-gold { color: var(--accent-gold); }
+        .text-white { color: white; }
+    
+        .hover\:bg-deep-navy-dark:hover { background-color: #001122; }
+        .hover\:text-golden-brown:hover { color: var(--golden-brown); }
+    
+        /* 스크롤 애니메이션 */
+        .reveal, .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.6s ease-out;
+        }
+    
+        .reveal.visible, .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    
+        .header-scrolled {
+            background-color: rgba(254, 252, 248, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pricing-card {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.15);
+        }
+        
+        .pricing-card.featured {
+            border: 3px solid var(--accent-gold);
+        }
+        
+        .pricing-card.featured::before {
+            content: '인기';
+            position: absolute;
+            top: 20px;
+            right: -8px;
+            background: linear-gradient(135deg, var(--accent-gold), #B8941F);
+            color: white;
+            padding: 6px 24px;
+            font-size: 12px;
+            font-weight: 600;
+            transform: rotate(12deg);
+            z-index: 10;
+        }
+        
+        .pricing-header {
+            padding: 32px 24px 24px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .pricing-header.premium {
+            background: linear-gradient(135deg, var(--deep-navy), var(--golden-brown));
+            color: white;
+        }
+        
+        .pricing-header.standard {
+            background: linear-gradient(135deg, var(--golden-brown), var(--warm-beige));
+            color: var(--deep-navy);
+        }
+        
+        .pricing-header.basic {
+            background: linear-gradient(135deg, var(--warm-beige), #e5e7eb);
+            color: var(--charcoal-gray);
+        }
+        
+        .price-amount {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1;
+            margin: 16px 0 8px;
+        }
+        
+        .price-period {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .pricing-features {
+            padding: 24px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        
+        .feature-item i {
+            margin-right: 12px;
+            color: var(--golden-brown);
+        }
+        
+        .feature-item.unavailable {
+            opacity: 0.5;
+        }
+        
+        .feature-item.unavailable i {
+            color: #9ca3af;
+        }
+        
+        .pricing-footer {
+            padding: 24px;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .pricing-btn {
+            width: 100%;
+            padding: 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .pricing-btn.primary {
+            background-color: var(--deep-navy);
+            color: white;
+        }
+        
+        .pricing-btn.primary:hover {
+            background-color: #001122;
+        }
+        
+        .pricing-btn.secondary {
+            background-color: var(--golden-brown);
+            color: white;
+        }
+        
+        .pricing-btn.secondary:hover {
+            background-color: #7a5111;
+        }
+        
+        .pricing-btn.outline {
+            border: 2px solid var(--deep-navy);
+            color: var(--deep-navy);
+            background-color: white;
+        }
+        
+        .pricing-btn.outline:hover {
+            background-color: var(--deep-navy);
+            color: white;
+        }
+        
+        /* 전문적인 그라데이션 배경 */
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--golden-brown) 100%);
+        }
+        
+        .section-gradient {
+            background: linear-gradient(180deg, var(--soft-cream) 0%, var(--warm-beige) 100%);
+        }
+        
+        .nav-active {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        
+        .membership-benefit {
+            background-color: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .membership-benefit:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+        }
+        
+        .discount-badge {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        .package-card {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .package-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .package-header {
+            background: linear-gradient(135deg, var(--accent-gold), #B8941F);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            opacity: 0.7;
+            font-size: 16px;
+        }
+        
+        .discount-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-gold);
+        }
+        
+        .calculator-section {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 32px;
+            margin-top: 32px;
+        }
+        
+        .calculator-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .calculator-input:focus {
+            outline: none;
+            border-color: var(--golden-brown);
+        }
+        
+        .calculator-result {
+            background-color: #f0f9ff;
+            border: 2px solid var(--golden-brown);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 24px;
+            text-align: center;
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .result-label {
+            font-weight: 500;
+            color: var(--charcoal-gray);
+            flex-shrink: 0;
+        }
+        
+        .result-value {
+            font-weight: 600;
+            text-align: right;
+            flex-shrink: 0;
+        }
+        
+        .final-amount {
+            background-color: var(--warm-beige);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            border: 1px solid var(--golden-brown);
+        }
+        
+        .final-amount-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .final-amount-label {
+            font-weight: 600;
+            color: var(--deep-navy);
+            flex-shrink: 0;
+        }
+        
+        .final-amount-value {
+            font-weight: 700;
+            color: var(--deep-navy);
+            text-align: right;
+        }
+        
+        .per-session {
+            font-size: 0.875rem;
+            color: var(--charcoal-gray);
+            margin-top: 0.25rem;
+            text-align: right;
+        }
+        
+        /* 반응형 폰트 크기 */
+        @media (min-width: 768px) {
+            .final-amount-row {
+                font-size: 1.125rem;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .final-amount-row {
+                font-size: 1rem;
+            }
+            .final-amount-value {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .final-amount-row {
+                font-size: 0.95rem;
+            }
+            .final-amount-value {
+                font-size: 1rem;
+            }
+            .calculator-result {
+                padding: 16px;
+            }
+        }
+
+        .cta-btn {
+            transition: background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+            will-change: background, color, border-color, box-shadow;
+        }
+        .cta-btn-primary {
+            background-color: var(--deep-navy);
+            color: white;
+            border: 2px solid var(--deep-navy);
+        }
+        .cta-btn-primary:hover {
+            background-color: #001122;
+            border-color: #001122;
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(0,31,63,0.15);
+        }
+        .cta-btn-outline {
+            background: transparent;
+            color: var(--deep-navy);
+            border: 2px solid var(--deep-navy);
+        }
+        .cta-btn-outline:hover {
+            background: var(--golden-brown);
+            color: white;
+            border-color: var(--golden-brown);
+            box-shadow: 0 4px 16px rgba(153,101,21,0.15);
+        }
+        /* 햄버거 → X 애니메이션 */
+        #mobile-menu-button {
+          width: 1.5rem; height: 1.5rem;
+          display: flex; flex-direction: column; justify-content: center; align-items: center;
+          position: relative;
+          z-index: 60;
+        }
+        #mobile-menu-button .bar {
+          display: block;
+          position: absolute;
+          width: 1.5rem;
+          height: 0.18rem;
+          border-radius: 2px;
+          transition: all 0.35s cubic-bezier(.68,-0.55,.27,1.55);
+          transform-origin: center;
+        }
+        #mobile-menu-button .top   { top: 0.375rem; left: 0; }
+        #mobile-menu-button .middle{ top: 0.75rem; left: 0; }
+        #mobile-menu-button .bottom{ top: 1.125rem; right: 0; width: 0.75rem; }
+        #mobile-menu-button.active .top {
+          top: 0.75rem;
+          transform: rotate(45deg);
+        }
+        #mobile-menu-button.active .middle {
+          transform: rotate(-45deg);
+        }
+        #mobile-menu-button.active .bottom {
+          opacity: 0;
+          transform: scaleX(0.5);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" id="header-logo" class="flex items-center text-2xl font-bold text-white transition-colors duration-300">
+                    <span class="font-eng">PILATES</span> <span class="text-golden-brown ml-1">HODU</span>
+                    <span class="ml-2 text-xs font-semibold bg-deep-navy text-accent-gold px-2.5 py-1 rounded-md">수지</span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-1 text-sm">
+                    <a href="index.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">홈</a>
+                    <a href="programs.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">프로그램</a>
+                    <a href="instructors.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">강사소개</a>
+                    <a href="facilities.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">시설안내</a>
+                    <a href="booking.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">상담예약</a>
+                    <a href="pricing.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md nav-active transition-colors duration-300">레슨비용</a>
+                    <!-- Branch Dropdown -->
+                    <div class="relative group" id="branch-dropdown-wrapper">
+                        <button class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300 flex items-center">
+                            지점 안내
+                            <svg class="w-4 h-4 ml-1 transition-all duration-200 opacity-0 group-hover:opacity-100 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="branch-menu" class="absolute left-0 top-full w-36 bg-white/95 backdrop-blur-md rounded-lg shadow-xl border border-gray-200/50 py-2 z-50 opacity-0 invisible transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+                            <a href="http://pilateshodu.com" target="_blank" class="block px-4 py-2.5 text-sm text-deep-navy hover:bg-warm-beige hover:text-golden-brown transition-colors duration-200">강남본점</a>
+                            <a href="index.html" class="block px-4 py-2.5 text-sm text-deep-navy hover:bg-warm-beige hover:text-golden-brown transition-colors duration-200">수지점</a>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Mobile Navigation Button -->
+                <button id="mobile-menu-button" class="lg:hidden focus:outline-none relative w-6 h-6">
+                  <span class="bar top bg-white"></span>
+                  <span class="bar middle bg-white"></span>
+                  <span class="bar bottom bg-white"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden px-6 pt-2 pb-4 bg-white shadow-lg max-h-[calc(100dvh-64px)] overflow-y-auto">
+            <a href="index.html" class="block py-2 text-gray-700 hover:text-golden-brown">홈</a>
+            <a href="programs.html" class="block py-2 text-gray-700 hover:text-golden-brown">프로그램</a>
+            <a href="instructors.html" class="block py-2 text-gray-700 hover:text-golden-brown">강사소개</a>
+            <a href="facilities.html" class="block py-2 text-gray-700 hover:text-golden-brown">시설안내</a>
+            <a href="booking.html" class="block py-2 text-gray-700 hover:text-golden-brown">상담예약</a>
+            <a href="pricing.html" class="block py-2 text-gray-700 hover:text-golden-brown nav-active">레슨비용</a>
+            <div class="border-t my-2"></div>
+            <p class="py-2 text-sm font-semibold text-gray-500">지점 안내</p>
+            <a href="http://pilateshodu.com" target="_blank" class="block py-2 text-gray-700 hover:text-golden-brown">강남본점</a>
+            <a href="index.html" class="block py-2 text-gray-700 hover:text-golden-brown">수지점</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative h-96 flex items-center justify-center text-center text-white overflow-hidden hero-gradient">
+            <div class="absolute inset-0 opacity-20">
+                <div class="w-full h-full bg-gradient-to-r from-black/30 to-transparent"></div>
+            </div>
+            
+            <div class="relative z-10 px-6 reveal">
+                <h1 class="font-eng text-4xl md:text-5xl font-bold tracking-tighter leading-tight text-white mb-4">
+                    Premium <span class="text-accent-gold">Price</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-200 leading-relaxed max-w-2xl mx-auto">
+                    1:1 원장직강만 운영하는 메디컬필라테스™ 전문 센터의 프리미엄 비용체계
+                </p>
+                <div class="mt-6">
+                    <span class="bg-accent-gold text-deep-navy px-6 py-3 rounded-full text-sm font-bold">
+                        📞 정확한 비용 상담: 031-263-3345
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Plans Section -->
+        <section class="py-16 md:py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-deep-navy mb-4">1:1 원장직강의 합리적 비용</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        의학적 근거 기반의 맞춤 상담 및 관리 프로그램으로, 박정은 대표원장의 1:1 직강만 제공됩니다. 
+                        초기 상담을 통해 개인별 맞춤 관리 계획을 수립합니다.
+                    </p>
+                    <div class="mt-8 flex flex-col md:flex-row justify-center items-center md:space-x-2 space-y-2 md:space-y-0">
+                        <span class="bg-deep-navy text-white px-6 py-2 rounded-full text-sm font-semibold">
+                            🏥 의료진 연계 전문 메디컬필라테스
+                        </span>
+                        <span class="bg-deep-navy text-white px-6 py-2 rounded-full text-sm font-semibold">
+                            🎯 1:1 맞춤 관리
+                        </span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 초기 상담 -->
+                    <div class="pricing-card fade-in">
+                        <div class="pricing-header basic">
+                            <h3 class="text-xl font-bold mb-2">초기 상담</h3>
+                            <p class="text-sm opacity-80">전문적인 건강 상담</p>
+                            <div class="price-amount">무료</div>
+                            <div class="price-period">개별적 전문 상담</div>
+                        </div>
+                        <div class="pricing-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>대표원장의 전문 상담</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>개별 건강 상태 분석</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>맞춤 관리 계획 수립</span>
+                            </div>
+                            <div class="feature-item unavailable">
+                                <i class="fas fa-times"></i>
+                                <span>1인 1회 한정</span>
+                            </div>
+                        </div>
+                        <div class="pricing-footer">
+                            <a href="booking.html" class="pricing-btn outline">무료 상담 예약</a>
+                        </div>
+                    </div>
+
+                    <!-- 1:1 원장직강 관리 -->
+                    <div class="pricing-card featured fade-in">
+                        <div class="pricing-header premium">
+                            <h3 class="text-xl font-bold mb-2">1:1 원장직강 관리</h3>
+                            <p class="text-sm opacity-80">박정은 대표원장 직강</p>
+                            <div class="price-amount">상담 후 결정</div>
+                            <div class="price-period">50분 전문 관리</div>
+                        </div>
+                        <div class="pricing-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>개별 맞춤 관리 프로그램</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>의료기반 상담 및 관리</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Balanced Body 전문 장비</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>지속적인 관리 모니터링</span>
+                            </div>
+                        </div>
+                        <div class="pricing-footer">
+                            <a href="booking.html" class="pricing-btn primary">상담 예약</a>
+                        </div>
+                    </div>
+
+                    <!-- 필앤핏 프로그램 -->
+                    <div class="pricing-card fade-in" style="border: 2px solid var(--accent-gold);">
+                        <div class="pricing-header standard">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold">필앤핏 프로그램</h3>
+                                <span class="bg-accent-gold text-white px-2 py-1 rounded-full text-xs font-bold">SPECIAL</span>
+                            </div>
+                            <p class="text-sm opacity-80">이연의원 협력 4주</p>
+                            <div class="price-amount">특별 상담가</div>
+                            <div class="price-period">뉴-뱅퀴시 + 마네킹톤</div>
+                        </div>
+                        <div class="pricing-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>뉴-뱅퀴시 4회</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>마네킹톤 프로그램 8회</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>이연의원 협력 진료</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>주 2회 × 4주 집중</span>
+                            </div>
+                        </div>
+                        <div class="pricing-footer">
+                            <a 
+                              href="booking.html"
+                              class="pricing-btn secondary"
+                              aria-label="상담 예약 페이지로 이동"
+                            >
+                              상담 예약
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Treatment Programs Section -->
+        <section class="py-16 md:py-20 section-gradient">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-deep-navy mb-4">전문 관리 프로그램</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        각각의 전문적인 프로그램별 레슨비용 안내입니다. 개별 상담을 통해 정확한 레슨비용을 확인하세요.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 통증재활 필라테스 -->
+                    <div class="package-card fade-in">
+                        <div class="package-header">
+                            <h3 class="text-xl font-bold mb-2">통증재활 필라테스</h3>
+                            <div class="discount-badge">개별 상담</div>
+                        </div>
+                        <div class="p-6">
+                            <div class="text-center mb-6">
+                                <div class="discount-price">상담 후 결정</div>
+                                <div class="text-sm text-gray-500 mt-1">근골격계 통증 전문 관리</div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center text-sm">
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
+                                    <span>의료진 연계 상담 및 관리</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
+                                    <span>개별 맞춤 관리 계획</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
+                                    <span>디발롱스/슈로스 메소드</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
+                                    <span>지속적인 관리 모니터링</span>
+                                </div>
+                            </div>
+                            <div class="mt-6">
+                                <a href="booking.html" class="pricing-btn primary">상담 예약</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 마네킹톤 프로그램 -->
+                    <div class="package-card fade-in">
+                        <div class="package-header">
+                            <h3 class="text-xl font-bold mb-2">마네킹톤 프로그램</h3>
+                            <div class="discount-badge">체형관리</div>
+                        </div>
+                        <div class="p-6">
+                            <div class="text-center mb-6">
+                                <div class="discount-price">상담 후 결정</div>
+                                <div class="text-sm text-gray-500 mt-1">체중감량 & 비만체형 관리</div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center text-sm">
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
+                                    <span>건강한 체중감량</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
+                                    <span>비만체형 관리전문</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
+                                    <span>신체의 대사 기능 개선</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
+                                    <span>식단 연계 관리</span>
+                                </div>
+                            </div>
+                            <div class="mt-6">
+                                <a href="booking.html" class="pricing-btn primary">상담 예약</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 플랫스콜 프로그램 -->
+                    <div class="package-card fade-in">
+                        <div class="package-header">
+                            <h3 class="text-xl font-bold mb-2">플랫스콜 프로그램</h3>
+                            <div class="discount-badge">척추측만</div>
+                        </div>
+                        <div class="p-6">
+                            <div class="text-center mb-6">
+                                <div class="discount-price">상담 후 결정</div>
+                                <div class="text-sm text-gray-500 mt-1">척추측만증 슈로스 메소드</div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center text-sm">
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
+                                    <span>슈로스메소드 + 메디컬필라테스</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
+                                    <span>경도 척추측만증 개선</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
+                                    <span>자세 불균형 개선</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fas fa-check text-golden-brown mr-3"></i>
+                                    <span>성장기 체형 관리</span>
+                                </div>
+                            </div>
+                            <div class="mt-6">
+                                <a href="booking.html" class="pricing-btn primary">상담 예약</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Medical Center Benefits Section -->
+        <section class="py-16 md:py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-deep-navy mb-4">메디컬필라테스™ 센터 특징</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        의학적 근거 기반의 메디컬필라테스 센터만의 최적화된 서비스와 관리 시스템
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="membership-benefit fade-in">
+                        <div class="w-16 h-16 bg-deep-navy rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-user-md text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-deep-navy mb-3 text-center">전문의 협력 체계</h3>
+                        <p class="text-gray-600 text-sm text-center">
+                            전문의와 협력하는 메디컬필라테스 상담 및 관리
+                        </p>
+                    </div>
+
+                    <div class="membership-benefit fade-in">
+                        <div class="w-16 h-16 bg-golden-brown rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-certificate text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-deep-navy mb-3 text-center">국제공인 장비</h3>
+                        <p class="text-gray-600 text-sm text-center">
+                            Balanced Body 공식인증 장비로 최적화된 프로그램
+                        </p>
+                    </div>
+
+                    <div class="membership-benefit fade-in">
+                        <div class="w-16 h-16 bg-accent-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-heartbeat text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-deep-navy mb-3 text-center">1:1 맞춤 관리</h3>
+                        <p class="text-gray-600 text-sm text-center">
+                            개인 상태에 따른 맞춤형 프로그램 및 지속적 모니터링
+                        </p>
+                    </div>
+
+                    <div class="membership-benefit fade-in">
+                        <div class="w-16 h-16 bg-deep-navy rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-shield-alt text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-deep-navy mb-3 text-center">안전 관리 시스템</h3>
+                        <p class="text-gray-600 text-sm text-center">
+                            의학적 근거의 안전 프로토콜 시스템 완비
+                        </p>
+                    </div>
+
+                    <div class="membership-benefit fade-in">
+                        <div class="w-16 h-16 bg-golden-brown rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-clipboard-check text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-deep-navy mb-3 text-center">지속적 관리</h3>
+                        <p class="text-gray-600 text-sm text-center">
+                            정기 건강 상태 체크 및 관리 효과 평가, 프로그램 조정
+                        </p>
+                    </div>
+
+                    <div class="membership-benefit fade-in">
+                        <div class="w-16 h-16 bg-accent-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-parking text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-deep-navy mb-3 text-center">편의 시설</h3>
+                        <p class="text-gray-600 text-sm text-center">
+                            무료 주차장, 무선 인터넷, 남/녀 화장실 등 완비
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Price Calculator Section -->
+        <section class="py-16 md:py-20 section-gradient">
+            <div class="container mx-auto px-6">
+                <div class="max-w-3xl mx-auto">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl md:text-4xl font-bold text-deep-navy mb-4">레슨비용 계산기</h2>
+                        <p class="text-lg text-gray-600">
+                            원하는 프로그램과 횟수를 선택하여 예상 비용을 계산해보세요
+                        </p>
+                    </div>
+
+                    <div class="calculator-section fade-in">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-deep-navy mb-2">프로그램 선택</label>
+                                <select id="programSelect" class="calculator-input">
+                                    <option value="">프로그램을 선택하세요</option>
+                                    <option value="77000">원장직강 1회: 77,000원</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-deep-navy mb-2">이용 횟수</label>
+                                <select id="sessionCount" class="calculator-input">
+                                    <option value="">횟수를 선택하세요</option>
+                                    <option value="10">10회</option>
+                                    <option value="20">20회</option>
+                                    <option value="30">30회</option>
+                                    <option value="40">40회</option>
+                                    <option value="50">50회</option>
+                                    <option value="60">50회 이상</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-deep-navy mb-2">패키지 할인</label>
+                                <select id="packageDiscount" class="calculator-input">
+                                    <option value="0">패키지 없음</option>
+                                    <option value="5">10회 이상 (5% 할인)</option>
+                                    <option value="10">20회 이상 (10% 할인)</option>
+                                    <option value="15">30회 이상 (15% 할인)</option>
+                                    <option value="20">40회 이상 (20% 할인)</option>
+                                    <option value="25">50회 이상 (25% 할인)</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-deep-navy mb-2">추가 할인</label>
+                                <select id="additionalDiscount" class="calculator-input">
+                                    <option value="0">추가 할인 없음</option>
+                                    <option value="5">후기 작성 (5% 추가할인)</option>
+                                    <option value="10">지인 소개 (10% 추가할인)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 text-center">
+                            <button id="calculateBtn" class="bg-deep-navy text-white px-8 py-3 rounded-full font-semibold hover:bg-deep-navy-dark transition-colors">
+                                레슨비용 계산하기
+                            </button>
+                        </div>
+
+                        <div id="calculatorResult" class="calculator-result hidden">
+                            <h3 class="text-xl font-bold text-deep-navy mb-4">레슨비용 계산</h3>
+                            <div id="resultContent" class="space-y-2">
+                                <!-- 계산 결과가 여기에 표시됩니다 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Payment Info Section -->
+        <section class="py-16 md:py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-deep-navy mb-4">결제 안내</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        편리하고 안전한 결제 방법을 제공합니다
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="fade-in">
+                        <h3 class="text-xl font-semibold text-deep-navy mb-6">결제 방법</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-credit-card text-golden-brown mr-4"></i>
+                                <div>
+                                    <p class="font-medium">카드 결제</p>
+                                    <p class="text-gray-600 text-sm">모든 신용카드, 체크카드 이용 가능</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-university text-golden-brown mr-4"></i>
+                                <div>
+                                    <p class="font-medium">계좌 이체</p>
+                                    <p class="text-gray-600 text-sm">무통장 입금 및 실시간 계좌 이체</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-money-bill-wave text-golden-brown mr-4"></i>
+                                <div>
+                                    <p class="font-medium">현금 결제</p>
+                                    <p class="text-gray-600 text-sm">스튜디오 방문 시 현금 결제 가능</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-calendar-alt text-golden-brown mr-4"></i>
+                                <div>
+                                    <p class="font-medium">할부 결제</p>
+                                    <p class="text-gray-600 text-sm">카드 할부 및 분할 결제 가능</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fade-in">
+                        <h3 class="text-xl font-semibold text-deep-navy mb-6">환불 정책</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-golden-brown mr-3 mt-1"></i>
+                                <div>
+                                    <p class="font-medium">레슨 시작 전 환불 규정</p>
+                                    <p class="text-gray-600 text-sm">서비스 이용 전 총결제금액 10% 공제 후 환불</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-golden-brown mr-3 mt-1"></i>
+                                <div>
+                                    <p class="font-medium">레슨 진행 시 차감 환불</p>
+                                    <p class="text-gray-600 text-sm">총결제금액 10% + 진행된 레슨 공제 후 환불</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-golden-brown mr-3 mt-1"></i>
+                                <div>
+                                    <p class="font-medium">의료진 소견 시 차감 환불</p>
+                                    <p class="text-gray-600 text-sm">운동 제한 소견서 제출 시 차감 후 환불</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-golden-brown mr-3 mt-1"></i>
+                                <div>
+                                    <p class="font-medium">환불 시 일부 수수료 발생</p>
+                                    <p class="text-gray-600 text-sm">모든 환불 시 카드결제 수수료 부담 있음</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-16 md:py-20 section-gradient">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold text-deep-navy mb-6">
+                        지금 시작하세요
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-8">
+                        무료 상담으로 필라테스호두의 프리미엄 서비스를 시작해보세요. 
+                        전문 강사와의 상담을 통해 가장 적합한 프로그램을 선택하실 수 있습니다.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="booking.html" class="cta-btn cta-btn-primary font-semibold px-8 py-4 rounded-full">
+                            상담 예약하기
+                        </a>
+                        <a href="programs.html" class="cta-btn cta-btn-outline font-semibold px-8 py-4 rounded-full">
+                            프로그램 보기
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Floating Action Buttons -->
+    <div class="fixed bottom-6 right-6 space-y-3 z-40">
+        <a href="tel:031-263-3345" class="w-14 h-14 bg-golden-brown text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all">
+            <i class="fas fa-phone fa-lg"></i>
+        </a>
+        <a href="https://chatgpt.com/g/g-RIVbRojDX-pilates-hodu-md-pro" class="w-14 h-14 bg-accent-gold text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all">
+            <i class="fab fa-kickstarter-k"></i>
+        </a>
+        <button id="top-btn" class="w-14 h-14 bg-deep-navy text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all opacity-0">
+             <i class="fas fa-arrow-up fa-lg"></i>
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-deep-navy text-white pt-12 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4 lg:gap-6">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">
+                        <span class="font-eng">PILATES</span><span class="text-accent-gold"> HODU</span>
+                    </h3>
+                    <p class="text-gray-300 text-sm">
+                        의학적 근거기반 메디컬필라테스™로<br>
+                        1:1 원장직강 전문적인 필라테스를<br>
+                        통해 건강한 삶을 누릴 수 있습니다.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">프로그램</h4>
+                    <ul class="text-gray-300 space-y-2 text-sm">
+                        <li><a href="programs.html" class="hover:text-accent-gold">통증재활 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">마네킹톤 프로그램</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">플랫스콜 프로그램</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">골프 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">키즈(성장) 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">임산부 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">시니어 필라테스</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">스튜디오</h4>
+                    <ul class="text-gray-300 space-y-2 text-sm">
+                        <li><a href="instructors.html" class="hover:text-accent-gold">강사진</a></li>
+                        <li><a href="facilities.html" class="hover:text-accent-gold">시설안내</a></li>
+                        <li><a href="pricing.html" class="hover:text-accent-gold">레슨비용</a></li>
+                        <li><a href="booking.html" class="hover:text-accent-gold">상담예약</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">지점안내</h4>
+                    <ul class="text-gray-300 space-y-2 text-sm">
+                        <li><a href="http://pilateshodu.com" target="_blank" class="hover:text-accent-gold">강남본점</a></li>
+                        <li><a href="index.html" class="hover:text-accent-gold">수지점</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">연락처</h4>
+                    <ul class="text-gray-300 space-y-2 text-sm">
+                        <li><i class="fas fa-phone mr-2"></i> 031-263-3345</li>
+                        <li><i class="fas fa-envelope mr-2"></i> pilateshodu@naver.com</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> 경기도 수지구 신봉2로 15, 3층</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-600 mt-8 pt-6 text-center text-gray-400 text-sm">
+                <p>&copy; 2025 PILATES HODU. All Rights Reserved.</p>
+                <p class="mt-1">메디컬필라테스™는 등록상표입니다. 모든 컨텐츠의 무단 사용을 금지합니다.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Header scroll effect
+            const header = document.getElementById('header');
+            const headerLogo = document.getElementById('header-logo');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const bars = mobileMenuButton ? mobileMenuButton.querySelectorAll('.bar') : [];
+
+            const updateHeaderStyle = () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('header-scrolled');
+                    headerLogo.classList.remove('text-white');
+                    headerLogo.classList.add('text-deep-navy');
+                    navLinks.forEach(link => {
+                        link.classList.remove('text-white', 'hover:text-gray-300');
+                        link.classList.add('text-gray-700', 'hover:text-golden-brown');
+                    });
+                    // 드롭다운 아이콘도 색상 변경
+                    const dropdownIcon = document.querySelector('#branch-dropdown-wrapper svg');
+                    if (dropdownIcon) {
+                        dropdownIcon.classList.remove('text-white');
+                        dropdownIcon.classList.add('text-gray-700');
+                    }
+                    // 햄버거 bar 색상 변경
+                    bars.forEach(bar => {
+                        bar.classList.remove('bg-white');
+                        bar.classList.add('bg-deep-navy');
+                    });
+                } else {
+                    header.classList.remove('header-scrolled');
+                    headerLogo.classList.add('text-white');
+                    headerLogo.classList.remove('text-deep-navy');
+                    navLinks.forEach(link => {
+                        link.classList.add('text-white', 'hover:text-gray-300');
+                        link.classList.remove('text-gray-700', 'hover:text-golden-brown');
+                    });
+                    // 드롭다운 아이콘도 색상 변경
+                    const dropdownIcon = document.querySelector('#branch-dropdown-wrapper svg');
+                    if (dropdownIcon) {
+                        dropdownIcon.classList.add('text-white');
+                        dropdownIcon.classList.remove('text-gray-700');
+                    }
+                    // 햄버거 bar 색상 복원
+                    bars.forEach(bar => {
+                        bar.classList.add('bg-white');
+                        bar.classList.remove('bg-deep-navy');
+                    });
+                }
+            };
+
+            // Mobile menu toggle
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                    mobileMenuButton.classList.toggle('active');
+                });
+            }
+
+            // Scroll to top button
+            const topBtn = document.getElementById('top-btn');
+            if (topBtn) {
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 400) {
+                        topBtn.classList.remove('opacity-0');
+                        topBtn.classList.add('opacity-100');
+                    } else {
+                        topBtn.classList.remove('opacity-100');
+                        topBtn.classList.add('opacity-0');
+                    }
+                });
+                
+                topBtn.addEventListener('click', function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            // Scroll animations
+            const animatedElements = document.querySelectorAll('.reveal, .fade-in');
+            if (animatedElements.length > 0) {
+                const animationObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                });
+
+                animatedElements.forEach(el => {
+                    animationObserver.observe(el);
+                });
+            }
+
+            // Price calculator functionality
+            const calculateBtn = document.getElementById('calculateBtn');
+            const calculatorResult = document.getElementById('calculatorResult');
+            const resultContent = document.getElementById('resultContent');
+            const sessionCountSelect = document.getElementById('sessionCount');
+            const packageDiscountSelect = document.getElementById('packageDiscount');
+            
+            // 이용횟수 선택시 패키지 할인 자동 선택
+            sessionCountSelect.addEventListener('change', function() {
+                const sessionCount = parseInt(this.value) || 0;
+                let discountValue = 0;
+                
+                if (sessionCount >= 50) {
+                    discountValue = 25;
+                } else if (sessionCount >= 40) {
+                    discountValue = 20;
+                } else if (sessionCount >= 30) {
+                    discountValue = 15;
+                } else if (sessionCount >= 20) {
+                    discountValue = 10;
+                } else if (sessionCount >= 10) {
+                    discountValue = 5;
+                }
+                
+                packageDiscountSelect.value = discountValue;
+            });
+
+            calculateBtn.addEventListener('click', function() {
+                const programPrice = parseInt(document.getElementById('programSelect').value) || 0;
+                let sessionCount = parseInt(document.getElementById('sessionCount').value) || 0;
+                // 50회 이상 선택시 실제 계산에서는 50회로 처리
+                if (sessionCount === 60) {
+                    sessionCount = 50;
+                }
+                
+                const packageDiscount = parseInt(document.getElementById('packageDiscount').value) || 0;
+                const additionalDiscount = parseInt(document.getElementById('additionalDiscount').value) || 0;
+
+                if (programPrice === 0 || sessionCount === 0) {
+                    alert('프로그램과 횟수를 선택해주세요.');
+                    return;
+                }
+
+                const originalPrice = programPrice * sessionCount;
+                let discountedPrice = originalPrice;
+                let totalDiscount = 0;
+
+                // 패키지 할인과 추가할인을 합산하여 총할인율 계산
+                const totalDiscountRate = packageDiscount + additionalDiscount;
+                
+                if (totalDiscountRate > 0) {
+                    const totalDiscountAmount = originalPrice * (totalDiscountRate / 100);
+                    discountedPrice = originalPrice - totalDiscountAmount;
+                    totalDiscount = totalDiscountAmount;
+                }
+
+                const programNames = {
+                    '77000': '원장직강 1회'
+                };
+                
+                const displaySessionCount = document.getElementById('sessionCount').value === '60' ? '50회 이상' : sessionCount + '회';
+
+                resultContent.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="result-item">
+                            <span class="result-label">선택 프로그램:</span>
+                            <span class="result-value">${programNames[programPrice.toString()]}</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">이용 횟수:</span>
+                            <span class="result-value">${displaySessionCount}</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">정가:</span>
+                            <span class="result-value">${originalPrice.toLocaleString()}원</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">할인 금액:</span>
+                            <span class="result-value text-red-500">-${totalDiscount.toLocaleString()}원 ${totalDiscountRate > 0 ? '(' + totalDiscountRate + '% 할인)' : ''}</span>
+                        </div>
+                    </div>
+                    <div class="final-amount">
+                        <div class="final-amount-row">
+                            <span class="final-amount-label">최종 결제 금액:</span>
+                            <div class="text-right">
+                                <div class="final-amount-value">${discountedPrice.toLocaleString()}원 (VAT포함)</div>
+                                <div class="per-session">회당 ${Math.round(discountedPrice / sessionCount).toLocaleString()}원</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                calculatorResult.classList.remove('hidden');
+                
+                // 계산 결과를 화면 중앙에 위치시키기 위한 최적화된 스크롤
+                setTimeout(() => {
+                    const resultElement = calculatorResult;
+                    const elementRect = resultElement.getBoundingClientRect();
+                    const elementTop = elementRect.top + window.pageYOffset;
+                    const elementHeight = elementRect.height;
+                    const windowHeight = window.innerHeight;
+                    
+                    // 결과 창이 화면 중앙에 위치하도록 스크롤 위치 계산
+                    const scrollTo = elementTop - (windowHeight / 2) + (elementHeight / 2);
+                    
+                    window.scrollTo({
+                        top: Math.max(0, scrollTo),
+                        behavior: 'smooth'
+                    });
+                }, 100); // DOM 업데이트 후 실행
+            });
+
+            // Initial execution
+            updateHeaderStyle();
+            window.addEventListener('scroll', updateHeaderStyle);
+        });
+    </script>
+</body>
+</html>
