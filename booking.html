@@ -262,6 +262,50 @@
             color: var(--accent-gold);
         }
 
+        /* 날짜 입력란 모바일 최적화 - 전역 적용 */
+        @media (max-width: 768px) {
+            input[type="date"] {
+                -webkit-appearance: none !important;
+                -moz-appearance: none !important;
+                appearance: none !important;
+                width: 100% !important;
+                min-width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+                padding: 0.75rem 1rem !important;
+                font-size: 16px !important; /* iOS 줌 방지 */
+                border: 2px solid #e5e7eb !important;
+                border-radius: 0.5rem !important;
+                background-color: white !important;
+                color: var(--charcoal-gray) !important;
+                font-family: 'Manrope', 'Noto Sans KR', sans-serif !important;
+                height: auto !important;
+                line-height: 1.5 !important;
+                min-height: 44px !important; /* 터치 타겟 최소 크기 */
+                margin: 0 !important;
+                display: block !important;
+            }
+            
+            /* 날짜 입력란 내부 요소 스타일 초기화 */
+            input[type="date"]::-webkit-inner-spin-button,
+            input[type="date"]::-webkit-calendar-picker-indicator {
+                -webkit-appearance: none !important;
+                appearance: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                height: auto !important;
+                width: auto !important;
+                cursor: pointer !important;
+                background: transparent !important;
+                color: var(--charcoal-gray) !important;
+            }
+            
+            /* 날짜 입력란이 있는 그리드 컨테이너 조정 */
+            .grid > div:has(input[type="date"]) {
+                width: 100% !important;
+            }
+        }
+
         /* 모바일 반응형 폰트 및 레이아웃 */
         @media (max-width: 640px) {
             .main-responsive h1, 
@@ -644,15 +688,15 @@
                                 <h2 class="text-2xl font-bold text-deep-navy mb-6">상담 희망 일정을 선택해주세요</h2>
                                 <p class="text-gray-600 mb-6">운영시간: 평일 08:00-21:30 | 토요일 08:00-15:00 | 일요일/공휴일 휴무</p>
                                 
-                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                                    <div>
+                                <div class="grid grid-cols-1 gap-4 md:gap-6">
+                                    <div class="w-full">
                                         <label class="form-label">희망 날짜</label>
-                                        <input type="date" id="bookingDate" name="date" class="form-input" required>
+                                        <input type="date" id="bookingDate" name="date" class="form-input w-full" required>
                                     </div>
 
-                                    <div>
+                                    <div class="w-full">
                                         <label class="form-label">원장님 1:1 직강</label>
-                                        <select id="preferredInstructor" name="instructor" class="form-select">
+                                        <select id="preferredInstructor" name="instructor" class="form-select w-full">
                                             <option value="park-director">박정은 대표원장 (메디컬필라테스)</option>
                                         </select>
                                     </div>
@@ -1287,6 +1331,14 @@
             const bookingDateEl = document.getElementById('bookingDate');
             if(bookingDateEl) {
                 bookingDateEl.setAttribute('min', minDate);
+                // 모바일 날짜 입력란 스타일 강제 적용
+                bookingDateEl.style.width = '100%';
+                bookingDateEl.style.minWidth = '100%';
+                bookingDateEl.style.maxWidth = '100%';
+                bookingDateEl.style.boxSizing = 'border-box';
+                bookingDateEl.style.webkitAppearance = 'none';
+                bookingDateEl.style.mozAppearance = 'none';
+                bookingDateEl.style.appearance = 'none';
             }
 
             updateHeaderStyle();
