@@ -1242,7 +1242,7 @@
                 });
             }
 
-            // Price calculator functionality
+            // Price calculator functionality - Enhanced version with advanced discount logic
             const calculateBtn = document.getElementById('calculateBtn');
             const calculatorResult = document.getElementById('calculatorResult');
             const resultContent = document.getElementById('resultContent');
@@ -1250,33 +1250,36 @@
             const packageDiscountSelect = document.getElementById('packageDiscount');
             const additionalDiscountSelect = document.getElementById('additionalDiscount');
             
-            // 이용횟수 선택시 할인 옵션 자동 업데이트
-            sessionCountSelect.addEventListener('change', function() {
-                const sessionCount = parseInt(this.value) || 0;
-                let discountValue = 0;
+            // Function to update additional discount options based on package discount selection
+            function updateAdditionalDiscountBasedOnPackage(packageDiscountValue) {
+                // Clear existing options
+                additionalDiscountSelect.innerHTML = '';
                 
-                // 패키지 할인 자동 선택
-                if (sessionCount >= 50 || sessionCount === 60) {
-                    discountValue = 25;
-                } else if (sessionCount >= 40) {
-                    discountValue = 20;
-                } else if (sessionCount >= 30) {
-                    discountValue = 15;
-                } else if (sessionCount >= 20) {
-                    discountValue = 10;
-                } else if (sessionCount >= 10) {
-                    discountValue = 5;
+                if (packageDiscountValue >= 25) {
+                    // 50회 이상 (25% 할인): 추가할인 없음만
+                    additionalDiscountSelect.innerHTML = '<option value="0">추가 할인 없음</option>';
+                } else if (packageDiscountValue >= 20) {
+                    // 40회 이상 (20% 할인): 추가할인 없음과 후기작성만
+                    additionalDiscountSelect.innerHTML = `
+                        <option value="0">추가 할인 없음</option>
+                        <option value="5">후기 작성 (5% 추가할인)</option>
+                    `;
+                } else {
+                    // 40회 미만: 모든 추가할인 옵션 가능
+                    additionalDiscountSelect.innerHTML = `
+                        <option value="0">추가 할인 없음</option>
+                        <option value="5">후기 작성 (5% 추가할인)</option>
+                        <option value="10">지인 소개 (10% 추가할인)</option>
+                    `;
                 }
                 
-                packageDiscountSelect.value = discountValue;
-                
-                // 추가할인 옵션 업데이트
-                updateAdditionalDiscountOptions(sessionCount);
-            });
+                // Reset to first option
+                additionalDiscountSelect.value = "0";
+            }
 
-            // 추가할인 옵션을 이용횟수에 따라 업데이트하는 함수
-            function updateAdditionalDiscountOptions(sessionCount) {
-                // 기존 옵션들을 모두 제거
+            // Function to update additional discount options based on session count
+            function updateAdditionalDiscountBasedOnSession(sessionCount) {
+                // Clear existing options
                 additionalDiscountSelect.innerHTML = '';
                 
                 if (sessionCount >= 50 || sessionCount === 60) {
@@ -1297,32 +1300,64 @@
                     `;
                 }
                 
-                // 첫 번째 옵션을 기본값으로 설정
+                // Reset to first option
                 additionalDiscountSelect.value = "0";
             }
+            
+            // Event listener for session count changes - automatically sets package discount and updates additional discount options
+            sessionCountSelect.addEventListener('change', function() {
+                const sessionCount = parseInt(this.value) || 0;
+                let discountValue = 0;
+                
+                // Auto-select package discount based on session count
+                if (sessionCount >= 50 || sessionCount === 60) {
+                    discountValue = 25;
+                } else if (sessionCount >= 40) {
+                    discountValue = 20;
+                } else if (sessionCount >= 30) {
+                    discountValue = 15;
+                } else if (sessionCount >= 20) {
+                    discountValue = 10;
+                } else if (sessionCount >= 10) {
+                    discountValue = 5;
+                }
+                
+                packageDiscountSelect.value = discountValue;
+                
+                // Update additional discount options based on session count
+                updateAdditionalDiscountBasedOnSession(sessionCount);
+            });
 
+            // Event listener for package discount changes - updates additional discount options
+            packageDiscountSelect.addEventListener('change', function() {
+                const packageDiscountValue = parseInt(this.value) || 0;
+                updateAdditionalDiscountBasedOnPackage(packageDiscountValue);
+            });
+
+            // Calculate button event listener with advanced discount logic
             calculateBtn.addEventListener('click', function() {
                 const programPrice = parseInt(document.getElementById('programSelect').value) || 0;
                 let sessionCount = parseInt(document.getElementById('sessionCount').value) || 0;
-                // 50회 이상 선택시 실제 계산에서는 50회로 처리
+                
+                // Handle "50회 이상" option (value 60 represents 50+ sessions)
                 if (sessionCount === 60) {
                     sessionCount = 50;
                 }
                 
-                const packageDiscount = parseInt(document.getElementById('packageDiscount').value) || 0;
-                const additionalDiscount = parseInt(document.getElementById('additionalDiscount').value) || 0;
+                const packageDiscount = parseInt(packageDiscountSelect.value) || 0;
+                const additionalDiscount = parseInt(additionalDiscountSelect.value) || 0;
 
+                // Validation
                 if (programPrice === 0 || sessionCount === 0) {
                     alert('프로그램과 횟수를 선택해주세요.');
                     return;
                 }
 
                 const originalPrice = programPrice * sessionCount;
-                let discountedPrice = originalPrice;
                 let finalDiscountRate = 0;
                 let appliedDiscountText = '';
 
-                // 중복할인 불가 로직: 더 큰 할인을 적용
+                // Advanced discount logic: No duplicate discounts - apply the higher one
                 if (packageDiscount > 0 && additionalDiscount > 0) {
                     if (packageDiscount >= additionalDiscount) {
                         finalDiscountRate = packageDiscount;
@@ -1339,14 +1374,14 @@
                     appliedDiscountText = '추가 할인 적용';
                 }
 
-                // 최대 할인률 25% 제한
+                // Maximum discount cap of 25%
                 if (finalDiscountRate > 25) {
                     finalDiscountRate = 25;
                     appliedDiscountText = '최대 할인 적용 (25%)';
                 }
 
                 const totalDiscountAmount = originalPrice * (finalDiscountRate / 100);
-                discountedPrice = originalPrice - totalDiscountAmount;
+                const discountedPrice = originalPrice - totalDiscountAmount;
 
                 const programNames = {
                     '77000': '원장직강 1회'
@@ -1354,6 +1389,7 @@
                 
                 const displaySessionCount = document.getElementById('sessionCount').value === '60' ? '50회 이상' : sessionCount + '회';
 
+                // Build result HTML with detailed breakdown
                 resultContent.innerHTML = `
                     <div class="space-y-3">
                         <div class="result-item">
@@ -1373,7 +1409,7 @@
                             <span class="result-value text-red-500">-${totalDiscountAmount.toLocaleString()}원 ${finalDiscountRate > 0 ? '(' + finalDiscountRate + '% ' + appliedDiscountText + ')' : ''}</span>
                         </div>
                         ${(packageDiscount > 0 && additionalDiscount > 0) ? 
-                            '<div class="result-item"><span class="result-label text-orange-600">중복할인 안내:</span><span class="result-value text-orange-600 text-sm">더 큰 할인율 적용됨</span></div>' : ''
+                            '<div class="result-item"><span class="result-label text-orange-600">할인 정책:</span><span class="result-value text-orange-600 text-sm">더 큰 할인율이 적용됨</span></div>' : ''
                         }
                     </div>
                     <div class="final-amount">
@@ -1389,7 +1425,7 @@
 
                 calculatorResult.classList.remove('hidden');
                 
-                // 계산 결과를 화면 중앙에 위치시키기 위한 최적화된 스크롤
+                // Smooth scroll to center the results on screen
                 setTimeout(() => {
                     const resultElement = calculatorResult;
                     const elementRect = resultElement.getBoundingClientRect();
@@ -1397,16 +1433,15 @@
                     const elementHeight = elementRect.height;
                     const windowHeight = window.innerHeight;
                     
-                    // 결과 창이 화면 중앙에 위치하도록 스크롤 위치 계산
+                    // Calculate scroll position to center the result
                     const scrollTo = elementTop - (windowHeight / 2) + (elementHeight / 2);
                     
                     window.scrollTo({
                         top: Math.max(0, scrollTo),
                         behavior: 'smooth'
                     });
-                }, 100); // DOM 업데이트 후 실행
+                }, 100); // Allow DOM to update before scrolling
             });
-
             // Initial execution
             updateHeaderStyle();
             window.addEventListener('scroll', updateHeaderStyle);
