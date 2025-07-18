@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예약안내 - PILATES HODU | 필라테스 호두 - 국내 최초의 메디컬필라테스™</title>
+    <meta name="description" content="필라테스 호두는 국내 최초이자 유일한 메디컬필라테스 브랜드로, 의학적 진단을 통한 통증 재활 및 체형 관리를 제공하는 원장직강 1:1 전문 센터입니다.">
+    <meta name="keywords" content="메디컬필라테스, 필라테스, 재활운동, 통증치료, 체형교정, 척추측만증, 원장직강, 필라테스호두, 수지필라테스, 신봉동필라테스">
+        
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+       
+    <!-- Google Fonts: Inter, Manrope, Noto Sans KR -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Manrope:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+        
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style>
+        :root {
+            --deep-navy: #001F3F;
+            --golden-brown: #996515;
+            --warm-beige: #F5F1E8;
+            --soft-cream: #FEFCF8;
+            --charcoal-gray: #2C2C2C;
+            --accent-gold: #D4AF37;
+        }
+    
+        body {
+            font-family: 'Manrope', 'Noto Sans KR', sans-serif;
+            background-color: var(--soft-cream);
+            color: var(--charcoal-gray);
+        }
+    
+        .font-eng { font-family: 'Manrope', sans-serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+            
+        .bg-deep-navy { background-color: var(--deep-navy); }
+        .bg-golden-brown { background-color: var(--golden-brown); }
+        .bg-warm-beige { background-color: var(--warm-beige); }
+        .bg-accent-gold { background-color: var(--accent-gold); }
+            
+        .text-deep-navy { color: var(--deep-navy); }
+        .text-golden-brown { color: var(--golden-brown); }
+        .text-charcoal-gray { color: var(--charcoal-gray); }
+        .text-accent-gold { color: var(--accent-gold); }
+        .text-white { color: white; }
+    
+        .hover\:bg-deep-navy-dark:hover { background-color: #001122; }
+        .hover\:text-golden-brown:hover { color: var(--golden-brown); }
+    
+        /* 스크롤 애니메이션 */
+        .reveal, .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.6s ease-out;
+        }
+    
+        .reveal.visible, .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    
+        .header-scrolled {
+            background-color: rgba(254, 252, 248, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 전문적인 그라데이션 배경 */
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--golden-brown) 100%);
+        }
+        
+        .section-gradient {
+            background: linear-gradient(180deg, var(--soft-cream) 0%, var(--warm-beige) 100%);
+        }
+
+        .nav-active {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        /* Step Indicator Styles */
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+        }
+
+        .step-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            position: relative;
+        }
+
+        .step-number {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background-color: #e5e7eb;
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .step-item.active .step-number {
+            background-color: var(--deep-navy);
+            color: white;
+        }
+
+        .step-item.completed .step-number {
+            background-color: var(--golden-brown);
+            color: white;
+        }
+
+        .step-line {
+            position: absolute;
+            top: 1.25rem;
+            left: 75%;
+            width: 50%;
+            height: 2px;
+            background-color: #e5e7eb;
+            z-index: 0;
+        }
+
+        .step-item:last-child .step-line {
+            display: none;
+        }
+
+        .step-item.completed .step-line {
+            background-color: var(--golden-brown);
+        }
+
+        /* Form Styles */
+        .booking-form {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+        
+        /* 날짜 입력란 wrapper 스타일 - 모바일용 */
+        @media (max-width: 768px) {
+            .date-input-wrapper {
+                position: relative;
+                width: 100%;
+            }
+            
+            .date-input-wrapper .date-placeholder {
+                position: absolute;
+                left: 0.75rem;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #9ca3af;
+                pointer-events: none;
+                font-size: 1rem;
+                font-family: 'Manrope', 'Noto Sans KR', sans-serif;
+                z-index: 1;
+                transition: opacity 0.2s ease;
+            }
+            
+            .date-input-wrapper input[type="date"]:focus + .date-placeholder {
+                opacity: 0;
+            }
+            
+            /* 값이 있을 때 placeholder 숨김 */
+            .date-input-wrapper input[type="date"][value]:not([value=""]) + .date-placeholder {
+                opacity: 0;
+            }
+            
+            /* 날짜 입력란 자체 스타일 */
+            input[type="date"]::-webkit-datetime-edit-text,
+            input[type="date"]::-webkit-datetime-edit-month-field,
+            input[type="date"]::-webkit-datetime-edit-day-field,
+            input[type="date"]::-webkit-datetime-edit-year-field {
+                color: var(--charcoal-gray);
+            }
+            
+            input[type="date"]:invalid::-webkit-datetime-edit-text,
+            input[type="date"]:invalid::-webkit-datetime-edit-month-field,
+            input[type="date"]:invalid::-webkit-datetime-edit-day-field,
+            input[type="date"]:invalid::-webkit-datetime-edit-year-field {
+                color: transparent;
+            }
+        }
+        
+        /* PC 모드에서는 날짜 입력란 기본 스타일 */
+        @media (min-width: 769px) {
+            input[type="date"] {
+                color: var(--charcoal-gray) !important;
+            }
+            
+            .date-placeholder {
+                display: none !important;
+            }
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--deep-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            font-family: 'Manrope', 'Noto Sans KR', sans-serif;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--golden-brown);
+        }
+        
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: #9ca3af;
+            opacity: 1;
+        }
+        
+        .form-input:focus::placeholder, .form-textarea:focus::placeholder {
+            opacity: 0;
+        }
+
+        .form-textarea {
+            min-height: 6rem;
+            resize: vertical;
+        }
+
+        /* Program Option Styles */
+        .program-option {
+            display: block;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+            background-color: white;
+        }
+
+        .program-option:hover {
+            border-color: var(--golden-brown);
+            background-color: #f9fafb;
+        }
+
+        .program-option.selected {
+            border-color: var(--deep-navy);
+            background-color: var(--warm-beige);
+        }
+
+        .program-option input[type="radio"] {
+            display: none;
+        }
+
+        /* Time Slot Styles */
+        .time-slot {
+            display: block;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: white;
+            font-weight: 500;
+        }
+
+        .time-slot:hover {
+            border-color: var(--golden-brown);
+            background-color: #f9fafb;
+        }
+
+        .time-slot.selected {
+            border-color: var(--deep-navy);
+            background-color: var(--golden-brown);
+            color: white;
+        }
+
+        .time-slot.unavailable {
+            background-color: #f3f4f6;
+            color: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .time-slot input[type="radio"] {
+            display: none;
+        }
+
+        /* Booking Summary Styles */
+        .booking-summary {
+            background-color: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        .price-highlight {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+        }
+
+        /* 날짜 입력란 모바일 최적화 - 전역 적용 */
+        @media (max-width: 768px) {
+            input[type="date"] {
+                -webkit-appearance: none !important;
+                -moz-appearance: none !important;
+                appearance: none !important;
+                width: 100% !important;
+                min-width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+                padding: 0.75rem 1rem !important;
+                font-size: 16px !important; /* iOS 줌 방지 */
+                border: 2px solid #e5e7eb !important;
+                border-radius: 0.5rem !important;
+                background-color: white !important;
+                color: var(--charcoal-gray) !important;
+                font-family: 'Manrope', 'Noto Sans KR', sans-serif !important;
+                height: auto !important;
+                line-height: 1.5 !important;
+                min-height: 44px !important; /* 터치 타겟 최소 크기 */
+                margin: 0 !important;
+                display: block !important;
+            }
+            
+            /* 날짜 입력란 내부 요소 스타일 초기화 */
+            input[type="date"]::-webkit-inner-spin-button,
+            input[type="date"]::-webkit-calendar-picker-indicator {
+                -webkit-appearance: none !important;
+                appearance: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                height: auto !important;
+                width: auto !important;
+                cursor: pointer !important;
+                background: transparent !important;
+                color: var(--charcoal-gray) !important;
+            }
+            
+            /* 날짜 입력란이 있는 그리드 컨테이너 조정 */
+            .grid > div:has(input[type="date"]) {
+                width: 100% !important;
+            }
+        }
+
+        /* 모바일 반응형 폰트 및 레이아웃 */
+        @media (max-width: 640px) {
+            .main-responsive h1, 
+            .main-responsive .text-4xl, 
+            .main-responsive .md\:text-5xl, 
+            .main-responsive .text-5xl {
+                font-size: 1.7rem !important;
+                line-height: 2.2rem !important;
+                word-break: keep-all;
+            }
+            .main-responsive h2, .main-responsive .text-2xl, .main-responsive .md\:text-4xl, .main-responsive .text-3xl {
+                font-size: 1.2rem !important;
+                line-height: 1.7rem !important;
+                word-break: keep-all;
+            }
+            .main-responsive .text-lg, .main-responsive .md\:text-xl {
+                font-size: 1rem !important;
+                line-height: 1.4rem !important;
+            }
+            .main-responsive .container {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+            .main-responsive .px-6 { padding-left: 1rem !important; padding-right: 1rem !important; }
+            .main-responsive .py-16, .main-responsive .md\:py-20 { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+            .main-responsive .rounded-full, .main-responsive .rounded-lg, .main-responsive .rounded-xl, .main-responsive .rounded-2xl { border-radius: 0.75rem !important; }
+            .main-responsive .step-indicator { padding: 0 0.2rem !important; }
+            .main-responsive .step-number { width: 2rem !important; height: 2rem !important; font-size: 1rem !important; }
+            .main-responsive .booking-form, .main-responsive .booking-summary { padding: 1rem !important; }
+            .main-responsive .form-label { font-size: 0.95rem !important; }
+            .main-responsive .form-input, .main-responsive .form-select, .main-responsive .form-textarea { font-size: 0.95rem !important; padding: 0.5rem 0.7rem !important; }
+            .main-responsive .program-option, .main-responsive .time-slot { font-size: 0.95rem !important; padding: 0.7rem 0.7rem !important; }
+            .main-responsive .font-bold, .main-responsive .font-semibold { word-break: keep-all; }
+            .main-responsive .text-center { word-break: keep-all; }
+            .main-responsive .text-sm { font-size: 0.9rem !important; }
+            .main-responsive .text-xs { font-size: 0.8rem !important; }
+            .main-responsive .w-16, .main-responsive .h-16 { width: 3rem !important; height: 3rem !important; }
+            .main-responsive .w-14, .main-responsive .h-14 { width: 2.5rem !important; height: 2.5rem !important; }
+            .main-responsive .px-8 { padding-left: 1rem !important; padding-right: 1rem !important; }
+            .main-responsive .py-3 { padding-top: 0.7rem !important; padding-bottom: 0.7rem !important; }
+            .main-responsive .mt-6, .main-responsive .mt-8, .main-responsive .mb-6, .main-responsive .mb-8, .main-responsive .mb-12, .main-responsive .mb-16 { margin-top: 1rem !important; margin-bottom: 1rem !important; }
+            .main-responsive .max-w-2xl, .main-responsive .max-w-4xl { max-width: 100% !important; }
+            
+            /* 모바일에서 날짜 입력란 최적화 */
+            .main-responsive input[type="date"] {
+                min-width: 100% !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+                padding: 0.5rem 0.7rem !important;
+                font-size: 0.95rem !important;
+                border: 2px solid #e5e7eb !important;
+                border-radius: 0.5rem !important;
+                height: auto !important;
+                line-height: 1.5 !important;
+            }
+            
+            /* 모바일에서 그리드 레이아웃 최적화 */
+            .main-responsive .grid.grid-cols-1.lg\:grid-cols-2 {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            
+            .main-responsive .grid.grid-cols-1.md\:grid-cols-2 {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            
+            /* 모바일에서 모든 입력란 일관성 보장 */
+            .main-responsive .form-input,
+            .main-responsive .form-select,
+            .main-responsive input[type="date"] {
+                width: 100% !important;
+                box-sizing: border-box !important;
+                padding: 0.5rem 0.7rem !important;
+                font-size: 0.95rem !important;
+                border: 2px solid #e5e7eb !important;
+                border-radius: 0.5rem !important;
+                height: auto !important;
+                line-height: 1.5 !important;
+                min-height: 2.5rem !important;
+            }
+        }
+        /* 햄버거 → X 애니메이션 (모바일 전용) */
+        #mobile-menu-button {
+          width: 1.5rem; height: 1.5rem;
+          display: flex; flex-direction: column; justify-content: center; align-items: center;
+          position: relative;
+          z-index: 60;
+        }
+        
+        /* PC 화면에서 햄버거 메뉴 완전 숨김 */
+        @media (min-width: 1024px) {
+          #mobile-menu-button {
+            display: none !important;
+          }
+          #mobile-menu {
+            display: none !important;
+          }
+        }
+        #mobile-menu-button .bar {
+          display: block;
+          position: absolute;
+          width: 1.5rem;
+          height: 0.18rem;
+          border-radius: 2px;
+          transition: all 0.35s cubic-bezier(.68,-0.55,.27,1.55);
+          transform-origin: center;
+        }
+        #mobile-menu-button .top   { top: 0.375rem; left: 0; }
+        #mobile-menu-button .middle{ top: 0.75rem; left: 0; }
+        #mobile-menu-button .bottom{ top: 1.125rem; right: 0; width: 0.75rem; }
+        #mobile-menu-button.active .top {
+          top: 0.75rem;
+          transform: rotate(45deg);
+        }
+        #mobile-menu-button.active .middle {
+          transform: rotate(-45deg);
+        }
+        #mobile-menu-button.active .bottom {
+          opacity: 0;
+          transform: scaleX(0.5);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" id="header-logo" class="flex items-center text-2xl font-bold text-white transition-colors duration-300">
+                    <span class="font-eng">PILATES</span> <span class="text-golden-brown ml-1">HODU</span>
+                    <span class="ml-2 text-xs font-semibold bg-deep-navy text-accent-gold px-2.5 py-1 rounded-md">수지</span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-1 text-sm">
+                    <a href="index.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">홈</a>
+                    <a href="programs.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">프로그램</a>
+                    <a href="instructors.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">강사소개</a>
+                    <a href="facilities.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">시설안내</a>
+                    <a href="booking.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md nav-active transition-colors duration-300">상담예약</a>
+                    <a href="pricing.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">레슨비용</a>
+                    <!-- Branch Dropdown -->
+                    <div class="relative group" id="branch-dropdown-wrapper">
+                        <button class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300 flex items-center">
+                            지점 안내
+                            <svg class="w-4 h-4 ml-1 transition-all duration-200 opacity-0 group-hover:opacity-100 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="branch-menu" class="absolute left-0 top-full w-36 bg-white/95 backdrop-blur-md rounded-lg shadow-xl border border-gray-200/50 py-2 z-50 opacity-0 invisible transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+                            <a href="http://pilateshodu.com" target="_blank" class="block px-4 py-2.5 text-sm text-deep-navy hover:bg-warm-beige hover:text-golden-brown transition-colors duration-200">강남본점</a>
+                            <a href="index.html" class="block px-4 py-2.5 text-sm text-deep-navy hover:bg-warm-beige hover:text-golden-brown transition-colors duration-200">수지점</a>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Mobile Navigation Button -->
+                <button id="mobile-menu-button" class="lg:hidden focus:outline-none relative w-6 h-6 z-50">
+                  <span class="bar top bg-white"></span>
+                  <span class="bar middle bg-white"></span>
+                  <span class="bar bottom bg-white"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden px-6 pt-2 pb-4 bg-white shadow-lg max-h-[calc(100dvh-64px)] overflow-y-auto z-40">
+            <a href="index.html" class="block py-2 text-gray-700 hover:text-golden-brown">홈</a>
+            <a href="programs.html" class="block py-2 text-gray-700 hover:text-golden-brown">프로그램</a>
+            <a href="instructors.html" class="block py-2 text-gray-700 hover:text-golden-brown">강사소개</a>
+            <a href="facilities.html" class="block py-2 text-gray-700 hover:text-golden-brown">시설안내</a>
+            <a href="booking.html" class="block py-2 text-gray-700 hover:text-golden-brown nav-active">상담예약</a>
+            <a href="pricing.html" class="block py-2 text-gray-700 hover:text-golden-brown">레슨비용</a>
+            <div class="border-t my-2"></div>
+            <p class="py-2 text-sm font-semibold text-gray-500">지점 안내</p>
+            <a href="http://pilateshodu.com" target="_blank" class="block py-2 text-gray-700 hover:text-golden-brown">강남본점</a>
+            <a href="index.html" class="block py-2 text-gray-700 hover:text-golden-brown">수지점</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative h-96 flex items-center justify-center text-center text-white overflow-hidden hero-gradient">
+        <div class="absolute inset-0 opacity-20">
+            <div class="w-full h-full bg-gradient-to-r from-black/30 to-transparent"></div>
+        </div>
+        
+        <div class="relative z-10 px-6 reveal">
+            <h1 class="font-eng text-4xl md:text-5xl font-bold tracking-tighter leading-tight text-white mb-4">
+                Our <span class="text-accent-gold">Reservation</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 leading-relaxed max-w-2xl mx-auto">
+                1:1 원장직강 메디컬필라테스 상담 예약
+            </p>
+            <div class="mt-6">
+                    <span class="bg-accent-gold text-deep-navy px-6 py-3 rounded-full text-sm font-bold">
+                        📞 전화 상담: 031-263-3345
+                    </span>
+                </div>
+        </div>
+    </section>
+    <main class="main-responsive">
+        <!-- Booking Form Section -->
+        <section class="py-16 md:py-20 section-gradient">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto">
+                    <!-- Step Indicator -->
+                    <div class="step-indicator">
+                        <div class="step-item active">
+                            <div class="step-number">1</div>
+                            <span class="text-sm font-medium">관심 프로그램</span>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <span class="text-sm font-medium">상담 일정</span>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <span class="text-sm font-medium">연락처 정보</span>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">4</div>
+                            <span class="text-sm font-medium">상담 예약 완료</span>
+                        </div>
+                    </div>
+
+                    <!-- Booking Form -->
+                    <div class="booking-form fade-in">
+                        <form id="bookingForm">
+                            <!-- Step 1: Program Selection -->
+                            <div id="step1" class="step-content">
+                                <h2 class="text-2xl font-bold text-deep-navy mb-6">관심 있는 프로그램을 선택해주세요</h2>
+                                <p class="text-gray-600 mb-6">전문 상담을 통해 개인별 맞춤 프로그램을 추천해드립니다. (모든 프로그램은 1:1 원장직강만 운영)</p>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <label class="program-option">
+                                        <input type="radio" name="program" value="consultation" data-price="0">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h3 class="font-semibold text-deep-navy mb-2">초기 상담</h3>
+                                                <p class="text-gray-600 text-sm">건강 상태 분석 및 맞춤 프로그램 상담</p>
+                                                <p class="text-sm text-gray-500 mt-1">1:1 전문 상담</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <p class="font-bold text-golden-brown text-lg">무료 상담</p>
+                                            </div>
+                                        </div>
+                                    </label>
+
+                                    <label class="program-option">
+                                        <input type="radio" name="program" value="pain-rehab" data-price="0">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h3 class="font-semibold text-deep-navy mb-2">통증재활 필라테스</h3>
+                                                <p class="text-gray-600 text-sm">근골격계 통증 및 체형교정 전문</p>
+                                                <p class="text-sm text-gray-500 mt-1">의학적 근거 기반 프로그램</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <p class="font-bold text-deep-navy text-lg">상담 문의</p>
+                                            </div>
+                                        </div>
+                                    </label>
+
+                                    <label class="program-option">
+                                        <input type="radio" name="program" value="mannequin-tone" data-price="0">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h3 class="font-semibold text-deep-navy mb-2">마네킹톤 프로그램</h3>
+                                                <p class="text-gray-600 text-sm">체중감량 및 비만체형 관리</p>
+                                                <p class="text-sm text-gray-500 mt-1">톤업 필라테스 프로그램</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <p class="font-bold text-deep-navy text-lg">상담 문의</p>
+                                            </div>
+                                        </div>
+                                    </label>
+
+                                    <label class="program-option">
+                                        <input type="radio" name="program" value="flat-scol" data-price="0">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h3 class="font-semibold text-deep-navy mb-2">플랫스콜 프로그램</h3>
+                                                <p class="text-gray-600 text-sm">척추측만증 슈로스 메소드 접목</p>
+                                                <p class="text-sm text-gray-500 mt-1">경도 척추측만증 교정 전문</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <p class="font-bold text-deep-navy text-lg">상담 문의</p>
+                                            </div>
+                                        </div>
+                                    </label>
+
+                                    <label class="program-option">
+                                        <input type="radio" name="program" value="golf" data-price="0">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h3 class="font-semibold text-deep-navy mb-2">골프 필라테스</h3>
+                                                <p class="text-gray-600 text-sm">골프스윙 및 비거리 향상 전문</p>
+                                                <p class="text-sm text-gray-500 mt-1">트렁크 강화 중심 프로그램</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <p class="font-bold text-deep-navy text-lg">상담 문의</p>
+                                            </div>
+                                        </div>
+                                    </label>
+
+                                    <label class="program-option">
+                                        <input type="radio" name="program" value="kids" data-price="0">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h3 class="font-semibold text-deep-navy mb-2">키즈(성장) 필라테스</h3>
+                                                <p class="text-gray-600 text-sm">소아 성장 도움 및 측만증 개선</p>
+                                                <p class="text-sm text-gray-500 mt-1">성장기 체형 관리 전문</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <p class="font-bold text-deep-navy text-lg">상담 문의</p>
+                                            </div>
+                                        </div>
+                                    </label>
+
+                                    <label class="program-option">
+                                        <input type="radio" name="program" value="maternity" data-price="0">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h3 class="font-semibold text-deep-navy mb-2">임산부 필라테스</h3>
+                                                <p class="text-gray-600 text-sm">산전/산후 전문 관리 프로그램</p>
+                                                <p class="text-sm text-gray-500 mt-1">코어 강화 및 분만 후 회복</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <p class="font-bold text-deep-navy text-lg">상담 문의</p>
+                                            </div>
+                                        </div>
+                                    </label>
+
+                                    <label class="program-option">
+                                        <input type="radio" name="program" value="senior" data-price="0">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h3 class="font-semibold text-deep-navy mb-2">시니어 필라테스</h3>
+                                                <p class="text-gray-600 text-sm">근력 유지 및 균형감 강화</p>
+                                                <p class="text-sm text-gray-500 mt-1">체력 향상 및 인지기능 개선</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <p class="font-bold text-deep-navy text-lg">상담 문의</p>
+                                            </div>
+                                        </div>
+                                    </label>
+
+                                    <label class="program-option border-2 border-accent-gold">
+                                        <input type="radio" name="program" value="philfit" data-price="0">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <div class="flex items-center">
+                                                    <h3 class="font-semibold text-deep-navy mb-2">필앤핏 프로그램</h3>
+                                                    <span class="bg-accent-gold text-white px-2 py-1 rounded-full text-xs font-bold ml-2">SPECIAL</span>
+                                                </div>
+                                                <p class="text-gray-600 text-sm">뉴-뱅퀴시 + 마네킹톤 병행</p>
+                                                <p class="text-sm text-gray-500 mt-1">이연의원 협력 4주 프로그램</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <p class="font-bold text-accent-gold text-lg">특별 상담</p>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <div class="mt-8 flex justify-end">
+                                    <button type="button" id="step1Next" class="bg-deep-navy text-white px-8 py-3 rounded-full font-semibold hover:bg-deep-navy-dark transition-colors">
+                                        다음 단계
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 2: Date & Time Selection -->
+                            <div id="step2" class="step-content hidden">
+                                <h2 class="text-2xl font-bold text-deep-navy mb-6">상담 희망 일정을 선택해주세요</h2>
+                                <p class="text-gray-600 mb-6">운영시간: 평일 08:00-21:30 | 토요일 08:00-15:00 | 일요일/공휴일 휴무</p>
+                                
+                                <div class="grid grid-cols-1 gap-4 md:gap-6">
+                                    <div class="w-full">
+                                        <label class="form-label">희망 날짜</label>
+                                        <div class="date-input-wrapper">
+                                            <input type="date" id="bookingDate" name="date" class="form-input w-full" required>
+                                            <span class="date-placeholder">날짜를 선택해주십시오</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="w-full">
+                                        <label class="form-label">원장님 1:1 직강</label>
+                                        <select id="preferredInstructor" name="instructor" class="form-select w-full">
+                                            <option value="park-director">박정은 대표원장 (메디컬필라테스)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mt-8">
+                                    <label class="form-label">이용 가능한 시간</label>
+                                    <div id="timeSlots" class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 mt-4">
+                                        <!-- 시간 슬롯은 JavaScript로 동적 생성 -->
+                                    </div>
+                                </div>
+
+                                <div class="mt-8 flex justify-between">
+                                    <button type="button" id="step2Prev" class="border-2 border-deep-navy text-deep-navy px-8 py-3 rounded-full font-semibold hover:bg-deep-navy hover:text-white transition-all">
+                                        이전 단계
+                                    </button>
+                                    <button type="button" id="step2Next" class="bg-deep-navy text-white px-8 py-3 rounded-full font-semibold hover:bg-deep-navy-dark transition-colors">
+                                        다음 단계
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 3: Personal Information -->
+                            <div id="step3" class="step-content hidden">
+                                <h2 class="text-2xl font-bold text-deep-navy mb-6">연락처 정보를 입력해주세요</h2>
+                                <p class="text-gray-600 mb-6">상담 예약 확인 및 안내를 위한 정보입니다. 개인정보는 안전하게 보호됩니다.</p>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="form-label">이름 *</label>
+                                        <input type="text" id="customerName" name="name" class="form-input" placeholder="예시: 홍길동" required>
+                                    </div>
+
+                                    <div>
+                                        <label class="form-label">연락처 *</label>
+                                        <input type="tel" id="customerPhone" name="phone" class="form-input" placeholder="연락처의 숫자만 입력해주십시오" required>
+                                    </div>
+
+                                    <div>
+                                        <label class="form-label">이메일</label>
+                                        <input type="email" id="customerEmail" name="email" class="form-input" placeholder="예시: example@email.com">
+                                    </div>
+
+                                    <div>
+                                        <label class="form-label">생년월일</label>
+                                        <div class="date-input-wrapper">
+                                            <input type="date" id="customerBirth" name="birth" class="form-input">
+                                            <span class="date-placeholder">날짜를 선택해주십시오</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-6">
+                                    <label class="form-label">현재 통증 부위 및 건강 상태</label>
+                                    <textarea id="healthInfo" name="healthInfo" class="form-textarea" placeholder="통증 부위, 수술 이력, 현재 복용 중인 약물, 만성질환 등을 자세히 적어주세요. (의료기반 상담을 위한 중요한 정보입니다)"></textarea>
+                                </div>
+
+                                <div class="mt-6">
+                                    <label class="form-label">개선 및 관리 희망 사항</label>
+                                    <textarea id="goals" name="goals" class="form-textarea" placeholder="개선하고 싶은 증상, 관리 목표, 기대하는 효과 등을 알려주세요."></textarea>
+                                </div>
+
+                                <div class="mt-6">
+                                    <label class="form-label">기타 문의사항</label>
+                                    <textarea id="additionalRequests" name="additionalRequests" class="form-textarea" placeholder="메디컬필라테스에 대한 질문이나 기타 요청사항을 적어주세요."></textarea>
+                                </div>
+
+                                <div class="mt-8 flex justify-between">
+                                    <button type="button" id="step3Prev" class="border-2 border-deep-navy text-deep-navy px-8 py-3 rounded-full font-semibold hover:bg-deep-navy hover:text-white transition-all">
+                                        이전 단계
+                                    </button>
+                                    <button type="button" id="step3Next" class="bg-deep-navy text-white px-8 py-3 rounded-full font-semibold hover:bg-deep-navy-dark transition-colors">
+                                        예약 확인
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Step 4: Booking Confirmation -->
+                            <div id="step4" class="step-content hidden">
+                                <h2 class="text-2xl font-bold text-deep-navy mb-6">상담 예약 정보를 확인해주세요</h2>
+                                
+                                <div class="booking-summary">
+                                    <h3 class="text-lg font-semibold text-deep-navy mb-4">상담 예약 요약</h3>
+                                    <div id="bookingSummary" class="space-y-3">
+                                        <!-- 상담 예약 정보는 JavaScript로 동적 생성 -->
+                                    </div>
+                                </div>
+
+                                <div class="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-4">
+                                    <h4 class="font-semibold text-blue-800 mb-2">상담 예약 안내사항</h4>
+                                    <ul class="text-sm text-blue-700 space-y-1">
+                                        <li>• 상담 예약 변경 및 취소는 24시간 전까지 연락 바랍니다.</li>
+                                        <li>• 초기 상담은 약 20~30분 정도 소요됩니다.</li>
+                                        <li>• 상담 시 병원 진료 이력있다면 관련 자료를 지참해주세요.</li>
+                                        <li>• 상담 당일 체험수업 진행도 가능합니다.</li>
+                                        <li>• 편안한 복장으로 오시면 간단한 체형 분석이 가능합니다.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="mt-6">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" id="agreeTerms" name="agreeTerms" class="mr-3" required>
+                                        <span class="text-sm">개인정보 수집·이용 및 상담 예약 정책에 동의합니다.</span>
+                                    </label>
+                                </div>
+
+                                <div class="mt-8 flex justify-between">
+                                    <button type="button" id="step4Prev" class="border-2 border-deep-navy text-deep-navy px-8 py-3 rounded-full font-semibold hover:bg-deep-navy hover:text-white transition-all">
+                                        이전 단계
+                                    </button>
+                                    <button type="submit" id="submitBooking" class="bg-accent-gold text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity">
+                                        상담 예약 완료
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Booking Info -->
+        <section class="py-16 md:py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-deep-navy mb-4">빠른 상담 예약</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        전화 또는 카카오톡으로 상담 예약이 가능합니다
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center fade-in">
+                        <div class="w-16 h-16 bg-deep-navy rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-phone text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-deep-navy mb-2">전화 상담 예약</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            전화로 바로 상담 예약하고 문의하세요
+                        </p>
+                        <a href="tel:031-263-3345" class="text-golden-brown font-semibold">031-263-3345</a>
+                    </div>
+
+                    <div class="text-center fade-in">
+                        <div class="w-16 h-16 bg-golden-brown rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fab fa-kickstarter-k text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-deep-navy mb-2">운영시간 안내</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            정확한 예약을 위한 운영시간 확인
+                        </p>
+                        <div class="text-golden-brown font-semibold text-sm">
+                            <div>평일: 08:00-21:30</div>
+                            <div>토요일: 08:00-15:00</div>
+                            <div>일/공휴일: 휴무</div>
+                        </div>
+                    </div>
+
+                    <div class="text-center fade-in">
+                        <div class="w-16 h-16 bg-accent-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-map-marker-alt text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-deep-navy mb-2">카카오톡 예약</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            카카오톡 검색창에 '필라테스호두 신봉점'으로 검색
+                        </p>
+                        <div class="text-golden-brown font-semibold text-sm">
+                            <div>경기도 용인시 수지구</div>
+                            <div>신봉2로 15, 3층</div>
+                            <div>무료 주차 가능</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Floating Action Buttons -->
+    <div class="fixed bottom-6 right-6 space-y-3 z-40">
+        <a href="tel:031-263-3345" class="w-14 h-14 bg-golden-brown text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all">
+            <i class="fas fa-phone fa-lg"></i>
+        </a>
+        <a href="https://chatgpt.com/g/g-RIVbRojDX-pilates-hodu-md-pro" class="w-14 h-14 bg-accent-gold text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all">
+            <i class="fab fa-kickstarter-k"></i>
+        </a>
+        <button id="top-btn" class="w-14 h-14 bg-deep-navy text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all opacity-0">
+             <i class="fas fa-arrow-up fa-lg"></i>
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-deep-navy text-white pt-12 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4 lg:gap-6">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">
+                        <span class="font-eng">PILATES</span><span class="text-accent-gold"> HODU</span>
+                    </h3>
+                    <p class="text-gray-300 text-sm">
+                        의학적 근거기반 메디컬필라테스™로<br>
+                        1:1 원장직강 전문적인 필라테스를<br>
+                        통해 건강한 삶을 누릴 수 있습니다.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">프로그램</h4>
+                    <ul class="text-gray-300 space-y-2 text-sm">
+                        <li><a href="programs.html" class="hover:text-accent-gold">통증재활 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">마네킹톤 프로그램</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">플랫스콜 프로그램</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">골프 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">키즈(성장) 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">임산부 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">시니어 필라테스</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">스튜디오</h4>
+                    <ul class="text-gray-300 space-y-2 text-sm">
+                        <li><a href="instructors.html" class="hover:text-accent-gold">강사진</a></li>
+                        <li><a href="facilities.html" class="hover:text-accent-gold">시설안내</a></li>
+                        <li><a href="pricing.html" class="hover:text-accent-gold">레슨비용</a></li>
+                        <li><a href="booking.html" class="hover:text-accent-gold">상담예약</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">지점안내</h4>
+                    <ul class="text-gray-300 space-y-2 text-sm">
+                        <li><a href="http://pilateshodu.com" target="_blank" class="hover:text-accent-gold">강남본점</a></li>
+                        <li><a href="index.html" class="hover:text-accent-gold">수지점</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">연락처</h4>
+                    <ul class="text-gray-300 space-y-2 text-sm">
+                        <li><i class="fas fa-phone mr-2"></i> 031-263-3345</li>
+                        <li><i class="fas fa-envelope mr-2"></i> pilateshodu@naver.com</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> 경기도 수지구 신봉2로 15, 3층</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-600 mt-8 pt-6 text-center text-gray-400 text-sm">
+                <p>&copy; 2025 PILATES HODU. All Rights Reserved.</p>
+                <p class="mt-1">메디컬필라테스™는 등록상표입니다. 모든 컨텐츠의 무단 사용을 금지합니다.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 
+    ==================================================
+    Firebase SDK 및 웹사이트 기능 스크립트
+    ================================================== 
+    -->
+    <script type="module">
+        // Firebase SDK 모듈 임포트
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+        // =================================================================
+        // ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+        // 중요: 아래 firebaseConfig 객체의 값들을
+        // DR_BreakFast님의 Firebase 프로젝트 설정 값으로 교체해주세요.
+        // (Firebase 콘솔 > 프로젝트 설정 > 일반 탭에서 확인 가능)
+        // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+        const firebaseConfig = {
+            apiKey: "AIzaSyDoZF51HOnT3DaHZ8i6vOVIY_KVtdG2oFM",
+            authDomain: "pilates-hodu-suji.firebaseapp.com",
+            projectId: "pilates-hodu-suji",
+            storageBucket: "pilates-hodu-suji.firebasestorage.app",
+            messagingSenderId: "867762237633",
+            appId: "1:867762237633:web:a9bc235034ff78a05ea440",
+            measurementId: "G-00N2KR2Q6C"
+        };
+
+        // Firebase 앱 초기화
+        const app = initializeApp(firebaseConfig);
+        // Firestore 인스턴스 가져오기
+        const db = getFirestore(app);
+
+        // DOM이 완전히 로드된 후 스크립트 실행
+        document.addEventListener('DOMContentLoaded', function() {
+            // Header scroll effect
+            const header = document.getElementById('header');
+            const headerLogo = document.getElementById('header-logo');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const bars = mobileMenuButton ? mobileMenuButton.querySelectorAll('.bar') : [];
+
+            const updateHeaderStyle = () => {
+                // 요소들이 존재하는지 확인
+                if (!header || !headerLogo) {
+                    console.error('Header or headerLogo not found');
+                    return;
+                }
+                
+                if (window.scrollY > 50) {
+                    header.classList.add('header-scrolled');
+                    headerLogo.classList.remove('text-white');
+                    headerLogo.classList.add('text-deep-navy');
+                    
+                    navLinks.forEach(link => {
+                        link.classList.remove('text-white', 'hover:text-gray-300');
+                        link.classList.add('text-gray-700', 'hover:text-golden-brown');
+                    });
+                    
+                    // 드롭다운 아이콘도 색상 변경
+                    const dropdownIcon = document.querySelector('#branch-dropdown-wrapper svg');
+                    if (dropdownIcon) {
+                        dropdownIcon.classList.remove('text-white');
+                        dropdownIcon.classList.add('text-gray-700');
+                    }
+                    
+                    // 햄버거 bar 색상 변경 (모바일에서만)
+                    if (window.innerWidth < 1024 && bars.length > 0) {
+                        bars.forEach(bar => {
+                            bar.classList.remove('bg-white');
+                            bar.classList.add('bg-deep-navy');
+                        });
+                    }
+                } else {
+                    header.classList.remove('header-scrolled');
+                    headerLogo.classList.add('text-white');
+                    headerLogo.classList.remove('text-deep-navy');
+                    
+                    navLinks.forEach(link => {
+                        link.classList.add('text-white', 'hover:text-gray-300');
+                        link.classList.remove('text-gray-700', 'hover:text-golden-brown');
+                    });
+                    
+                    // 드롭다운 아이콘도 색상 변경
+                    const dropdownIcon = document.querySelector('#branch-dropdown-wrapper svg');
+                    if (dropdownIcon) {
+                        dropdownIcon.classList.add('text-white');
+                        dropdownIcon.classList.remove('text-gray-700');
+                    }
+                    
+                    // 햄버거 bar 색상 복원 (모바일에서만)
+                    if (window.innerWidth < 1024 && bars.length > 0) {
+                        bars.forEach(bar => {
+                            bar.classList.add('bg-white');
+                            bar.classList.remove('bg-deep-navy');
+                        });
+                    }
+                }
+            };
+
+            // Mobile menu toggle (모바일에서만 동작)
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenuButton && mobileMenu && window.innerWidth < 1024) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                    mobileMenuButton.classList.toggle('active');
+                });
+            }
+
+            // Scroll to top button
+            const topBtn = document.getElementById('top-btn');
+            if (topBtn) {
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 400) {
+                        topBtn.classList.remove('opacity-0');
+                        topBtn.classList.add('opacity-100');
+                    } else {
+                        topBtn.classList.remove('opacity-100');
+                        topBtn.classList.add('opacity-0');
+                    }
+                });
+                
+                topBtn.addEventListener('click', function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            // Scroll animations
+            const animatedElements = document.querySelectorAll('.reveal, .fade-in');
+            if (animatedElements.length > 0) {
+                const animationObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                });
+
+                animatedElements.forEach(el => {
+                    animationObserver.observe(el);
+                });
+            }
+
+            // Booking form functionality
+            let currentStep = 1;
+            const totalSteps = 4;
+            
+            const updateStepIndicator = () => {
+                const stepItems = document.querySelectorAll('.step-item');
+                stepItems.forEach((item, index) => {
+                    item.classList.remove('active', 'completed');
+                    if (index + 1 === currentStep) {
+                        item.classList.add('active');
+                    } else if (index + 1 < currentStep) {
+                        item.classList.add('completed');
+                    }
+                });
+            };
+
+            // =================================================================
+            // ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+            // UX 최적화: 단계 이동 시 자동 스크롤 기능 추가
+            // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+            const showStep = (step) => {
+                document.querySelectorAll('.step-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                const currentStepElement = document.getElementById(`step${step}`);
+                if (currentStepElement) {
+                    currentStepElement.classList.remove('hidden');
+                    updateStepIndicator();
+
+                    setTimeout(() => {
+                        if (step === 1) {
+                            // 첫 화면은 무조건 최상단
+                            window.scrollTo({ top: 0, behavior: 'auto' });
+                        } else {
+                            // 이후 단계는 step indicator가 화면 상단에 오도록
+                            const stepIndicator = document.querySelector('.step-indicator');
+                            if (stepIndicator) {
+                                const indicatorTop = stepIndicator.getBoundingClientRect().top + window.pageYOffset;
+                                const headerOffset = 100; // 고정 헤더 높이만큼 여유 공간
+                                const scrollToPosition = indicatorTop - headerOffset;
+                                window.scrollTo({
+                                    top: scrollToPosition,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        }
+                    }, 100);
+                }
+            };
+
+            const programOptions = document.querySelectorAll('input[name="program"]');
+            programOptions.forEach(option => {
+                option.addEventListener('change', function() {
+                    document.querySelectorAll('.program-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    this.closest('.program-option').classList.add('selected');
+                });
+            });
+
+            const generateTimeSlots = () => {
+                const timeSlotsContainer = document.getElementById('timeSlots');
+                const timeSlots = [
+                    '09:00', '10:00', '11:00', '12:00', '13:00', '14:00',
+                    '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'
+                ];
+                
+                if (!timeSlotsContainer) return;
+                timeSlotsContainer.innerHTML = '';
+                timeSlots.forEach(time => {
+                    const slot = document.createElement('label');
+                    slot.className = 'time-slot';
+                    slot.innerHTML = `
+                        <input type="radio" name="time" value="${time}">
+                        <span>${time}</span>
+                    `;
+                    timeSlotsContainer.appendChild(slot);
+                });
+
+                document.querySelectorAll('.time-slot').forEach(slot => {
+                    slot.addEventListener('click', function() {
+                        if (!this.classList.contains('unavailable')) {
+                            document.querySelectorAll('.time-slot').forEach(s => {
+                                s.classList.remove('selected');
+                            });
+                            this.classList.add('selected');
+                        }
+                    });
+                });
+            };
+
+            const validateStep = (step) => {
+                const errorMessages = [];
+                if (step === 1 && !document.querySelector('input[name="program"]:checked')) {
+                    errorMessages.push('프로그램을 선택해주세요.');
+                }
+                if (step === 2) {
+                    if (!document.getElementById('bookingDate').value) errorMessages.push('날짜를 선택해주세요.');
+                    if (!document.querySelector('input[name="time"]:checked')) errorMessages.push('시간을 선택해주세요.');
+                }
+                if (step === 3) {
+                    if (!document.getElementById('customerName').value.trim()) errorMessages.push('이름을 입력해주세요.');
+                    if (!document.getElementById('customerPhone').value.trim()) errorMessages.push('연락처를 입력해주세요.');
+                }
+                return errorMessages;
+            };
+
+            const showValidationErrors = (errors) => {
+                if (errors.length > 0) {
+                    alert(errors.join('\n'));
+                    return false;
+                }
+                return true;
+            };
+
+            // =================================================================
+            // ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+            // UX 최적화: 전화번호 자동 하이픈 변환 기능 추가
+            // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+            const formatPhoneNumber = (input) => {
+                let phoneNumber = input.value.replace(/[^0-9]/g, '');
+                let formattedNumber = '';
+                if (phoneNumber.length > 10) {
+                    formattedNumber = phoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+                } else if (phoneNumber.length > 6) {
+                    formattedNumber = phoneNumber.replace(/(\d{2,3})(\d{3,4})(\d{4})/, '$1-$2-$3');
+                } else if (phoneNumber.length > 3) {
+                    formattedNumber = phoneNumber.replace(/(\d{2,3})(\d{3,4})/, '$1-$2');
+                } else {
+                    formattedNumber = phoneNumber;
+                }
+                input.value = formattedNumber;
+            };
+
+            const customerPhoneInput = document.getElementById('customerPhone');
+            if (customerPhoneInput) {
+                customerPhoneInput.addEventListener('input', function() {
+                    formatPhoneNumber(this);
+                });
+            }
+
+            document.getElementById('step1Next')?.addEventListener('click', () => {
+                if (showValidationErrors(validateStep(1))) {
+                    currentStep = 2;
+                    showStep(currentStep);
+                    generateTimeSlots();
+                }
+            });
+            document.getElementById('step2Prev')?.addEventListener('click', () => { currentStep = 1; showStep(currentStep); });
+            document.getElementById('step2Next')?.addEventListener('click', () => {
+                if (showValidationErrors(validateStep(2))) {
+                    currentStep = 3;
+                    showStep(currentStep);
+                }
+            });
+            document.getElementById('step3Prev')?.addEventListener('click', () => { currentStep = 2; showStep(currentStep); });
+            document.getElementById('step3Next')?.addEventListener('click', () => {
+                if (showValidationErrors(validateStep(3))) {
+                    currentStep = 4;
+                    showStep(currentStep);
+                    generateBookingSummary();
+                }
+            });
+            document.getElementById('step4Prev')?.addEventListener('click', () => { currentStep = 3; showStep(currentStep); });
+
+            const generateBookingSummary = () => {
+                const summaryEl = document.getElementById('bookingSummary');
+                if (!summaryEl) return;
+
+                const program = document.querySelector('input[name="program"]:checked');
+                const date = document.getElementById('bookingDate').value;
+                const time = document.querySelector('input[name="time"]:checked');
+                const name = document.getElementById('customerName').value;
+                const phone = document.getElementById('customerPhone').value;
+                
+                const programName = program.closest('.program-option').querySelector('h3').textContent;
+                const price = program.dataset.price;
+
+                summaryEl.innerHTML = `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div><p class="font-medium text-deep-navy">프로그램</p><p class="text-gray-600">${programName}</p></div>
+                        <div><p class="font-medium text-deep-navy">날짜</p><p class="text-gray-600">${date}</p></div>
+                        <div><p class="font-medium text-deep-navy">시간</p><p class="text-gray-600">${time.value}</p></div>
+                        <div><p class="font-medium text-deep-navy">예약자</p><p class="text-gray-600">${name}</p></div>
+                        <div><p class="font-medium text-deep-navy">연락처</p><p class="text-gray-600">${phone}</p></div>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-gray-200">
+                        <div class="flex justify-between items-center">
+                            <span class="font-semibold text-deep-navy text-lg">상담 비용</span>
+                            <span class="price-highlight">${price === '0' ? '무료' : Number(price).toLocaleString() + '원'}</span>
+                        </div>
+                    </div>
+                `;
+            };
+            
+            const bookingForm = document.getElementById('bookingForm');
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const submitButton = document.getElementById('submitBooking');
+                    submitButton.disabled = true;
+                    submitButton.textContent = '예약 처리 중...';
+
+                    const agreeTerms = document.getElementById('agreeTerms').checked;
+                    if (!agreeTerms) {
+                        alert('개인정보 수집·이용 및 상담 예약 정책에 동의해주세요.');
+                        submitButton.disabled = false;
+                        submitButton.textContent = '상담 예약 완료';
+                        return;
+                    }
+
+                    const bookingData = {
+                        program: document.querySelector('input[name="program"]:checked')?.value || 'N/A',
+                        bookingDate: document.getElementById('bookingDate').value,
+                        bookingTime: document.querySelector('input[name="time"]:checked')?.value || 'N/A',
+                        instructor: document.getElementById('preferredInstructor').value,
+                        customerName: document.getElementById('customerName').value,
+                        customerPhone: document.getElementById('customerPhone').value,
+                        customerEmail: document.getElementById('customerEmail').value,
+                        customerBirth: document.getElementById('customerBirth').value,
+                        healthInfo: document.getElementById('healthInfo').value,
+                        goals: document.getElementById('goals').value,
+                        additionalRequests: document.getElementById('additionalRequests').value,
+                        status: 'pending',
+                        createdAt: serverTimestamp()
+                    };
+
+                    try {
+                        const docRef = await addDoc(collection(db, "bookings"), bookingData);
+                        console.log("Document written with ID: ", docRef.id);
+                        alert('예약이 성공적으로 접수되었습니다! 확인 후 연락드리겠습니다.');
+                        this.reset();
+                        currentStep = 1;
+                        showStep(currentStep);
+                        document.querySelectorAll('.program-option').forEach(opt => opt.classList.remove('selected'));
+                    } catch (error) {
+                        console.error("Error adding document: ", error);
+                        alert('예약 중 오류가 발생했습니다. 잠시 후 다시 시도하시거나 전화로 문의해주세요.');
+                    } finally {
+                        submitButton.disabled = false;
+                        submitButton.textContent = '상담 예약 완료';
+                    }
+                });
+            }
+
+            const today = new Date();
+            today.setDate(today.getDate() + 1);
+            const minDate = today.toISOString().split('T')[0];
+            const bookingDateEl = document.getElementById('bookingDate');
+            const customerBirthEl = document.getElementById('customerBirth');
+            
+            if(bookingDateEl) {
+                bookingDateEl.setAttribute('min', minDate);
+                // 모바일 날짜 입력란 스타일 강제 적용
+                bookingDateEl.style.width = '100%';
+                bookingDateEl.style.minWidth = '100%';
+                bookingDateEl.style.maxWidth = '100%';
+                bookingDateEl.style.boxSizing = 'border-box';
+                bookingDateEl.style.webkitAppearance = 'none';
+                bookingDateEl.style.mozAppearance = 'none';
+                bookingDateEl.style.appearance = 'none';
+                
+            }
+            
+            // 날짜 입력란 placeholder 처리 함수 (전역으로 정의)
+            const updateDatePlaceholder = (input) => {
+                if (!input) return;
+                const wrapper = input.parentElement;
+                if (!wrapper || !wrapper.classList.contains('date-input-wrapper')) return;
+                
+                const placeholder = wrapper.querySelector('.date-placeholder');
+                if (placeholder) {
+                    if (window.innerWidth <= 768) {
+                        // 모바일: 값에 따라 표시/숨김
+                        if (input.value) {
+                            placeholder.style.opacity = '0';
+                            placeholder.style.pointerEvents = 'none';
+                        } else {
+                            placeholder.style.opacity = '1';
+                            placeholder.style.pointerEvents = 'none';
+                        }
+                    } else {
+                        // PC: 항상 숨김
+                        placeholder.style.display = 'none';
+                    }
+                }
+            };
+            
+            // 희망 날짜 placeholder 처리
+            if(bookingDateEl) {
+                bookingDateEl.addEventListener('change', () => updateDatePlaceholder(bookingDateEl));
+                bookingDateEl.addEventListener('input', () => updateDatePlaceholder(bookingDateEl));
+                updateDatePlaceholder(bookingDateEl);
+            }
+            
+            // 생년월일 placeholder 처리
+            if(customerBirthEl) {
+                customerBirthEl.addEventListener('change', () => updateDatePlaceholder(customerBirthEl));
+                customerBirthEl.addEventListener('input', () => updateDatePlaceholder(customerBirthEl));
+                updateDatePlaceholder(customerBirthEl);
+            }
+
+            // 초기 헤더 스타일 설정 및 스크롤 이벤트 리스너 등록
+            setTimeout(() => {
+                updateHeaderStyle();
+            }, 100);
+            window.addEventListener('scroll', updateHeaderStyle);
+            
+            // 윈도우 리사이즈 시 햄버거 메뉴 상태 관리 및 날짜 입력란 스타일 조정
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 1024) {
+                    // PC 화면에서는 모바일 메뉴 숨김
+                    if (mobileMenu) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                    if (mobileMenuButton) {
+                        mobileMenuButton.classList.remove('active');
+                    }
+                }
+                
+                // 날짜 입력란 placeholder 업데이트
+                if (typeof updateDatePlaceholder === 'function') {
+                    if (bookingDateEl) updateDatePlaceholder(bookingDateEl);
+                    if (customerBirthEl) updateDatePlaceholder(customerBirthEl);
+                }
+            });
+            
+            showStep(currentStep);
+        });
+    </script>
+
+</body>
+</html>
