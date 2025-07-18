@@ -370,6 +370,65 @@
                 border-color: var(--golden-brown) !important;
             }
         }
+        
+        /* 가로 모드 최적화 */
+        @media (max-width: 1024px) and (orientation: landscape) {
+            /* 날짜 입력란 가로 모드 최적화 */
+            .main-responsive input[type="date"] {
+                min-width: 200px !important;
+                width: auto !important;
+                font-size: 0.95rem !important;
+                padding: 0.6rem 0.8rem !important;
+                height: auto !important;
+                -webkit-appearance: none !important;
+                -moz-appearance: none !important;
+                appearance: none !important;
+            }
+            
+            /* 가로 모드에서 날짜 입력란 내부 아이콘 제거 */
+            .main-responsive input[type="date"]::-webkit-calendar-picker-indicator {
+                background: transparent !important;
+                color: transparent !important;
+                width: 100% !important;
+                height: 100% !important;
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                cursor: pointer !important;
+            }
+            
+            /* 가로 모드에서 날짜 입력란 포커스 효과 */
+            .main-responsive input[type="date"]:focus {
+                outline: none !important;
+                border-color: var(--golden-brown) !important;
+                box-shadow: 0 0 0 3px rgba(153, 101, 21, 0.1) !important;
+            }
+            
+            /* 가로 모드에서 날짜 입력란 호버 효과 */
+            .main-responsive input[type="date"]:hover {
+                border-color: var(--golden-brown) !important;
+            }
+            
+            /* 가로 모드에서 폼 레이아웃 최적화 */
+            .main-responsive .grid.grid-cols-1.md\\:grid-cols-2 {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+                gap: 1rem !important;
+            }
+            
+            /* 가로 모드에서 폼 입력란 크기 조정 */
+            .main-responsive .form-input, 
+            .main-responsive .form-select, 
+            .main-responsive .form-textarea {
+                font-size: 0.95rem !important;
+                padding: 0.6rem 0.8rem !important;
+            }
+            
+            /* 가로 모드에서 라벨 크기 조정 */
+            .main-responsive .form-label {
+                font-size: 0.9rem !important;
+                margin-bottom: 0.4rem !important;
+            }
+        }
         /* 햄버거 → X 애니메이션 (모바일 전용) */
         #mobile-menu-button {
           width: 1.5rem; height: 1.5rem;
