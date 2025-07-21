@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: http://pilateshodu2.com/sitemap.xml
