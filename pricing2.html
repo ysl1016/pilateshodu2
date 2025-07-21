@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>필라테스 호두 강남본점 레슨비용 계산기</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter, Noto Sans KR -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* CSS 변수 정의 */
+        :root {
+            --deep-navy: #001F3F;
+            --golden-brown: #996515;
+            --warm-beige: #F5F1E8;
+            --soft-cream: #FEFCF8;
+            --charcoal-gray: #2C2C2C;
+            --accent-gold: #D4AF37;
+        }
+        /* 기본 폰트 및 배경색 설정 */
+        body {
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+            background-color: var(--soft-cream);
+            color: var(--charcoal-gray);
+        }
+        /* Tailwind CSS 색상 변수 매핑 */
+        .bg-deep-navy { background-color: var(--deep-navy); }
+        .bg-golden-brown { background-color: var(--golden-brown); }
+        .bg-warm-beige { background-color: var(--warm-beige); }
+        .bg-accent-gold { background-color: var(--accent-gold); }
+        .text-deep-navy { color: var(--deep-navy); }
+        .text-golden-brown { color: var(--golden-brown); }
+        .text-charcoal-gray { color: var(--charcoal-gray); }
+        .text-accent-gold { color: var(--accent-gold); }
+        .text-white { color: white; }
+        .hover\:bg-deep-navy-dark:hover { background-color: #001122; }
+
+        /* 계산기 섹션 스타일 */
+        .calculator-section {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 32px;
+            margin-top: 32px;
+            margin-bottom: 32px; /* 푸터 공간 확보 */
+        }
+        /* 입력 필드 스타일 */
+        .calculator-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        .calculator-input:focus {
+            outline: none;
+            border-color: var(--golden-brown);
+        }
+        /* 결과 표시 섹션 스타일 */
+        .calculator-result {
+            background-color: #f0f9ff;
+            border: 2px solid var(--golden-brown);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 24px;
+            text-align: center;
+        }
+        /* 결과 항목 스타일 */
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline; /* 텍스트 줄바꿈 시 정렬을 위해 baseline으로 변경 */
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        .result-label {
+            font-weight: 500;
+            color: var(--charcoal-gray);
+            flex-shrink: 0;
+            margin-right: 1rem; /* 우측 여백 추가 */
+        }
+        .result-value {
+            font-weight: 600;
+            text-align: right;
+            /* flex-shrink: 0; 제거하여 너비가 줄어들고 줄바꿈이 가능하도록 함 */
+        }
+        /* 최종 금액 표시 스타일 */
+        .final-amount {
+            background-color: var(--warm-beige);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            border: 1px solid var(--golden-brown);
+        }
+        .final-amount-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .final-amount-label {
+            font-weight: 600;
+            color: var(--deep-navy);
+            flex-shrink: 0;
+        }
+        .final-amount-value {
+            font-weight: 700;
+            color: var(--deep-navy);
+            text-align: right;
+        }
+        .per-session {
+            font-size: 0.875rem;
+            color: var(--charcoal-gray);
+            margin-top: 0.25rem;
+            text-align: right;
+        }
+        /* 반응형 폰트 크기 */
+        @media (min-width: 768px) {
+            .final-amount-row {
+                font-size: 1.125rem;
+            }
+        }
+        @media (max-width: 767px) {
+            .final-amount-row {
+                font-size: 1rem;
+            }
+            .final-amount-value {
+                font-size: 1.1rem;
+            }
+            .calculator-section {
+                padding: 24px;
+            }
+        }
+        @media (max-width: 480px) {
+            .final-amount-row {
+                font-size: 0.95rem;
+            }
+            .final-amount-value {
+                font-size: 1rem;
+            }
+            .calculator-result {
+                padding: 16px;
+            }
+            .calculator-section {
+                padding: 16px;
+            }
+        }
+
+        /* 푸터 스타일 */
+        .footer {
+            background-color: var(--deep-navy);
+            color: var(--soft-cream);
+            padding: 2rem;
+            text-align: center;
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
+            margin-top: auto; /* 푸터를 하단으로 밀어내기 위해 auto로 변경 */
+            box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
+        }
+        .footer p {
+            margin-bottom: 0.5rem;
+        }
+        .footer a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: white;
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col items-center min-h-screen">
+    <div class="max-w-3xl w-full mx-auto flex-grow p-4">
+        <div class="text-center mb-8 pt-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-deep-navy mb-2">
+                필라테스 호두 강남본점 <span class="text-accent-gold">레슨비용 계산기</span>
+            </h1>
+            <p class="text-lg text-gray-600">
+                원하는 프로그램과 횟수를 선택하여 예상 비용을 계산해보세요.
+            </p>
+            <div class="mt-4 flex flex-col justify-center items-center space-y-2">
+                <span class="bg-deep-navy text-white px-6 py-2 rounded-full text-sm font-semibold">
+                    ⓘ 추가할인은 중복 적용되지 않습니다
+                </span>
+                <span class="bg-deep-navy text-white px-6 py-2 rounded-full text-sm font-semibold">
+                    ⓘ 최대할인율은 25%까지 적용됩니다
+                </span>
+            </div>
+        </div>
+
+        <div class="calculator-section">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="programSelect" class="block text-sm font-medium text-deep-navy mb-2">프로그램 선택</label>
+                    <select id="programSelect" class="calculator-input">
+                        <option value="">프로그램을 선택하세요</option>
+                        <option value="원장 직강">원장 직강 1회: 99,000원</option>
+                        <option value="강사 싱글">강사 싱글 1회: 88,000원</option>
+                        <option value="강사 듀엣">강사 듀엣 1회(1인당): 66,000원</option>
+                        <option value="신규등록(최초)">신규 등록(최초): 1회 88,000원</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="sessionCount" class="block text-sm font-medium text-deep-navy mb-2">이용 횟수</label>
+                    <select id="sessionCount" class="calculator-input">
+                        <option value="">횟수를 선택하세요</option>
+                        <!-- Options will be dynamically populated -->
+                    </select>
+                </div>
+
+                <div>
+                    <label for="packageDiscount" class="block text-sm font-medium text-deep-navy mb-2">패키지 할인</label>
+                    <select id="packageDiscount" class="calculator-input">
+                        <!-- Options will be dynamically populated -->
+                    </select>
+                </div>
+
+                <div>
+                    <label for="additionalDiscount" class="block text-sm font-medium text-deep-navy mb-2">추가 할인</label>
+                    <select id="additionalDiscount" class="calculator-input">
+                        <!-- Options will be dynamically populated -->
+                    </select>
+                </div>
+            </div>
+
+            <div class="mt-8 text-center">
+                <button id="calculateBtn" class="bg-deep-navy text-white px-8 py-3 rounded-full font-semibold hover:bg-deep-navy-dark transition-colors">
+                    레슨비용 계산하기
+                </button>
+            </div>
+
+            <div id="calculatorResult" class="calculator-result hidden">
+                <h3 class="text-xl font-bold text-deep-navy mb-4">레슨비용 계산</h3>
+                <div id="resultContent" class="space-y-2">
+                    <!-- 계산 결과가 여기에 표시됩니다 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-deep-navy text-white pt-12 pb-8 w-full">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4 lg:gap-6">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">
+                        <span class="font-eng">PILATES</span><span class="text-accent-gold"> HODU</span>
+                    </h3>
+                    <p class="text-gray-300 text-sm">
+                        의학적 근거기반 메디컬필라테스™로<br>
+                        1:1 원장직강 전문적인 필라테스를<br>
+                        통해 건강한 삶을 누릴 수 있습니다.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">프로그램</h4>
+                    <ul class="text-gray-300 space-y-2 text-sm">
+                        <li><a href="programs.html" class="hover:text-accent-gold">통증재활 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">마네킹톤 프로그램</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">플랫스콜 프로그램</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">골프 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">키즈(성장) 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">임산부 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">시니어 필라테스</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">스튜디오</h4>
+                    <ul class="text-gray-300 space-y-2 text-sm">
+                        <li><a href="instructors.html" class="hover:text-accent-gold">강사진</a></li>
+                        <li><a href="facilities.html" class="hover:text-accent-gold">시설안내</a></li>
+                        <li><a href="pricing.html" class="hover:text-accent-gold">레슨비용</a></li>
+                        <li><a href="booking.html" class="hover:text-accent-gold">상담예약</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">지점안내</h4>
+                    <ul class="text-gray-300 space-y-2 text-sm">
+                        <li><a href="http://pilateshodu.com" target="_blank" class="hover:text-accent-gold">강남본점</a></li>
+                        <li><a href="index.html" class="hover:text-accent-gold">수지점</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">연락처</h4>
+                    <ul class="text-gray-300 space-y-2 text-sm">
+                        <li><i class="fas fa-phone mr-2"></i> 031-263-3345</li>
+                        <li><i class="fas fa-envelope mr-2"></i> pilateshodu@naver.com</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> 경기도 수지구 신봉2로 15, 3층</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-600 mt-8 pt-6 text-center text-gray-400 text-sm">
+                <p>&copy; 2025 PILATES HODU. All Rights Reserved.</p>
+                <p class="mt-1">메디컬필라테스™는 등록상표입니다. 모든 컨텐츠의 무단 사용을 금지합니다.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // UI 요소 가져오기
+            const programSelect = document.getElementById('programSelect');
+            const sessionCountSelect = document.getElementById('sessionCount');
+            const packageDiscountSelect = document.getElementById('packageDiscount');
+            const additionalDiscountSelect = document.getElementById('additionalDiscount');
+            const calculateBtn = document.getElementById('calculateBtn');
+            const calculatorResult = document.getElementById('calculatorResult');
+            const resultContent = document.getElementById('resultContent');
+
+            // 가격 데이터 정의 (엑셀 파일 기반)
+            const pricingData = {
+                "원장 직강": {
+                    basePricePerSession: 99000,
+                    packages: {
+                        "10": { originalTotal: 990000, finalTotal: 940500, packageDiscountRate: 0.05 },
+                        "20": { originalTotal: 1980000, finalTotal: 1782000, packageDiscountRate: 0.1 },
+                        "30": { originalTotal: 2970000, finalTotal: 2524500, packageDiscountRate: 0.15 },
+                        "40": { originalTotal: 3960000, finalTotal: 3168000, packageDiscountRate: 0.2 },
+                        "50": { originalTotal: 4950000, finalTotal: 3712500, packageDiscountRate: 0.25 }
+                    }
+                },
+                "강사 싱글": {
+                    basePricePerSession: 88000,
+                    packages: {
+                        "10": { originalTotal: 880000, finalTotal: 836000, packageDiscountRate: 0.05 },
+                        "20": { originalTotal: 1760000, finalTotal: 1584000, packageDiscountRate: 0.1 },
+                        "30": { originalTotal: 2640000, finalTotal: 2244000, packageDiscountRate: 0.15 },
+                        "40": { originalTotal: 3520000, finalTotal: 2816000, packageDiscountRate: 0.2 },
+                        "50": { originalTotal: 4400000, finalTotal: 3300000, packageDiscountRate: 0.25 }
+                    }
+                },
+                "강사 듀엣": {
+                    basePricePerSession: 66000, // 1인당 가격
+                    packages: {
+                        "10": { originalTotal: 660000, finalTotal: 627000, packageDiscountRate: 0.05 },
+                        "20": { originalTotal: 1320000, finalTotal: 1188000, packageDiscountRate: 0.1 },
+                        "30": { originalTotal: 1980000, finalTotal: 1683000, packageDiscountRate: 0.15 },
+                        "40": { originalTotal: 2640000, finalTotal: 2112000, packageDiscountRate: 0.2 },
+                        "50": { originalTotal: 3300000, finalTotal: 2475000, packageDiscountRate: 0.25 }
+                    }
+                },
+                "신규등록(최초)": {
+                    basePricePerSession: 88000, // 1회 88,000원 기준
+                    packages: {
+                        "10": { originalTotal: 880000, finalTotal: 660000, packageDiscountRate: 0.25 } // 88000 * 10 = 880000, 25% 할인 적용 시 660000
+                    }
+                }
+            };
+
+            const generalAdditionalDiscounts = {
+                "none": { rate: 0, text: "추가 할인 없음" },
+                "naverReview": { rate: 0.05, text: "네이버 리뷰 (5% 추가할인)" },
+                "friendHappytime": { rate: 0.10, text: "지인소개/해피타임 (10% 추가할인)" }
+            };
+
+            // 프로그램 선택에 따라 횟수, 패키지 할인, 추가 할인 옵션 업데이트
+            function updateOptions() {
+                const selectedProgram = programSelect.value;
+                const currentSessionCount = sessionCountSelect.value; // 현재 선택된 횟수 값 유지
+                const currentPackageDiscount = packageDiscountSelect.value; // 현재 선택된 패키지 할인 값 유지
+                const currentAdditionalDiscount = additionalDiscountSelect.value; // 현재 선택된 추가 할인 값 유지
+
+                // 초기화 및 비활성화 상태 설정
+                sessionCountSelect.innerHTML = '<option value="">횟수를 선택하세요</option>';
+                packageDiscountSelect.innerHTML = ''; // 완전히 비움
+                additionalDiscountSelect.innerHTML = ''; // 완전히 비움
+                
+                sessionCountSelect.disabled = false;
+                packageDiscountSelect.disabled = false;
+                additionalDiscountSelect.disabled = false;
+
+                if (selectedProgram === "신규등록(최초)") {
+                    // 신규등록(최초) 선택 시 고정 옵션 설정
+                    sessionCountSelect.innerHTML = '<option value="10">10회</option>';
+                    sessionCountSelect.value = "10";
+                    sessionCountSelect.disabled = true;
+
+                    packageDiscountSelect.innerHTML = '<option value="0.25">신규등록 10회 25% 할인</option>';
+                    packageDiscountSelect.value = "0.25";
+                    packageDiscountSelect.disabled = true;
+
+                    additionalDiscountSelect.innerHTML = '<option value="none">추가 할인 없음</option>';
+                    additionalDiscountSelect.value = "none";
+                    additionalDiscountSelect.disabled = true;
+
+                } else if (selectedProgram) {
+                    // 일반 프로그램 선택 시 횟수 옵션 채우기
+                    const programPackages = pricingData[selectedProgram].packages;
+                    const sessionCounts = Object.keys(programPackages).sort((a, b) => parseInt(a) - parseInt(b)); // 횟수를 오름차순으로 정렬
+                    sessionCounts.forEach(count => {
+                        const option = document.createElement('option');
+                        option.value = count;
+                        option.textContent = `${count}회`;
+                        sessionCountSelect.appendChild(option);
+                    });
+                    // 이전에 선택된 횟수가 유효하면 유지
+                    if (sessionCounts.includes(currentSessionCount)) {
+                        sessionCountSelect.value = currentSessionCount;
+                    } else {
+                        sessionCountSelect.value = ""; // 유효하지 않으면 기본값
+                    }
+
+                    // 횟수 선택에 따라 패키지 할인 자동 선택 및 옵션 채우기
+                    updatePackageDiscountOptions();
+                    // 횟수 선택과 패키지 할인에 따라 추가 할인 옵션 채우기
+                    updateAdditionalDiscountOptions();
+
+                } else {
+                    // 프로그램이 선택되지 않았을 때 모든 드롭다운 비활성화
+                    sessionCountSelect.disabled = true;
+                    packageDiscountSelect.disabled = true;
+                    additionalDiscountSelect.disabled = true;
+                }
+            }
+
+            // 횟수 선택에 따라 패키지 할인 옵션 업데이트 (일반 프로그램용)
+            function updatePackageDiscountOptions() {
+                const selectedProgram = programSelect.value;
+                const selectedSessionCount = parseInt(sessionCountSelect.value) || 0;
+                
+                packageDiscountSelect.innerHTML = ''; // 완전히 비움
+
+                if (selectedProgram && selectedSessionCount > 0 && pricingData[selectedProgram] && pricingData[selectedProgram].packages[selectedSessionCount]) {
+                    // pricing.html과 동일한 포맷으로 패키지 할인 옵션 생성
+                    const packageDiscountOptions = [
+                        { value: "0", text: "패키지 없음" }, // Value as string
+                        { value: "0.05", text: "10회 이상 (5% 할인)" },
+                        { value: "0.10", text: "20회 이상 (10% 할인)" },
+                        { value: "0.15", text: "30회 이상 (15% 할인)" },
+                        { value: "0.20", text: "40회 이상 (20% 할인)" },
+                        { value: "0.25", text: "50회 이상 (25% 할인)" }
+                    ];
+
+                    let autoSelectedPackageDiscountValue = "0";
+
+                    // 이용횟수에 따라 해당하는 패키지 할인 자동 선택
+                    if (selectedSessionCount >= 50) {
+                        autoSelectedPackageDiscountValue = "0.25";
+                    } else if (selectedSessionCount >= 40) {
+                        autoSelectedPackageDiscountValue = "0.20";
+                    } else if (selectedSessionCount >= 30) {
+                        autoSelectedPackageDiscountValue = "0.15";
+                    } else if (selectedSessionCount >= 20) {
+                        autoSelectedPackageDiscountValue = "0.10";
+                    } else if (selectedSessionCount >= 10) {
+                        autoSelectedPackageDiscountValue = "0.05";
+                    }
+
+                    packageDiscountOptions.forEach(optionData => {
+                        const option = document.createElement('option');
+                        option.value = optionData.value; // Use the pre-defined string value
+                        option.textContent = optionData.text;
+                        packageDiscountSelect.appendChild(option);
+                    });
+                    
+                    // Set by value after all options are appended
+                    packageDiscountSelect.value = autoSelectedPackageDiscountValue; 
+                } else {
+                    // 프로그램이나 횟수가 선택되지 않았을 때 기본 "패키지 없음" 옵션만 추가
+                    const option = document.createElement('option');
+                    option.value = "0";
+                    option.textContent = "패키지 없음";
+                    packageDiscountSelect.appendChild(option);
+                    packageDiscountSelect.value = "0";
+                }
+            }
+
+            // 추가 할인 옵션을 동적으로 업데이트하는 함수 (최대 할인율 25% 제한 반영)
+            function updateAdditionalDiscountOptions() {
+                const selectedProgram = programSelect.value;
+                const selectedSessionCount = parseInt(sessionCountSelect.value) || 0;
+                const currentAdditionalValue = additionalDiscountSelect.value; // Keep current selection if valid
+                
+                additionalDiscountSelect.innerHTML = ''; // 완전히 비움
+
+                if (selectedProgram === "신규등록(최초)") {
+                    additionalDiscountSelect.innerHTML = '<option value="none">추가 할인 없음</option>';
+                    additionalDiscountSelect.value = "none";
+                    additionalDiscountSelect.disabled = true;
+                    return;
+                }
+
+                let basePackageDiscountRate = 0;
+                // 패키지 할인 드롭다운에서 현재 선택된 값을 기준으로 기본 할인율 가져오기
+                if (packageDiscountSelect.value) {
+                    basePackageDiscountRate = parseFloat(packageDiscountSelect.value);
+                }
+
+                let allowedOptions = [{ value: "none", text: "추가 할인 없음" }];
+                
+                // 엑셀 파일의 할인율을 기준으로 추가 할인 옵션 필터링
+                // 최대 할인율 25%를 넘지 않도록 추가 할인 옵션 제한
+                if (basePackageDiscountRate < 0.25) { 
+                    if ((basePackageDiscountRate + generalAdditionalDiscounts.naverReview.rate) <= 0.25) { 
+                        allowedOptions.push({ value: "naverReview", text: generalAdditionalDiscounts.naverReview.text });
+                    }
+                    if ((basePackageDiscountRate + generalAdditionalDiscounts.friendHappytime.rate) <= 0.25) { 
+                        allowedOptions.push({ value: "friendHappytime", text: generalAdditionalDiscounts.friendHappytime.text });
+                    }
+                }
+                
+                // 기존 옵션들을 제거하고 새로운 옵션들로 채움
+                allowedOptions.forEach(option => {
+                    const optionElement = new Option(option.text, option.value);
+                    additionalDiscountSelect.add(optionElement);
+                });
+                
+                // 이전에 선택된 값이 현재 허용되는 옵션에 있다면 유지, 없으면 첫 번째 옵션 선택
+                const isCurrentValueAllowed = allowedOptions.some(option => option.value === currentAdditionalValue);
+                if (isCurrentValueAllowed) {
+                    additionalDiscountSelect.value = currentAdditionalValue;
+                } else {
+                    additionalDiscountSelect.value = "none";
+                }
+            }
+            
+            // 프로그램 선택 변경 시 모든 옵션 업데이트
+            programSelect.addEventListener('change', updateOptions);
+            
+            // 횟수 선택 변경 시 패키지 할인 및 추가 할인 옵션 업데이트
+            sessionCountSelect.addEventListener('change', function() {
+                if (programSelect.value !== "신규등록(최초)") {
+                    updatePackageDiscountOptions();
+                    updateAdditionalDiscountOptions();
+                }
+            });
+            
+            // 패키지 할인 변경 시 추가 할인 옵션 업데이트 (수동 변경 시)
+            packageDiscountSelect.addEventListener('change', function() {
+                if (programSelect.value !== "신규등록(최초)") {
+                    updateAdditionalDiscountOptions();
+                }
+            });
+
+            // 계산 버튼 클릭 이벤트 리스너
+            calculateBtn.addEventListener('click', function() {
+                const selectedProgram = programSelect.value;
+                const selectedSessionCount = parseInt(sessionCountSelect.value) || 0;
+                const selectedPackageDiscountRate = parseFloat(packageDiscountSelect.value) || 0;
+                let selectedAdditionalDiscountKey = additionalDiscountSelect.value; // Get the key string directly
+
+                // 필수 입력값 검증
+                if (!selectedProgram || selectedSessionCount === 0) {
+                    alert('프로그램과 횟수를 선택해주세요.');
+                    return;
+                }
+
+                const programData = pricingData[selectedProgram];
+                if (!programData || !programData.packages[selectedSessionCount]) {
+                    alert('선택하신 프로그램과 횟수에 대한 가격 정보가 없습니다.');
+                    return;
+                }
+
+                // Create a map to get the actual key from the displayed text
+                const additionalDiscountTextToKeyMap = {};
+                for (const key in generalAdditionalDiscounts) {
+                    additionalDiscountTextToKeyMap[generalAdditionalDiscounts[key].text] = key;
+                }
+
+                // Get the actual key to use for lookup in generalAdditionalDiscounts
+                let actualAdditionalDiscountKey = selectedAdditionalDiscountKey; // Assume it's already the key if set correctly
+                // If the value is actually the text content (due to environment specific behavior), map it back
+                if (generalAdditionalDiscounts[selectedAdditionalDiscountKey] === undefined) {
+                    actualAdditionalDiscountKey = additionalDiscountTextToKeyMap[selectedAdditionalDiscountKey];
+                }
+
+                // If for some reason the map fails (e.g., text doesn't match), default to "none"
+                if (!generalAdditionalDiscounts.hasOwnProperty(actualAdditionalDiscountKey)) {
+                    console.error("Error: Invalid additional discount key selected:", selectedAdditionalDiscountKey);
+                    actualAdditionalDiscountKey = "none";
+                }
+                
+                const additionalDiscount = generalAdditionalDiscounts[actualAdditionalDiscountKey];
+
+
+                const packageInfo = programData.packages[selectedSessionCount];
+                const originalPrice = programData.basePricePerSession * selectedSessionCount; // 정가는 1회 가격 * 횟수로 계산
+                let finalPrice = originalPrice;
+                let totalDiscountAmount = 0;
+                let finalDiscountRate = 0;
+                let discountReason = "";
+
+                if (selectedProgram === "신규등록(최초)") {
+                    // 신규등록(최초)는 고정된 할인율과 가격을 가짐
+                    finalPrice = packageInfo.finalTotal;
+                    totalDiscountAmount = originalPrice - finalPrice;
+                    finalDiscountRate = packageInfo.packageDiscountRate;
+                    discountReason = "신규등록 10회 25% 할인";
+                } else {
+                    // 일반 프로그램 계산 로직
+                    
+                    // 패키지 할인과 추가 할인 중 더 큰 할인율을 적용하거나, 합산하되 최대 25% 제한
+                    // 여기서는 합산 후 최대 25% 제한을 유지합니다.
+                    const combinedRate = selectedPackageDiscountRate + additionalDiscount.rate;
+                    finalDiscountRate = Math.min(combinedRate, 0.25); // 최대 25% 할인율 적용
+
+                    totalDiscountAmount = originalPrice * finalDiscountRate;
+                    finalPrice = originalPrice - totalDiscountAmount;
+
+                    if (finalDiscountRate > 0) {
+                        let packageDiscountText = "";
+                        if (selectedPackageDiscountRate > 0) {
+                            packageDiscountText = `패키지 할인 (${(selectedPackageDiscountRate * 100)}%)`;
+                        }
+
+                        let additionalDiscountDisplayText = "";
+                        if (additionalDiscount.rate > 0) {
+                            // "네이버 리뷰 (5% 추가할인)" 에서 "추가할인)" 부분을 제거하고 괄호를 다시 붙임
+                            const additionalName = additionalDiscount.text.split(' (')[0];
+                            const additionalPercentage = Math.round(additionalDiscount.rate * 100);
+                            additionalDiscountDisplayText = `${additionalName} (${additionalPercentage}%)`;
+                        }
+
+                        if (packageDiscountText && additionalDiscountDisplayText) {
+                            discountReason = `${packageDiscountText} + ${additionalDiscountDisplayText}`;
+                        } else if (packageDiscountText) {
+                            discountReason = packageDiscountText;
+                        } else if (additionalDiscountDisplayText) {
+                            discountReason = additionalDiscountDisplayText;
+                        }
+                        
+                        if (combinedRate > 0.25 && discountReason) {
+                            discountReason += ` (최대 ${Math.round(finalDiscountRate * 100)}% 적용)`;
+                        }
+                    }
+                }
+
+                // 회당 가격 계산 (반올림)
+                const pricePerSession = Math.round(finalPrice / selectedSessionCount);
+
+                // 결과 내용을 HTML로 생성
+                resultContent.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="result-item">
+                            <span class="result-label">선택 프로그램:</span>
+                            <span class="result-value">${selectedProgram}</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">이용 횟수:</span>
+                            <span class="result-value">${selectedSessionCount}회</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">정가 (패키지 기준):</span>
+                            <span class="result-value">${originalPrice.toLocaleString()}원</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">할인 금액:</span>
+                            <span class="result-value text-red-500">-${Math.round(totalDiscountAmount).toLocaleString()}원 (${Math.round(finalDiscountRate * 100)}% 할인)</span>
+                        </div>
+                        ${discountReason ? `<div class="result-item text-sm text-gray-500">
+                            <span class="result-label">할인 적용:</span>
+                            <span class="result-value text-right">${discountReason}</span>
+                        </div>` : ''}
+                    </div>
+                    <div class="final-amount">
+                        <div class="final-amount-row">
+                            <span class="final-amount-label">최종 결제 금액:</span>
+                            <div class="text-right">
+                                <div class="final-amount-value">${Math.round(finalPrice).toLocaleString()}원 (VAT포함)</div>
+                                <div class="per-session">회당 ${pricePerSession.toLocaleString()}원</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                // 결과 섹션 표시
+                calculatorResult.classList.remove('hidden');
+                
+                // 계산 결과를 화면 중앙에 위치시키기 위한 스크롤
+                setTimeout(() => {
+                    const resultElement = calculatorResult;
+                    const elementRect = resultElement.getBoundingClientRect();
+                    const elementTop = elementRect.top + window.pageYOffset;
+                    const elementHeight = elementRect.height;
+                    const windowHeight = window.innerHeight;
+                    
+                    // 결과 창이 화면 중앙에 위치하도록 스크롤 위치 계산
+                    const scrollTo = elementTop - (windowHeight / 2) + (elementHeight / 2);
+                    
+                    window.scrollTo({
+                        top: Math.max(0, scrollTo),
+                        behavior: 'smooth'
+                    });
+                }, 100); // DOM 업데이트 후 실행
+            });
+
+            // 페이지 로드 시 초기 상태 설정
+            updateOptions();
+        });
+    </script>
+</body>
+</html>
