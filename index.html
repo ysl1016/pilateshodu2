@@ -60,6 +60,21 @@
     
         .hover\\:bg-deep-navy-dark:hover { background-color: #001122; }
         .hover\\:text-golden-brown:hover { color: var(--golden-brown); }
+        
+        /* 드롭다운 메뉴 아이템 호버 스타일 - 스크롤 전 */
+        #branch-menu a:hover {
+            color: var(--golden-brown) !important;
+        }
+        
+        /* 스크롤 후 드롭다운 메뉴 아이템 호버 스타일 */
+        .header-scrolled #branch-menu a:hover {
+            color: var(--golden-brown) !important;
+        }
+        
+        /* 스크롤 후 헤더 네비게이션 호버 스타일 */
+        .header-scrolled .nav-link:hover {
+            color: var(--golden-brown) !important;
+        }
     
         /* 스크롤 애니메이션 */
         .reveal, .fade-in {
@@ -700,6 +715,13 @@
                         dropdownIcon.classList.add('text-gray-700');
                     }
                     
+                    // 드롭다운 메뉴 아이템들도 색상 변경
+                    const dropdownMenuItems = document.querySelectorAll('#branch-menu a');
+                    dropdownMenuItems.forEach(item => {
+                        item.classList.remove('text-deep-navy');
+                        item.classList.add('text-gray-700');
+                    });
+                    
                     // 햄버거 bar 색상 변경 (모바일에서만)
                     const bars = document.querySelectorAll('#mobile-menu-button .bar');
                     if (window.innerWidth < 1024) {
@@ -724,6 +746,13 @@
                         dropdownIcon.classList.add('text-white');
                         dropdownIcon.classList.remove('text-gray-700');
                     }
+                    
+                    // 드롭다운 메뉴 아이템들도 색상 복원
+                    const dropdownMenuItems = document.querySelectorAll('#branch-menu a');
+                    dropdownMenuItems.forEach(item => {
+                        item.classList.remove('text-gray-700');
+                        item.classList.add('text-deep-navy');
+                    });
                     
                     // 햄버거 bar 색상 복원 (모바일에서만)
                     const bars = document.querySelectorAll('#mobile-menu-button .bar');
