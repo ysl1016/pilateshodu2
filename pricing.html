@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Manrope:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
         
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <style>
         :root {
@@ -303,28 +303,16 @@
             text-align: center;
         }
         
-        .result-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #e5e7eb;
-        }
-        
-        .result-item:last-child {
-            border-bottom: none;
-        }
-        
         .result-label {
             font-weight: 500;
             color: var(--charcoal-gray);
             flex-shrink: 0;
+            margin-right: 1rem;
         }
         
         .result-value {
             font-weight: 600;
             text-align: right;
-            flex-shrink: 0;
         }
         
         .final-amount {
@@ -333,14 +321,6 @@
             padding: 1rem;
             margin-top: 1rem;
             border: 1px solid var(--golden-brown);
-        }
-        
-        .final-amount-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.5rem;
         }
         
         .final-amount-label {
@@ -362,33 +342,72 @@
             text-align: right;
         }
         
-        /* 반응형 폰트 크기 */
+        /* --- 수정된 코드 시작 (최종 금액 표시 최적화) --- */
+        /* 계산기 결과 항목 기본 스타일 */
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+            flex-wrap: nowrap; /* Label과 Value가 한 줄에 있도록 강제 */
+            white-space: nowrap;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        /* 값이 너무 길어지면 ...으로 처리 */
+        .result-value, .final-amount-value, .per-session {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* 최종 금액 행 스타일 */
+        .final-amount-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; /* 모바일에서 너비가 부족하면 줄바꿈 허용 */
+            gap: 0.5rem;
+        }
+
+        /* 최종 금액의 우측 영역(금액, 회당가격)이 남은 공간을 채우도록 함 */
+        .final-amount-row > .text-right {
+            flex-grow: 1;
+        }
+
+        /* 반응형 폰트 및 레이아웃 조정 */
         @media (min-width: 768px) {
             .final-amount-row {
-                font-size: 1.125rem;
+                font-size: 1.125rem; /* 18px */
+                flex-wrap: nowrap; /* 데스크탑에서는 줄바꿈하지 않음 */
             }
         }
-        
+
         @media (max-width: 767px) {
-            .final-amount-row {
-                font-size: 1rem;
-            }
-            .final-amount-value {
-                font-size: 1.1rem;
-            }
+            .result-item { font-size: 0.9rem; } /* 14.4px */
+            .final-amount-row { font-size: 1rem; } /* 16px */
+            .final-amount-value { font-size: 1.05rem; } /* 16.8px */
         }
-        
+
         @media (max-width: 480px) {
-            .final-amount-row {
-                font-size: 0.95rem;
-            }
-            .final-amount-value {
-                font-size: 1rem;
-            }
-            .calculator-result {
-                padding: 16px;
-            }
+            .calculator-result { padding: 16px; }
+            .result-item { font-size: 0.85rem; padding: 0.4rem 0; } /* 13.6px */
+            .final-amount-row { font-size: 0.9rem; } /* 14.4px */
+            .final-amount-value { font-size: 1rem; } /* 16px */
+            .per-session { font-size: 0.8rem; } /* 12.8px */
         }
+
+        @media (max-width: 390px) { /* 아이폰 등 가장 작은 화면 대응 */
+            .result-item { font-size: 0.8rem; } /* 12.8px */
+            .result-label { margin-right: 0.5rem; }
+            .final-amount-row { font-size: 0.85rem; } /* 13.6px */
+            .final-amount-value { font-size: 0.9rem; } /* 14.4px */
+            .per-session { font-size: 0.75rem; } /* 12px */
+        }
+        /* --- 수정된 코드 끝 --- */
 
         .cta-btn {
             transition: background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
@@ -880,44 +899,32 @@
                     <div class="calculator-section fade-in">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-sm font-medium text-deep-navy mb-2">프로그램 선택</label>
+                                <label for="programSelect" class="block text-sm font-medium text-deep-navy mb-2">프로그램 선택</label>
                                 <select id="programSelect" class="calculator-input">
                                     <option value="">프로그램을 선택하세요</option>
-                                    <option value="77000">원장직강 1회: 77,000원</option>
+                                    <option value="원장직강">원장직강 1회: 77,000원</option>
+                                    <option value="원장직강 신규 등록 10회">원장직강 신규 등록 10회</option>
                                 </select>
                             </div>
 
                             <div>
-                                <label class="block text-sm font-medium text-deep-navy mb-2">이용 횟수</label>
+                                <label for="sessionCount" class="block text-sm font-medium text-deep-navy mb-2">이용 횟수</label>
                                 <select id="sessionCount" class="calculator-input">
                                     <option value="">횟수를 선택하세요</option>
-                                    <option value="10">10회</option>
-                                    <option value="20">20회</option>
-                                    <option value="30">30회</option>
-                                    <option value="40">40회</option>
-                                    <option value="50">50회</option>
-                                    <option value="60">50회 이상</option>
                                 </select>
                             </div>
 
                             <div>
-                                <label class="block text-sm font-medium text-deep-navy mb-2">패키지 할인</label>
+                                <label for="packageDiscount" class="block text-sm font-medium text-deep-navy mb-2">패키지 할인</label>
                                 <select id="packageDiscount" class="calculator-input">
                                     <option value="0">패키지 없음</option>
-                                    <option value="5">10회 이상 (5% 할인)</option>
-                                    <option value="10">20회 이상 (10% 할인)</option>
-                                    <option value="15">30회 이상 (15% 할인)</option>
-                                    <option value="20">40회 이상 (20% 할인)</option>
-                                    <option value="25">50회 이상 (25% 할인)</option>
                                 </select>
                             </div>
 
                             <div>
-                                <label class="block text-sm font-medium text-deep-navy mb-2">추가 할인</label>
+                                <label for="additionalDiscount" class="block text-sm font-medium text-deep-navy mb-2">추가 할인</label>
                                 <select id="additionalDiscount" class="calculator-input">
                                     <option value="0">추가 할인 없음</option>
-                                    <option value="5">후기 작성 (5% 추가할인)</option>
-                                    <option value="10">지인 소개 (10% 추가할인)</option>
                                 </select>
                             </div>
                         </div>
@@ -1236,124 +1243,182 @@
                 });
             }
 
-            // Price calculator functionality - 중요: 할인 제어 로직 개선
-            const calculateBtn = document.getElementById('calculateBtn');
-            const calculatorResult = document.getElementById('calculatorResult');
-            const resultContent = document.getElementById('resultContent');
+            // --- 레슨비용 계산기 로직 시작 ---
+            const programSelect = document.getElementById('programSelect');
             const sessionCountSelect = document.getElementById('sessionCount');
             const packageDiscountSelect = document.getElementById('packageDiscount');
             const additionalDiscountSelect = document.getElementById('additionalDiscount');
+            const calculateBtn = document.getElementById('calculateBtn');
+            const calculatorResult = document.getElementById('calculatorResult');
+            const resultContent = document.getElementById('resultContent');
+
+            // 가격 및 할인 데이터 정의
+            const pricingData = {
+                "원장직강": {
+                    basePricePerSession: 77000,
+                    packages: { "10": 0.05, "20": 0.10, "30": 0.15, "40": 0.20, "50": 0.25, "60": 0.25 }
+                },
+                "원장직강 신규 등록 10회": {
+                    basePricePerSession: 77000,
+                    packages: { "10": 0.25 }
+                }
+            };
             
-            // 추가 할인 옵션을 업데이트하는 함수
+            const additionalDiscounts = {
+                "0": { rate: 0, text: "추가 할인 없음" },
+                "5": { rate: 0.05, text: "후기 작성 (5% 추가할인)" },
+                "10": { rate: 0.10, text: "지인 소개 (10% 추가할인)" }
+            };
+
+            // 프로그램 선택 시 옵션 업데이트 함수
+            function updateOptions() {
+                const selectedProgram = programSelect.value;
+
+                // 모든 선택창 초기화 및 활성화
+                sessionCountSelect.innerHTML = '<option value="">횟수를 선택하세요</option>';
+                packageDiscountSelect.innerHTML = '<option value="0">패키지 없음</option>';
+                additionalDiscountSelect.innerHTML = '<option value="0">추가 할인 없음</option>';
+                sessionCountSelect.disabled = true;
+                packageDiscountSelect.disabled = true;
+                additionalDiscountSelect.disabled = true;
+
+                if (selectedProgram === "원장직강 신규 등록 10회") {
+                    // '원장직강 신규 등록 10회' 선택 시
+                    sessionCountSelect.innerHTML = '<option value="10">10회</option>';
+                    sessionCountSelect.value = "10";
+                    sessionCountSelect.disabled = true;
+
+                    packageDiscountSelect.innerHTML = '<option value="25">신규등록 10회 (25% 할인)</option>';
+                    packageDiscountSelect.value = "25";
+                    packageDiscountSelect.disabled = true;
+
+                    additionalDiscountSelect.innerHTML = '<option value="0">추가 할인 없음</option>';
+                    additionalDiscountSelect.value = "0";
+                    additionalDiscountSelect.disabled = true;
+                } else if (selectedProgram === "원장직강") {
+                    // '원장직강' 선택 시
+                    sessionCountSelect.disabled = false;
+                    packageDiscountSelect.disabled = false;
+                    additionalDiscountSelect.disabled = false;
+
+                    // 이용 횟수 옵션 채우기
+                    const counts = ["10", "20", "30", "40", "50", "60"];
+                    counts.forEach(count => {
+                        const option = document.createElement('option');
+                        option.value = count;
+                        option.textContent = count === "60" ? "50회 이상" : `${count}회`;
+                        sessionCountSelect.appendChild(option);
+                    });
+                    
+                    // 패키지 할인 옵션 채우기
+                    const packageDiscounts = [
+                        { value: "0", text: "패키지 없음" }, { value: "5", text: "10회 이상 (5% 할인)" },
+                        { value: "10", text: "20회 이상 (10% 할인)" }, { value: "15", text: "30회 이상 (15% 할인)" },
+                        { value: "20", text: "40회 이상 (20% 할인)" }, { value: "25", text: "50회 이상 (25% 할인)" }
+                    ];
+                    packageDiscountSelect.innerHTML = '';
+                    packageDiscounts.forEach(d => {
+                        const option = new Option(d.text, d.value);
+                        packageDiscountSelect.add(option);
+                    });
+
+                    // 추가 할인 옵션 채우기
+                    additionalDiscountSelect.innerHTML = '';
+                    Object.keys(additionalDiscounts).forEach(key => {
+                        const option = new Option(additionalDiscounts[key].text, key);
+                        additionalDiscountSelect.add(option);
+                    });
+                    
+                    updateAdditionalDiscountOptions();
+                }
+            }
+
+            // 이용 횟수 변경 시 패키지 할인 자동 선택
+            function autoSelectPackageDiscount() {
+                if (programSelect.value !== "원장직강") return;
+                
+                const sessionCount = parseInt(sessionCountSelect.value) || 0;
+                let discountValue = 0;
+                if (sessionCount >= 50) discountValue = 25;
+                else if (sessionCount >= 40) discountValue = 20;
+                else if (sessionCount >= 30) discountValue = 15;
+                else if (sessionCount >= 20) discountValue = 10;
+                else if (sessionCount >= 10) discountValue = 5;
+                packageDiscountSelect.value = discountValue;
+                updateAdditionalDiscountOptions();
+            }
+
+            // 추가 할인 옵션 동적 제어 (최대 25% 룰)
             function updateAdditionalDiscountOptions() {
+                if (programSelect.value !== "원장직강") return;
+
                 const packageDiscountValue = parseInt(packageDiscountSelect.value) || 0;
                 const currentAdditionalValue = additionalDiscountSelect.value;
-                
-                // 기본 옵션들 정의
-                const baseOptions = [
-                    { value: "0", text: "추가 할인 없음" },
-                    { value: "5", text: "후기 작성 (5% 추가할인)" },
-                    { value: "10", text: "지인 소개 (10% 추가할인)" }
-                ];
-                
-                let allowedOptions = [];
-                
-                if (packageDiscountValue === 25) {
-                    // 50회 이상 (25% 할인) 선택 시: 추가 할인 없음만
-                    allowedOptions = [baseOptions[0]];
-                } else if (packageDiscountValue === 20) {
-                    // 40회 이상 (20% 할인) 선택 시: 추가 할인 없음, 후기 작성만
-                    allowedOptions = [baseOptions[0], baseOptions[1]];
-                } else {
-                    // 다른 경우에는 모든 옵션 허용
-                    allowedOptions = baseOptions;
+                additionalDiscountSelect.innerHTML = '';
+
+                for (const key in additionalDiscounts) {
+                    if (packageDiscountValue + additionalDiscounts[key].rate * 100 <= 25) {
+                        const option = new Option(additionalDiscounts[key].text, key);
+                        additionalDiscountSelect.add(option);
+                    }
                 }
                 
-                // 기존 옵션들 제거
-                additionalDiscountSelect.innerHTML = '';
-                
-                // 새 옵션들 추가
-                allowedOptions.forEach(option => {
-                    const optionElement = new Option(option.text, option.value);
-                    additionalDiscountSelect.add(optionElement);
-                });
-                
-                // 이전에 선택된 값이 허용된 옵션에 있다면 유지, 없으면 첫 번째 옵션 선택
-                const isCurrentValueAllowed = allowedOptions.some(option => option.value === currentAdditionalValue);
+                // 이전에 선택했던 값이 여전히 유효한지 확인
+                const isCurrentValueAllowed = Array.from(additionalDiscountSelect.options).some(opt => opt.value === currentAdditionalValue);
                 if (isCurrentValueAllowed) {
                     additionalDiscountSelect.value = currentAdditionalValue;
                 } else {
-                    additionalDiscountSelect.value = allowedOptions[0].value;
+                    additionalDiscountSelect.value = "0"; // 유효하지 않으면 기본값으로
                 }
             }
-            
-            // 이용횟수 선택시 패키지 할인 자동 선택
-            sessionCountSelect.addEventListener('change', function() {
-                const sessionCount = parseInt(this.value) || 0;
-                let discountValue = 0;
-                
-                if (sessionCount >= 50) {
-                    discountValue = 25;
-                } else if (sessionCount >= 40) {
-                    discountValue = 20;
-                } else if (sessionCount >= 30) {
-                    discountValue = 15;
-                } else if (sessionCount >= 20) {
-                    discountValue = 10;
-                } else if (sessionCount >= 10) {
-                    discountValue = 5;
-                }
-                
-                packageDiscountSelect.value = discountValue;
-                // 패키지 할인이 변경되었으므로 추가 할인 옵션도 업데이트
-                updateAdditionalDiscountOptions();
-            });
-            
-            // 패키지 할인 선택 변경시 추가 할인 옵션 업데이트
-            packageDiscountSelect.addEventListener('change', function() {
-                updateAdditionalDiscountOptions();
-            });
 
+            // 계산 버튼 클릭 이벤트
             calculateBtn.addEventListener('click', function() {
-                const programPrice = parseInt(document.getElementById('programSelect').value) || 0;
-                let sessionCount = parseInt(document.getElementById('sessionCount').value) || 0;
-                // 50회 이상 선택시 실제 계산에서는 50회로 처리
-                if (sessionCount === 60) {
-                    sessionCount = 50;
-                }
-                
-                const packageDiscount = parseInt(document.getElementById('packageDiscount').value) || 0;
-                const additionalDiscount = parseInt(document.getElementById('additionalDiscount').value) || 0;
+                const selectedProgram = programSelect.value;
+                const sessionCount = parseInt(sessionCountSelect.value) || 0;
 
-                if (programPrice === 0 || sessionCount === 0) {
+                if (!selectedProgram || sessionCount === 0) {
                     alert('프로그램과 횟수를 선택해주세요.');
                     return;
                 }
 
-                const originalPrice = programPrice * sessionCount;
-                let discountedPrice = originalPrice;
-                let totalDiscount = 0;
+                const programData = pricingData[selectedProgram];
+                const basePricePerSession = programData.basePricePerSession;
+                const calculationSessionCount = sessionCount === 60 ? 50 : sessionCount; // '50회 이상'은 50회로 계산
 
-                // 패키지 할인과 추가할인을 합산하여 총할인율 계산
-                const totalDiscountRate = packageDiscount + additionalDiscount;
+                const originalPrice = basePricePerSession * calculationSessionCount;
                 
+                const packageDiscount = parseInt(packageDiscountSelect.value) || 0;
+                const additionalDiscount = parseInt(additionalDiscountSelect.value) || 0;
+                
+                let totalDiscountRate = Math.min(packageDiscount + additionalDiscount, 25);
+                
+                const totalDiscountAmount = originalPrice * (totalDiscountRate / 100);
+                const finalPrice = originalPrice - totalDiscountAmount;
+                const pricePerSession = Math.round(finalPrice / calculationSessionCount);
+                
+                const displaySessionCount = sessionCount === 60 ? '50회 이상' : `${sessionCount}회`;
+
+                let discountReason = "";
                 if (totalDiscountRate > 0) {
-                    const totalDiscountAmount = originalPrice * (totalDiscountRate / 100);
-                    discountedPrice = originalPrice - totalDiscountAmount;
-                    totalDiscount = totalDiscountAmount;
+                    if (selectedProgram === '원장직강 신규 등록 10회') {
+                        discountReason = '신규등록 10회 (25% 할인)';
+                    } else {
+                        const reasons = [];
+                        if (packageDiscount > 0) reasons.push(`패키지 ${packageDiscount}%`);
+                        if (additionalDiscount > 0) reasons.push(`${additionalDiscounts[additionalDiscount.toString()].text.split(' (')[0]}`);
+                        discountReason = reasons.join(' + ');
+                        if (packageDiscount + additionalDiscount > 25) {
+                            discountReason += ` (최대 25% 적용)`;
+                        }
+                    }
                 }
-
-                const programNames = {
-                    '77000': '원장직강 1회'
-                };
-                
-                const displaySessionCount = document.getElementById('sessionCount').value === '60' ? '50회 이상' : sessionCount + '회';
 
                 resultContent.innerHTML = `
                     <div class="space-y-3">
                         <div class="result-item">
                             <span class="result-label">선택 프로그램:</span>
-                            <span class="result-value">${programNames[programPrice.toString()]}</span>
+                            <span class="result-value">${selectedProgram}</span>
                         </div>
                         <div class="result-item">
                             <span class="result-label">이용 횟수:</span>
@@ -1365,42 +1430,40 @@
                         </div>
                         <div class="result-item">
                             <span class="result-label">할인 금액:</span>
-                            <span class="result-value text-red-500">-${totalDiscount.toLocaleString()}원 ${totalDiscountRate > 0 ? '(' + totalDiscountRate + '% 할인)' : ''}</span>
+                            <span class="result-value text-red-500">-${Math.round(totalDiscountAmount).toLocaleString()}원 (${totalDiscountRate}% 할인)</span>
                         </div>
+                        ${discountReason ? `<div class="result-item text-sm text-gray-500">
+                            <span class="result-label">할인 적용:</span>
+                            <span class="result-value text-right">${discountReason}</span>
+                        </div>` : ''}
                     </div>
                     <div class="final-amount">
                         <div class="final-amount-row">
                             <span class="final-amount-label">최종 결제 금액:</span>
                             <div class="text-right">
-                                <div class="final-amount-value">${discountedPrice.toLocaleString()}원 (VAT포함)</div>
-                                <div class="per-session">회당 ${Math.round(discountedPrice / sessionCount).toLocaleString()}원</div>
+                                <div class="final-amount-value">${Math.round(finalPrice).toLocaleString()}원 (VAT포함)</div>
+                                <div class="per-session">회당 ${pricePerSession.toLocaleString()}원</div>
                             </div>
                         </div>
                     </div>
                 `;
 
                 calculatorResult.classList.remove('hidden');
-                
-                // 계산 결과를 화면 중앙에 위치시키기 위한 최적화된 스크롤
+                 // 결과 창으로 부드럽게 스크롤
                 setTimeout(() => {
-                    const resultElement = calculatorResult;
-                    const elementRect = resultElement.getBoundingClientRect();
-                    const elementTop = elementRect.top + window.pageYOffset;
-                    const elementHeight = elementRect.height;
-                    const windowHeight = window.innerHeight;
-                    
-                    // 결과 창이 화면 중앙에 위치하도록 스크롤 위치 계산
-                    const scrollTo = elementTop - (windowHeight / 2) + (elementHeight / 2);
-                    
-                    window.scrollTo({
-                        top: Math.max(0, scrollTo),
-                        behavior: 'smooth'
-                    });
-                }, 100); // DOM 업데이트 후 실행
+                    calculatorResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
             });
+            
+            // 이벤트 리스너 연결
+            programSelect.addEventListener('change', updateOptions);
+            sessionCountSelect.addEventListener('change', autoSelectPackageDiscount);
+            packageDiscountSelect.addEventListener('change', updateAdditionalDiscountOptions);
+            
+            // 페이지 로드 시 초기화
+            updateOptions();
+            // --- 레슨비용 계산기 로직 끝 ---
 
-            // 페이지 로드 시 초기 상태 설정
-            updateAdditionalDiscountOptions();
 
             // Initial execution
             updateHeaderStyle();
@@ -1409,7 +1472,6 @@
             // 윈도우 리사이즈 시 햄버거 메뉴 상태 관리
             window.addEventListener('resize', function() {
                 if (window.innerWidth >= 1024) {
-                    // PC 화면에서는 모바일 메뉴 숨김
                     if (mobileMenu) {
                         mobileMenu.classList.add('hidden');
                     }
