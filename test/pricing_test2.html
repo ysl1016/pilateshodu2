@@ -362,33 +362,47 @@
             text-align: right;
         }
         
+        /* --- 수정된 코드 시작 --- */
+        /* 계산기 결과 반응형 최적화 */
+        .result-item, .final-amount-row {
+            flex-wrap: nowrap; /* 줄바꿈 방지 */
+            white-space: nowrap;
+        }
+
+        .result-value, .final-amount-value {
+            overflow: hidden;
+            text-overflow: ellipsis; /* 내용이 넘칠 경우 ... 처리 */
+        }
+
         /* 반응형 폰트 크기 */
         @media (min-width: 768px) {
             .final-amount-row {
-                font-size: 1.125rem;
+                font-size: 1.125rem; /* 18px */
             }
         }
-        
+
         @media (max-width: 767px) {
-            .final-amount-row {
-                font-size: 1rem;
-            }
-            .final-amount-value {
-                font-size: 1.1rem;
-            }
+            .result-item { font-size: 0.9rem; } /* 14.4px */
+            .final-amount-row { font-size: 1rem; } /* 16px */
+            .final-amount-value { font-size: 1.05rem; } /* 16.8px */
         }
-        
+
         @media (max-width: 480px) {
-            .final-amount-row {
-                font-size: 0.95rem;
-            }
-            .final-amount-value {
-                font-size: 1rem;
-            }
-            .calculator-result {
-                padding: 16px;
-            }
+            .calculator-result { padding: 16px; }
+            .result-item { font-size: 0.85rem; padding: 0.4rem 0; } /* 13.6px */
+            .final-amount-row { font-size: 0.9rem; } /* 14.4px */
+            .final-amount-value { font-size: 1rem; } /* 16px */
+            .per-session { font-size: 0.8rem; } /* 12.8px */
         }
+
+        @media (max-width: 390px) { /* 아이폰 등 작은 화면 대응 */
+            .result-item { font-size: 0.8rem; } /* 12.8px */
+            .result-label { margin-right: 0.5rem; }
+            .final-amount-row { font-size: 0.85rem; } /* 13.6px */
+            .final-amount-value { font-size: 0.9rem; } /* 14.4px */
+            .per-session { font-size: 0.75rem; } /* 12px */
+        }
+        /* --- 수정된 코드 끝 --- */
 
         .cta-btn {
             transition: background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
