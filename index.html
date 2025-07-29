@@ -26,7 +26,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Manrope:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
         
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <style>
         :root {
@@ -115,13 +115,62 @@
             transition: color 0.4s ease, transform 0.4s ease;
         }
         
-        /* 전문적인 그라데이션 배경 */
-        .hero-section {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/images/main/medical-pilates.jpeg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+        /* --- START: 동영상 배경 Hero Section 스타일 --- */
+        .hero-section-video {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
         }
+        
+        #hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+            z-index: -2;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* 어두운 오버레이 */
+            z-index: -1;
+        }
+
+        .dot-mesh-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0.5pt, transparent 0.5pt);
+            background-size: 3pt 3pt;
+            z-index: 1;
+        }
+        
+        /* 모바일 화면 (768px 이하)에서 비디오 대신 이미지 배경 표시 */
+        @media (max-width: 768px) {
+            .hero-section-video {
+                background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/images/main/HODU-PILA_1.00_00_00_00.Still001.png');
+                background-size: cover;
+                background-position: center;
+            }
+            #hero-video {
+                display: none;
+            }
+        }
+        /* --- END: 동영상 배경 Hero Section 스타일 --- */
         
         .section-gradient {
             background: linear-gradient(180deg, var(--soft-cream) 0%, var(--warm-beige) 100%);
@@ -303,10 +352,13 @@
 
     <main>
         <!-- Hero Section -->
-        <section class="relative h-screen flex items-center justify-center text-center text-white overflow-hidden hero-section">
-            <div class="absolute inset-0 opacity-20">
-                <div class="w-full h-full bg-gradient-to-r from-black/30 to-transparent"></div>
-            </div>
+        <section class="hero-section-video">
+            <video autoplay loop muted playsinline id="hero-video">
+                <source src="assets/videos/HODU-PILA_1.mp4" type="video/mp4">
+                브라우저가 비디오 태그를 지원하지 않습니다.
+            </video>
+            <div class="video-overlay"></div>
+            <div class="dot-mesh-overlay"></div>
             
             <div class="relative z-10 px-6 reveal">
                 <h1 class="font-eng text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight text-white mb-6">
@@ -759,7 +811,8 @@
             const header = document.getElementById('header');
             const headerLogo = document.getElementById('header-logo');
             const navLinks = document.querySelectorAll('.nav-link');
-            const mobileMenuButtonSvg = document.querySelector('#mobile-menu-button svg');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const bars = mobileMenuButton ? mobileMenuButton.querySelectorAll('.bar') : [];
 
             const updateHeaderStyle = () => {
                 if (window.scrollY > 50) {
@@ -787,7 +840,6 @@
                     });
                     
                     // 햄버거 bar 색상 변경 (모바일에서만)
-                    const bars = document.querySelectorAll('#mobile-menu-button .bar');
                     if (window.innerWidth < 1024) {
                         bars.forEach(bar => {
                             bar.classList.remove('bg-white');
@@ -819,7 +871,6 @@
                     });
                     
                     // 햄버거 bar 색상 복원 (모바일에서만)
-                    const bars = document.querySelectorAll('#mobile-menu-button .bar');
                     if (window.innerWidth < 1024) {
                         bars.forEach(bar => {
                             bar.classList.add('bg-white');
@@ -830,9 +881,7 @@
             };
 
             // Mobile menu toggle (모바일에서만 동작)
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
-            const bars = mobileMenuButton ? mobileMenuButton.querySelectorAll('.bar') : [];
             if (mobileMenuButton && mobileMenu && window.innerWidth < 1024) {
                 mobileMenuButton.addEventListener('click', function() {
                     mobileMenu.classList.toggle('hidden');
