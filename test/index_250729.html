@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>필라테스 호두 수지점 | PILATES HODU - 메디컬필라테스™</title>
+    <meta name="description" content="국내 최초의 메디컬필라테스 브랜드 - 의학적 근거를 기반으로 통증재활 및 체형관리를 제공하는 원장직강 1:1 전문 센터입니다.">
+    <meta name="keywords" content="메디컬필라테스, 신봉동 필라테스, 재활운동, 체형교정, 허리통증, 원장직강, 필라테스호두, 수지 필라테스, 필라테스, 성복동 필라테스">
+
+    <!-- Naver website SEO -->
+    <meta name="naver-site-verification" content="874e60956d0d0056b0e0b031de3030ebb3d84401" />
+    
+    <!-- Open Graph (OG) Tags for Social Media Sharing -->
+    <meta property="og:title" content="필라테스 호두 수지점 | PILATES HODU - 신봉동 메디컬필라테스™">
+    <meta property="og:url" content="https://pilateshodu2.com">
+    <meta property="og:image" content="https://pilateshodu2.com/assets/images/main/medical-pilates.jpeg">
+    <meta property="og:description" content="국내 최초 메디컬필라테스 브랜드 - 의학적 근거 기반의 수지구 신봉동 최고의 필라테스 원장직강 1:1 전문 센터입니다.">
+    <meta property="og:type" content="website">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+       
+    <!-- Google Fonts: Inter, Manrope, Noto Sans KR -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Manrope:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+        
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style>
+        :root {
+            --deep-navy: #001F3F;
+            --golden-brown: #996515;
+            --warm-beige: #F5F1E8;
+            --soft-cream: #FEFCF8;
+            --charcoal-gray: #2C2C2C;
+            --accent-gold: #D4AF37;
+        }
+    
+        body {
+            font-family: 'Manrope', 'Noto Sans KR', sans-serif;
+            background-color: var(--soft-cream);
+            color: var(--charcoal-gray);
+        }
+    
+        .font-eng { font-family: 'Manrope', sans-serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+            
+        .bg-deep-navy { background-color: var(--deep-navy); }
+        .bg-golden-brown { background-color: var(--golden-brown); }
+        .bg-warm-beige { background-color: var(--warm-beige); }
+        .bg-accent-gold { background-color: var(--accent-gold); }
+            
+        .text-deep-navy { color: var(--deep-navy); }
+        .text-golden-brown { color: var(--golden-brown); }
+        .text-charcoal-gray { color: var(--charcoal-gray); }
+        .text-accent-gold { color: var(--accent-gold); }
+        .text-white { color: white; }
+    
+        .hover\\:bg-deep-navy-dark:hover { background-color: #001122; }
+        .hover\\:text-golden-brown:hover { color: var(--golden-brown); }
+        
+        /* 드롭다운 메뉴 아이템 호버 스타일 - 스크롤 전 */
+        #branch-menu a:hover {
+            color: var(--golden-brown) !important;
+        }
+        
+        /* 스크롤 후 드롭다운 메뉴 아이템 호버 스타일 */
+        .header-scrolled #branch-menu a:hover {
+            color: var(--golden-brown) !important;
+        }
+        
+        /* 스크롤 후 헤더 네비게이션 호버 스타일 */
+        .header-scrolled .nav-link:hover {
+            color: var(--golden-brown) !important;
+        }
+    
+        /* 스크롤 애니메이션 */
+        .reveal, .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.6s ease-out;
+        }
+    
+        .reveal.visible, .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    
+        .header-scrolled {
+            background-color: rgba(254, 252, 248, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+            
+        .service-card {
+            background-color: white;
+            transition: all 0.4s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--golden-brown);
+        }
+        
+        .service-card:hover .card-icon {
+            color: var(--golden-brown) !important;
+            transform: scale(1.1);
+        }
+        
+        .card-icon {
+            transition: color 0.4s ease, transform 0.4s ease;
+        }
+        
+        /* 전문적인 그라데이션 배경 */
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/images/main/medical-pilates.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .section-gradient {
+            background: linear-gradient(180deg, var(--soft-cream) 0%, var(--warm-beige) 100%);
+        }
+
+        .cta-btn {
+            transition: background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+            will-change: background, color, border-color, box-shadow;
+        }
+        .cta-btn-primary {
+            background-color: var(--accent-gold);
+            color: var(--deep-navy);
+            border: none;
+        }
+        .cta-btn-primary:hover {
+            opacity: 0.9;
+            box-shadow: 0 4px 16px rgba(212,175,55,0.15);
+        }
+        .cta-btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        .cta-btn-outline:hover {
+            background: white;
+            color: var(--deep-navy);
+            border-color: white;
+            box-shadow: 0 4px 16px rgba(0,31,63,0.10);
+        }
+        /* 햄버거 → X 애니메이션 (모바일 전용) */
+        #mobile-menu-button {
+          width: 1.5rem; height: 1.5rem;
+          display: flex; flex-direction: column; justify-content: center; align-items: center;
+          position: relative;
+          z-index: 60;
+        }
+        
+        /* PC 화면에서 햄버거 메뉴 완전 숨김 */
+        @media (min-width: 1024px) {
+          #mobile-menu-button {
+            display: none !important;
+          }
+          #mobile-menu {
+            display: none !important;
+          }
+        }
+        #mobile-menu-button .bar {
+          display: block;
+          position: absolute;
+          width: 1.5rem;
+          height: 0.18rem;
+          border-radius: 2px;
+          transition: all 0.35s cubic-bezier(.68,-0.55,.27,1.55);
+          transform-origin: center;
+        }
+        #mobile-menu-button .top   { top: 0.375rem; left: 0; }
+        #mobile-menu-button .middle{ top: 0.75rem; left: 0; }
+        #mobile-menu-button .bottom{ top: 1.125rem; right: 0; width: 0.75rem; }
+        #mobile-menu-button.active .top {
+          top: 0.75rem;
+          transform: rotate(45deg);
+        }
+        #mobile-menu-button.active .middle {
+          transform: rotate(-45deg);
+        }
+        #mobile-menu-button.active .bottom {
+          opacity: 0;
+          transform: scaleX(0.5);
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "PILATES HODU 수지점",
+      "url": "https://pilateshodu2.com",
+      "logo": "https://pilateshodu2.com/assets/images/main/pilateshodu_logo_thumail.png",
+      "image": "https://pilateshodu2.com/assets/images/main/medical-pilates.jpeg",
+      "description": "국내 최초의 메디컬필라테스 브랜드 - 의학적 근거를 기반으로 통증재활 및 체형관리를 제공하는 원장직강 1:1 전문 센터입니다.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "신봉2로 15",
+        "addressLocality": "수지구",
+        "addressRegion": "용인시",
+        "postalCode": "16834",
+        "addressCountry": "KR"
+      },
+      "telephone": "+82312633345",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "08:00",
+          "closes": "21:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Saturday"
+          ],
+          "opens": "08:00",
+          "closes": "15:00"
+        }
+      ],
+      "sameAs": [
+        "http://www.instagram.com/pilateshodu_official/",
+        "https://blog.naver.com/pilateshodu",
+        "http://www.facebook.com/pilateshodu/",
+        "https://pf.kakao.com/_xiwVuj/chat",
+        "https://pilateshodu.com",
+        "https://ysl1016.github.io/eyeonclinic/obesity-clinic.html"
+      ]
+    }
+    </script>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" id="header-logo" class="flex items-center text-2xl font-bold text-white transition-colors duration-300">
+                    <span class="font-eng">PILATES</span> <span class="text-golden-brown ml-1">HODU</span>
+                    <span class="ml-2 text-xs font-semibold bg-deep-navy text-accent-gold px-2.5 py-1 rounded-md">수지</span>
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-1 text-sm">
+                    <a href="index.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md nav-active transition-colors duration-300">홈</a>
+                    <a href="programs.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">프로그램</a>
+                    <a href="instructors.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">강사소개</a>
+                    <a href="facilities.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">시설안내</a>
+                    <a href="booking.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">상담예약</a>
+                    <a href="pricing.html" class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300">레슨비용</a>
+                    <!-- Branch Dropdown -->
+                    <div class="relative group" id="branch-dropdown-wrapper">
+                        <button class="nav-link text-white hover:text-gray-300 px-3 py-2 rounded-md transition-colors duration-300 flex items-center">
+                            지점 안내
+                            <svg class="w-4 h-4 ml-1 transition-all duration-200 opacity-0 group-hover:opacity-100 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="branch-menu" class="absolute left-0 top-full w-36 bg-white/95 backdrop-blur-md rounded-lg shadow-xl border border-gray-200/50 py-2 z-50 opacity-0 invisible transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+                            <a href="http://pilateshodu.com" target="_blank" class="block px-4 py-2.5 text-sm text-deep-navy hover:bg-warm-beige hover:text-golden-brown transition-colors duration-200">강남본점</a>
+                            <a href="index.html" class="block px-4 py-2.5 text-sm text-deep-navy hover:bg-warm-beige hover:text-golden-brown transition-colors duration-200">수지점</a>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Mobile Navigation Button -->
+                <button id="mobile-menu-button" class="lg:hidden focus:outline-none relative w-6 h-6 z-50">
+                  <span class="bar top bg-white"></span>
+                  <span class="bar middle bg-white"></span>
+                  <span class="bar bottom bg-white"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden px-6 pt-2 pb-4 bg-white shadow-lg max-h-[calc(100dvh-64px)] overflow-y-auto z-40">
+            <a href="index.html" class="block py-2 text-gray-700 hover:text-golden-brown nav-active">홈</a>
+            <a href="programs.html" class="block py-2 text-gray-700 hover:text-golden-brown">프로그램</a>
+            <a href="instructors.html" class="block py-2 text-gray-700 hover:text-golden-brown">강사소개</a>
+            <a href="facilities.html" class="block py-2 text-gray-700 hover:text-golden-brown">시설안내</a>
+            <a href="booking.html" class="block py-2 text-gray-700 hover:text-golden-brown">상담예약</a>
+            <a href="pricing.html" class="block py-2 text-gray-700 hover:text-golden-brown">레슨비용</a>
+            <div class="border-t my-2"></div>
+            <p class="py-2 text-sm font-semibold text-gray-500">지점 안내</p>
+            <a href="http://pilateshodu.com" target="_blank" class="block py-2 text-gray-700 hover:text-golden-brown">강남본점</a>
+            <a href="index.html" class="block py-2 text-gray-700 hover:text-golden-brown">수지점</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative h-screen flex items-center justify-center text-center text-white overflow-hidden hero-section">
+            <div class="absolute inset-0 opacity-20">
+                <div class="w-full h-full bg-gradient-to-r from-black/30 to-transparent"></div>
+            </div>
+            
+            <div class="relative z-10 px-6 reveal">
+                <h1 class="font-eng text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-tight text-white mb-6">
+                    Move with <span class="text-accent-gold">Purpose</span><br>
+                    Heal with <span class="text-accent-gold">Science</span>
+                </h1>
+                <p class="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-gray-200 leading-relaxed">
+                    국내 최초 메디컬필라테스™ 전문 센터<br class="hidden md:block">
+                    의학적 근거 및 AI 기술 기반의 1:1 프리미엄 케어로 우리 몸의 건강한 변화를 이끕니다
+                </p>
+                <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="booking.html" class="cta-btn cta-btn-primary font-semibold px-8 py-4 rounded-full">
+                        1:1 원장직강 상담예약
+                    </a>
+                    <a href="programs.html" class="cta-btn cta-btn-outline font-semibold px-8 py-4 rounded-full">
+                        프로그램 보기
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Programs Section -->
+        <section class="py-16 md:py-24 section-gradient">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-deep-navy mb-4">맞춤 프로그램</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        필라테스 호두의 1:1 원장직강 프로그램<br>
+                        의학적 근거를 기반으로 한 개인 맞춤형 운동처방을 제공합니다
+                    </p>
+                </div>
+
+                <div class="fade-in grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="service-card p-8 rounded-xl shadow-lg">
+                        <div class="text-deep-navy mb-6 card-icon">
+                            <i class="fas fa-heart-pulse fa-3x"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-deep-navy">통증재활 필라테스</h3>
+                        <p class="text-gray-600 mb-4">
+                            근골격 통증 및 체형교정을 위한 의학적 접근의 전문 프로그램
+                        </p>
+                        <ul class="text-sm text-gray-500 space-y-1">
+                            <li>• 의학적 진단 기반 운동처방</li>
+                            <li>• 통증원인 분석 및 맞춤 치료</li>
+                            <li>• 체형 불균형 개선</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card p-8 rounded-xl shadow-lg">
+                        <div class="text-golden-brown mb-6 card-icon">
+                            <i class="fas fa-weight-hanging fa-3x"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-deep-navy">마네킹톤 프로그램</h3>
+                        <p class="text-gray-600 mb-4">
+                            체중감량 및 비만체형관리를 위한 전문 필라테스 프로그램
+                        </p>
+                        <ul class="text-sm text-gray-500 space-y-1">
+                            <li>• 과학적 체중감량 방법</li>
+                            <li>• 비만체형 맞춤 운동</li>
+                            <li>• 근력 유지 및 체지방 감소</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card p-8 rounded-xl shadow-lg">
+                        <div class="text-accent-gold mb-6 card-icon">
+                            <i class="fas fa-user-check fa-3x"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-deep-navy">플랫스콜 프로그램</h3>
+                        <p class="text-gray-600 mb-4">
+                            척추측만증 개선을 위한 슈로스메소드 접목 프로그램
+                        </p>
+                        <ul class="text-sm text-gray-500 space-y-1">
+                            <li>• 3차원 척추 운동</li>
+                            <li>• 체형 불균형 및 비대칭 개선</li>
+                            <li>• 척추측만 진행 방지</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card p-8 rounded-xl shadow-lg">
+                        <div class="text-deep-navy mb-6 card-icon">
+                            <i class="fas fa-golf-ball-tee fa-3x"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-deep-navy">골프 필라테스</h3>
+                        <p class="text-gray-600 mb-4">
+                            골프 스윙 개선과 비거리 향상을 위한 전문 프로그램
+                        </p>
+                        <ul class="text-sm text-gray-500 space-y-1">
+                            <li>• 스윙 메커닉스 분석 및 개선</li>
+                            <li>• 코어 안정성 향상</li>
+                            <li>• 비거리 증대 효과</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card p-8 rounded-xl shadow-lg">
+                        <div class="text-golden-brown mb-6 card-icon">
+                            <i class="fas fa-child fa-3x"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-deep-navy">키즈(성장) 필라테스</h3>
+                        <p class="text-gray-600 mb-4">
+                            성장기 아동청소년의 성장촉진 및 측만 교정 프로그램
+                        </p>
+                        <ul class="text-sm text-gray-500 space-y-1">
+                            <li>• 성장판 자극 운동</li>
+                            <li>• 청소년 및 성장기 체형 교정</li>
+                            <li>• 운동능력 및 집중력 향상</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card p-8 rounded-xl shadow-lg">
+                        <div class="text-accent-gold mb-6 card-icon">
+                            <i class="fas fa-baby fa-3x"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-deep-navy">임산부 필라테스</h3>
+                        <p class="text-gray-600 mb-4">
+                            산전 산후 관리를 위한 안전하고 효과적인 필라테스 프로그램
+                        </p>
+                        <ul class="text-sm text-gray-500 space-y-1">
+                            <li>• 산전 체력 유지 및 조절</li>
+                            <li>• 산후 회복 및 체형 관리</li>
+                            <li>• 골반저근 강화</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card p-8 rounded-xl shadow-lg">
+                        <div class="text-deep-navy mb-6 card-icon">
+                            <i class="fas fa-user-plus fa-3x"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-deep-navy">시니어 필라테스</h3>
+                        <p class="text-gray-600 mb-4">
+                            중장년의 근력 유지와 균형감 강화를 위한 전문 프로그램
+                        </p>
+                        <ul class="text-sm text-gray-500 space-y-1">
+                            <li>• 근력 감소 방지</li>
+                            <li>• 균형감 및 사지근력 강화</li>
+                            <li>• 낙상 예방 및 인지기능 향상</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-deep-navy mb-4">왜 필라테스 호두인가?</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        국내 최초이자 유일한 메디컬필라테스™ 브랜드<br>
+                        서비스표 및 상표권 등록이 완료된 유일한 메디컬필라테스™ 전문 센터
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="text-center fade-in">
+                        <div class="w-16 h-16 bg-golden-brown rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-trademark text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-deep-navy mb-2">상표권 등록</h3>
+                        <p class="text-gray-600 text-sm">메디컬필라테스™ 국내 정식 상표권 및 서비스표 등록 브랜드 보유</p>
+                    </div>
+
+                    <div class="text-center fade-in">
+                        <div class="w-16 h-16 bg-deep-navy rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-user-md text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-deep-navy mb-2">원장직강 1:1</h3>
+                        <p class="text-gray-600 text-sm">박정은 대표원장의 직접 1:1 개인레슨만 운영</p>
+                    </div>
+
+                    <div class="text-center fade-in">
+                        <div class="w-16 h-16 bg-accent-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-stethoscope text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-deep-navy mb-2">의학적 기반</h3>
+                        <p class="text-gray-600 text-sm">의학적 근거를 기반한 통증 재활 다이어트 필라테스</p>
+                    </div>
+
+                    <div class="text-center fade-in">
+                        <div class="w-16 h-16 bg-golden-brown rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-hospital text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-deep-navy mb-2">의료기관 연계</h3>
+                        <p class="text-gray-600 text-sm">이연의원과 연계한 전문적인 시스템</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="py-16 md:py-24 section-gradient">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-deep-navy mb-4">회원 후기</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        필라테스 호두와 함께한 회원들의 진솔한 변화 이야기
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-lg fade-in">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-golden-brown rounded-full flex items-center justify-center text-white font-bold">
+                                김
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-semibold text-deep-navy">김○○님</h4>
+                                <p class="text-gray-500 text-sm">재활 필라테스 수강</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic">
+                            "허리 수술 후 재활 운동으로 시작했는데, 이제는 일상생활이 완전히 달라졌어요. 
+                            전문적인 케어 덕분에 안전하고 효과적으로 회복할 수 있었습니다."
+                        </p>
+                        <div class="mt-4">
+                            <div class="flex text-accent-gold">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-xl shadow-lg fade-in">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-deep-navy rounded-full flex items-center justify-center text-white font-bold">
+                                이
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-semibold text-deep-navy">이○○님</h4>
+                                <p class="text-gray-500 text-sm">개인 레슨 수강</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic">
+                            "오랜 시간 앉아서 일하는 직업 때문에 목과 어깨가 늘 아팠는데, 
+                            개인 레슨을 통해 자세가 교정되고 통증이 사라졌어요. 집중적인 관리가 정말 효과적이었습니다."
+                        </p>
+                        <div class="mt-4">
+                            <div class="flex text-accent-gold">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-xl shadow-lg fade-in">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center text-white font-bold">
+                                박
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-semibold text-deep-navy">박○○님</h4>
+                                <p class="text-gray-500 text-sm">개인 레슨 수강</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic">
+                            "1:1 개인레슨 분위기가 너무 좋아요! 전문적인 강사 선생님과 서로 격려하며 
+                            꾸준히 할 수 있게 됐어요. 몸도 마음도 건강해지는 것을 느끼고 있습니다."
+                        </p>
+                        <div class="mt-4">
+                            <div class="flex text-accent-gold">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-deep-navy mb-4">연락처 및 위치</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        필라테스 호두로 오시는 길과 1:1 상담 문의
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div class="fade-in">
+                        <h3 class="text-xl font-semibold text-deep-navy mb-6">센터 정보</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-golden-brown mr-4"></i>
+                                <div>
+                                    <p class="font-semibold">주소</p>
+                                    <p class="text-gray-600">경기도 수지구 신봉2로 15, 3층</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-phone text-golden-brown mr-4"></i>
+                                <div>
+                                    <p class="font-semibold">전화번호</p>
+                                    <p class="text-gray-600">031-263-3345</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope text-golden-brown mr-4"></i>
+                                <div>
+                                    <p class="font-semibold">이메일</p>
+                                    <p class="text-gray-600">pilateshodu@naver.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-clock text-golden-brown mr-4 mt-1"></i>
+                                <div>
+                                    <p class="font-semibold">운영시간</p>
+                                    <div class="text-gray-600 text-sm">
+                                        <p>평일: 08:00 - 21:30</p>
+                                        <p>토요일: 08:00 - 15:00</p>
+                                        <p>일요일/공휴일: 휴무</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fade-in">
+                        <h3 class="text-xl font-semibold text-deep-navy mb-6">오시는 길</h3>
+                        <div class="bg-gray-100 h-64 rounded-lg overflow-hidden">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3173.4876!2d127.0749975!3d37.3242339!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca1b4c8fc2345%3A0xabe6220be0d1bcfe!2s%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EC%9A%A9%EC%9D%B8%EC%8B%9C%20%EC%88%98%EC%A7%80%EA%B5%AC%20%EC%8B%A0%EB%B4%892%EB%A1%9C%2015!5e0!3m2!1sko!2skr!4v1726642800000!5m2!1sko!2skr"
+                                width="100%" 
+                                height="100%" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="필라테스 호두 위치 - 경기도 용인시 수지구 신봉2로 15">
+                            </iframe>
+                        </div>
+                        <div class="mt-6">
+                            <h4 class="font-semibold text-deep-navy mb-2">편의시설</h4>
+                            <ul class="text-gray-600 text-sm space-y-1">
+                                <li>• 무료주차: 전용 주차장 이용 가능</li>
+                                <li>• 예약제: 사전 예약 필수</li>
+                                <li>• 무선인터넷: WiFi 제공</li>
+                                <li>• 남녀화장실 구분: 깨끗한 시설</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+   <!-- Font Awesome 7 style-sheet load -->
+   <link
+       rel="stylesheet"
+       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    />
+    <!-- Floating Action Buttons -->
+    <div class="fixed bottom-6 right-6 space-y-3 z-40">
+        <a href="tel:031-263-3345" class="w-14 h-14 bg-golden-brown text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all">
+            <i class="fas fa-phone fa-lg"></i>
+        </a>
+        <a href="https://pf.kakao.com/_xiwVuj/chat" class="w-14 h-14 bg-accent-gold text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all">
+            <i class="fa-brands fa-kakao-talk fa-lg"></i>
+        </a>
+        <button id="top-btn" class="w-14 h-14 bg-deep-navy text-white rounded-full flex items-center justify-center shadow-lg hover:opacity-90 transition-all opacity-0">
+            <i class="fas fa-arrow-up fa-lg"></i>
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-deep-navy text-white pt-12 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4 lg:gap-6">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">
+                        <span class="font-eng">PILATES</span><span class="text-accent-gold"> HODU</span>
+                    </h3>
+                    <p class="text-gray-300 text-sm">
+                        의학적 근거기반 메디컬필라테스™로<br>
+                        1:1 원장직강 전문적인 필라테스를<br>
+                        통해 건강한 삶을 누릴 수 있습니다.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">프로그램</h4>
+                    <ul class="text-gray-300 space-y-2 text-sm">
+                        <li><a href="programs.html" class="hover:text-accent-gold">통증재활 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">마네킹톤 프로그램</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">플랫스콜 프로그램</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">골프 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">키즈(성장) 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">임산부 필라테스</a></li>
+                        <li><a href="programs.html" class="hover:text-accent-gold">시니어 필라테스</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">스튜디오</h4>
+                    <ul class="text-gray-300 space-y-2 text-sm">
+                        <li><a href="instructors.html" class="hover:text-accent-gold">강사진</a></li>
+                        <li><a href="facilities.html" class="hover:text-accent-gold">시설안내</a></li>
+                        <li><a href="pricing.html" class="hover:text-accent-gold">레슨비용</a></li>
+                        <li><a href="booking.html" class="hover:text-accent-gold">상담예약</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">지점안내</h4>
+                    <ul class="text-gray-300 space-y-2 text-sm">
+                        <li><a href="http://pilateshodu.com" target="_blank" class="hover:text-accent-gold">강남본점</a></li>
+                        <li><a href="index.html" class="hover:text-accent-gold">수지점</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">연락처</h4>
+                    <ul class="text-gray-300 space-y-2 text-sm">
+                        <li><i class="fas fa-phone mr-2"></i> 031-263-3345</li>
+                        <li><i class="fas fa-envelope mr-2"></i> pilateshodu@naver.com</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> 경기도 수지구 신봉2로 15, 3층</li>
+                    </ul>
+                    <div class="mt-12">
+                        <h5 class="font-semibold mb-2 text-sm">소셜미디어</h5>
+                        <div class="flex space-x-3">
+                            <a href="https://www.instagram.com/pilateshodu_official" target="_blank" class="text-gray-300 hover:text-accent-gold transition-colors duration-200">
+                                <i class="fab fa-instagram text-lg"></i>
+                            </a>
+                            <a href="https://youtube.com/channel/UC6ma_4TB4Mpf7Qqp-6abyMA?si=w0cIq9w7mQ1FRgw-" target="_blank" class="text-gray-300 hover:text-accent-gold transition-colors duration-200">
+                                <i class="fab fa-youtube text-lg"></i>
+                            </a>
+                            <a href="https://www.facebook.com/pilateshodu" target="_blank" class="text-gray-300 hover:text-accent-gold transition-colors duration-200">
+                                <i class="fab fa-facebook-f text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-600 mt-8 pt-6 text-center text-gray-400 text-sm">
+                <p>&copy; 2013 PILATES HODU. All Rights Reserved.</p>
+                <p class="mt-1">메디컬필라테스™는 등록상표입니다. 모든 컨텐츠의 무단 사용을 금지합니다.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Header scroll effect
+            const header = document.getElementById('header');
+            const headerLogo = document.getElementById('header-logo');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileMenuButtonSvg = document.querySelector('#mobile-menu-button svg');
+
+            const updateHeaderStyle = () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('header-scrolled');
+                    headerLogo.classList.remove('text-white');
+                    headerLogo.classList.add('text-deep-navy');
+                    
+                    navLinks.forEach(link => {
+                        link.classList.remove('text-white', 'hover:text-gray-300');
+                        link.classList.add('text-gray-700', 'hover:text-golden-brown');
+                    });
+                    
+                    // 드롭다운 아이콘도 색상 변경
+                    const dropdownIcon = document.querySelector('#branch-dropdown-wrapper svg');
+                    if (dropdownIcon) {
+                        dropdownIcon.classList.remove('text-white');
+                        dropdownIcon.classList.add('text-gray-700');
+                    }
+                    
+                    // 드롭다운 메뉴 아이템들도 색상 변경
+                    const dropdownMenuItems = document.querySelectorAll('#branch-menu a');
+                    dropdownMenuItems.forEach(item => {
+                        item.classList.remove('text-deep-navy');
+                        item.classList.add('text-gray-700');
+                    });
+                    
+                    // 햄버거 bar 색상 변경 (모바일에서만)
+                    const bars = document.querySelectorAll('#mobile-menu-button .bar');
+                    if (window.innerWidth < 1024) {
+                        bars.forEach(bar => {
+                            bar.classList.remove('bg-white');
+                            bar.classList.add('bg-deep-navy');
+                        });
+                    }
+                } else {
+                    header.classList.remove('header-scrolled');
+                    headerLogo.classList.add('text-white');
+                    headerLogo.classList.remove('text-deep-navy');
+                    
+                    navLinks.forEach(link => {
+                        link.classList.add('text-white', 'hover:text-gray-300');
+                        link.classList.remove('text-gray-700', 'hover:text-golden-brown');
+                    });
+                    
+                    // 드롭다운 아이콘도 색상 변경
+                    const dropdownIcon = document.querySelector('#branch-dropdown-wrapper svg');
+                    if (dropdownIcon) {
+                        dropdownIcon.classList.add('text-white');
+                        dropdownIcon.classList.remove('text-gray-700');
+                    }
+                    
+                    // 드롭다운 메뉴 아이템들도 색상 복원
+                    const dropdownMenuItems = document.querySelectorAll('#branch-menu a');
+                    dropdownMenuItems.forEach(item => {
+                        item.classList.remove('text-gray-700');
+                        item.classList.add('text-deep-navy');
+                    });
+                    
+                    // 햄버거 bar 색상 복원 (모바일에서만)
+                    const bars = document.querySelectorAll('#mobile-menu-button .bar');
+                    if (window.innerWidth < 1024) {
+                        bars.forEach(bar => {
+                            bar.classList.add('bg-white');
+                            bar.classList.remove('bg-deep-navy');
+                        });
+                    }
+                }
+            };
+
+            // Mobile menu toggle (모바일에서만 동작)
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const bars = mobileMenuButton ? mobileMenuButton.querySelectorAll('.bar') : [];
+            if (mobileMenuButton && mobileMenu && window.innerWidth < 1024) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                    mobileMenuButton.classList.toggle('active');
+                });
+            }
+
+            // Scroll to top button
+            const topBtn = document.getElementById('top-btn');
+            if (topBtn) {
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 400) {
+                        topBtn.classList.remove('opacity-0');
+                        topBtn.classList.add('opacity-100');
+                    } else {
+                        topBtn.classList.remove('opacity-100');
+                        topBtn.classList.add('opacity-0');
+                    }
+                });
+                
+                topBtn.addEventListener('click', function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            // Scroll animations
+            const animatedElements = document.querySelectorAll('.reveal, .fade-in');
+            if (animatedElements.length > 0) {
+                const animationObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                });
+
+                animatedElements.forEach(el => {
+                    animationObserver.observe(el);
+                });
+            }
+
+            // Initial execution
+            updateHeaderStyle();
+            window.addEventListener('scroll', updateHeaderStyle);
+            
+            // 윈도우 리사이즈 시 햄버거 메뉴 상태 관리
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 1024) {
+                    // PC 화면에서는 모바일 메뉴 숨김
+                    if (mobileMenu) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                    if (mobileMenuButton) {
+                        mobileMenuButton.classList.remove('active');
+                    }
+                }
+            });
+
+            // Branch dropdown menu - CSS group 클래스로 처리하므로 별도 JavaScript 불필요
+        });
+    </script>
+</body>
+</html>
