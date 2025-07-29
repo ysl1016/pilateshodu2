@@ -303,18 +303,6 @@
             text-align: center;
         }
         
-        .result-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline; /* For multiline text alignment */
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #e5e7eb;
-        }
-        
-        .result-item:last-child {
-            border-bottom: none;
-        }
-        
         .result-label {
             font-weight: 500;
             color: var(--charcoal-gray);
@@ -333,14 +321,6 @@
             padding: 1rem;
             margin-top: 1rem;
             border: 1px solid var(--golden-brown);
-        }
-        
-        .final-amount-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.5rem;
         }
         
         .final-amount-label {
@@ -362,22 +342,47 @@
             text-align: right;
         }
         
-        /* --- 수정된 코드 시작 --- */
-        /* 계산기 결과 반응형 최적화 */
-        .result-item, .final-amount-row {
-            flex-wrap: nowrap; /* 줄바꿈 방지 */
+        /* --- 수정된 코드 시작 (최종 금액 표시 최적화) --- */
+        /* 계산기 결과 항목 기본 스타일 */
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+            flex-wrap: nowrap; /* Label과 Value가 한 줄에 있도록 강제 */
             white-space: nowrap;
         }
-
-        .result-value, .final-amount-value {
-            overflow: hidden;
-            text-overflow: ellipsis; /* 내용이 넘칠 경우 ... 처리 */
+        
+        .result-item:last-child {
+            border-bottom: none;
         }
 
-        /* 반응형 폰트 크기 */
+        /* 값이 너무 길어지면 ...으로 처리 */
+        .result-value, .final-amount-value, .per-session {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* 최종 금액 행 스타일 */
+        .final-amount-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; /* 모바일에서 너비가 부족하면 줄바꿈 허용 */
+            gap: 0.5rem;
+        }
+
+        /* 최종 금액의 우측 영역(금액, 회당가격)이 남은 공간을 채우도록 함 */
+        .final-amount-row > .text-right {
+            flex-grow: 1;
+        }
+
+        /* 반응형 폰트 및 레이아웃 조정 */
         @media (min-width: 768px) {
             .final-amount-row {
                 font-size: 1.125rem; /* 18px */
+                flex-wrap: nowrap; /* 데스크탑에서는 줄바꿈하지 않음 */
             }
         }
 
@@ -395,7 +400,7 @@
             .per-session { font-size: 0.8rem; } /* 12.8px */
         }
 
-        @media (max-width: 390px) { /* 아이폰 등 작은 화면 대응 */
+        @media (max-width: 390px) { /* 아이폰 등 가장 작은 화면 대응 */
             .result-item { font-size: 0.8rem; } /* 12.8px */
             .result-label { margin-right: 0.5rem; }
             .final-amount-row { font-size: 0.85rem; } /* 13.6px */
